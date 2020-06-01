@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :add_user_ref_to_budgets
+  resources :budgets
   resources :users
   get 'login', to: 'sessions#create', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
