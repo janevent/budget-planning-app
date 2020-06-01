@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :incomes
   resources :expenses
   resources :templates
   resources :add_user_ref_to_budgets

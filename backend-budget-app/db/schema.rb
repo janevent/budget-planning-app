@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_202313) do
+ActiveRecord::Schema.define(version: 2020_06_01_203942) do
 
   create_table "budgets", force: :cascade do |t|
     t.string "title"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2020_06_01_202313) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["paymentable_type", "paymentable_id"], name: "index_expenses_on_paymentable_type_and_paymentable_id"
+  end
+
+  create_table "incomes", force: :cascade do |t|
+    t.string "description"
+    t.integer "amount"
+    t.string "gainsable_type"
+    t.integer "gainsable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gainsable_type", "gainsable_id"], name: "index_incomes_on_gainsable_type_and_gainsable_id"
   end
 
   create_table "templates", force: :cascade do |t|
