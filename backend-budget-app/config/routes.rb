@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :templates
   resources :add_user_ref_to_budgets
   resources :budgets
   resources :users
