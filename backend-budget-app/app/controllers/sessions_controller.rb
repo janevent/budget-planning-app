@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController 
     def create 
-        user = User.find_by(username: user_params.username)
-        if user && user.authenticate
+        if !params.empty? && user = User.find_by(username: params[:username])       
             render json: user
-        end 
+        else
+            render json: { status: "error", code: 3000, message: "can not find user" }
+        end
     end 
 
     def destroy 
@@ -12,7 +13,7 @@ class SessionsController < ApplicationController
 
     private 
 
-    def user_params
-        params.require(:user).permit(:username, :email, :password)
-    end
+    #def user_params
+     #   params.require(:user).permit(:username, :email, :password)
+    #end
 end
