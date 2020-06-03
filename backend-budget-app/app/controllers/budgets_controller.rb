@@ -4,31 +4,37 @@ class BudgetsController < ApplicationController
         # user = User.find_by(id: params[:id])
         user = User.find_by(id: 1)
         #budget = user.budgets.create(title: params[:title])
-        budget = user.budgets.create(title: "Home-July-2020")
-        render json: budget
+        budget = user.budgets.create(title: params[:budget][:title])
+        expenses = budget.create.expenses(params[:budget][:expenses])
+        incomes = budget.create.incomes(params[:budget][:incomes])
+        options = { include: [:expenses, :incomes]}
+        render json: BudgetSerializer.new(budget, options)
 
         #budget is created when user moves away from title field
+        #or when user clicks save button 
 
     end 
 
     def show 
         budget = Budget.find_by(id: params[:id]) 
-        # options = { include: [:expenses, :incomes] }
+        options = { include: [:expenses, :incomes] }
         if budget
-            render json: budget
-            #render BudgetSerializer.new(budget, options)
+            #render json: budget
+            render json: BudgetSerializer.new(budget, options)
         else
             render json: { status: "error", code: 3000, message: "Can not find budget"}
         end
     end 
 
     def index 
-        user = User.find_by(id: params[:id])
-        if user
-            budgets = user.budgets
-        end
-        if user && budgets 
-            render json: budgets
+        #user = User.find_by(id: params[:id])
+        #if user
+         #   budgets = user.budgets
+        #end
+        budgets = Budget.all
+        #if user && budgets 
+        if budgets
+            render json: BudgetSerializer.new(budgets)
         else 
             render json: { status: "error", code: 3000, message: "Can not find user or budgets."}
         end
