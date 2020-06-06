@@ -1,7 +1,8 @@
 import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import User from './User.js';
+import NewUser from './NewUser.js';
+import User from '/User.js';
 import Navigation from './Navigation.js'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         </a> */}
      {/*</header>*/}
       <Navigation/>
+      <NewUser/>
       <User/>
     </div>
   );
