@@ -1,19 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import './index.css';
 //import reducer 
-import { Provider } from 'react-redux';
+import { Provider, applyMiddleware, compose } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore();
+let user = () => { return null};
+const reducer = combineReducers({
+  user: user
+})
+
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   //<React.StrictMode>
   <Provider store={store}>
     <App />
-    <Provider/>,
+  </Provider>,
    
   document.getElementById('root')
 );
