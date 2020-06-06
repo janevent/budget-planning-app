@@ -2,7 +2,7 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import NewUser from './NewUser.js';
-import User from '/User.js';
+import User from './User.js';
 import Navigation from './Navigation.js'
 
 function App() {

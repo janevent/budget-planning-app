@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController 
     def create 
-        if !params.empty? && user = User.find_by(username: params[:username])       
-            render json: user
+        user = User.find_by(username: params[:user_name])  
+        #binding.pry 
+        if !params.empty? && user    
+            render json: {user: {userName: user.username, email: user.email} }
         else
             render json: { status: "error", code: 3000, message: "can not find user" }
         end

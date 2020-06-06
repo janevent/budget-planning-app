@@ -1,29 +1,64 @@
 import React from 'react';
+import './index.css'
 
 export default class User extends React.Component {
 
     constructor(props){
         super(props)
-        state = {
-            username: "",
+        this.state = {
+            userName: "",
             password: "", 
             email: "",
         }
     }
+
+    handleUserNameChange = (event) => {
+        this.setState({
+            userName: event.target.value
+        })
+    }
+
+    handlePasswordChange = (event) => {
+        this.setState({
+            password: event.target.value
+            
+        })
+    }
+
+    handleOnSubmit = (event) => {
+        event.preventDefault();
+        console.log("state:", this.state)
+        fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: {
+                 'Content-Type': 'application/json',
+                 Accept: 'application/json'
+             },
+            body: JSON.stringify( {
+                user_name: this.state.userName,
+                password: this.state.password
+            })
+        })
+        .then(res => res.json())
+        .then(myjson => console.log("object:", myjson))
+        .catch(error => console.log(error))
+        //catch error
+    }
     render(){
         return (
-            <div>
-                <form onSubmit= {this.handleOnSubmit} >
+            <div className="center">
+                <h1>Log In</h1>
+                <br></br>
+                <form className="form" onSubmit= {this.handleOnSubmit} >
                     <label>
-                        UserName
-                        <input type="text" />
-
+                        UserName <input type="text" value={this.state.userName} onChange={this.handleUserNameChange} />
                     </label>
+                    <br></br>
                     <label>
-                        Password
-                        <input type="text"/>
+                        Password <input type="text" value={this.state.password}  onChange={this.handlePasswordChange} />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <br></br>
+                    <input type="submit" value="Log In" />
                 </form>
             </div>
         )

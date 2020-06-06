@@ -13,28 +13,7 @@ export default class NewUser extends React.Component {
 
     }
 
-    // createUser = () => {
-    //     fetch('http://localhost:3001/users', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Accept: 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //         user: {
-    //         username: "suse",
-    //         password: "greeneggs",
-    //         email: "geah@email.com"
-    //         }
-    //     })
-    // })
-    // .then(r => r.json())
-    // .then(console.log)
-    // }
-
-    // componentDidMount(){
-    //     this.createUser();
-    // }
+    
 
     handleUserNameChange = (event) => {
         this.setState({
@@ -79,7 +58,7 @@ export default class NewUser extends React.Component {
         return (
             <div className="center">
                 <h1>Sign Up</h1>
-                <form className="sign-up-form" onSubmit={this.handleOnSubmit} >
+                <form className="form" onSubmit={this.handleOnSubmit} >
                     <label>
                         UserName <input type="text" name="username" onChange={this.handleUserNameChange} value={this.state.userName} />
                     </label>
@@ -92,7 +71,7 @@ export default class NewUser extends React.Component {
                         Email <input type="text" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
                     </label>
                     <br></br>
-                    <input type="submit" value="SignUp" />
+                    <input type="submit" value="Sign Up" />
                 </form>
             </div>
         )
