@@ -1,18 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
 import './index.css';
-//import reducer 
 import { Provider, applyMiddleware, compose } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import store from './store.js'
 
-let user = () => { return null};
-const reducer = combineReducers({
-  user: user
-})
-
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   //<React.StrictMode>
