@@ -6,6 +6,7 @@ export default ( state = null, action) => {
             //console.log(action)
             return action.user
         case "CREATE_CURRENT_USER":
+            console.log("action:", action)
             return action.user
         default:
             return state

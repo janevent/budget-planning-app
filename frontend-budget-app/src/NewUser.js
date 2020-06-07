@@ -3,7 +3,7 @@ import './index.css';
 import { connect } from 'react-redux';
 import newCurrentUser from './actions/newUser.js';
 
-export default class NewUser extends React.Component {
+class NewUser extends React.Component {
 
     constructor(props){
         super(props);
@@ -54,7 +54,7 @@ export default class NewUser extends React.Component {
         .then((myjson) => {
             console.log("user:", myjson )
             console.log("props:", this.props.newCurrentUser)
-            this.props.newCurrentUser(myjson.user)
+            this.props.newCurrentUser(myjson.data.attributes)
         }
             )
     }
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-connect(null, mapDispatchToProps)(NewUser)
+export default connect(null, mapDispatchToProps)(NewUser)

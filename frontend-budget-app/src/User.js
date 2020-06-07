@@ -59,11 +59,11 @@ class User extends React.Component {
                 <br></br>
                 <form className="form" onSubmit= {this.handleOnSubmit} >
                     <label>
-                        UserName <input type="text" value={this.state.userName} onChange={this.handleUserNameChange} />
+                        UserName <input type="text" name="username" value={this.state.userName} onChange={this.handleUserNameChange} />
                     </label>
                     <br></br>
                     <label>
-                        Password <input type="text" value={this.state.password}  onChange={this.handlePasswordChange} />
+                        Password <input type="text" name="password" value={this.state.password}  onChange={this.handlePasswordChange} />
                     </label>
                     <br></br>
                     <input type="submit" value="Log In" />
