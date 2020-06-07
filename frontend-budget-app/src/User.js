@@ -1,7 +1,9 @@
 import React from 'react';
-import './index.css'
+import './index.css';
+import { connect } from 'react-redux';
+import setCurrentUser from './actions/user.js'
 
-export default class User extends React.Component {
+class User extends React.Component {
 
     constructor(props){
         super(props)
@@ -40,7 +42,13 @@ export default class User extends React.Component {
             })
         })
         .then(res => res.json())
-        .then(myjson => console.log("object:", myjson))
+        .then(myjson => { 
+            console.log("object:", myjson); 
+            //dispatch action
+            console.log("props:", this.props)
+            this.props.setCurrentUser(myjson.user);
+        }
+        )
         .catch(error => console.log(error))
         //catch error
     }
@@ -64,3 +72,11 @@ export default class User extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentUser: (user) => dispatch(setCurrentUser(user) )
+    };
+};
+
+export default connect(null, mapDispatchToProps)(User)

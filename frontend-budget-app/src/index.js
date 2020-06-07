@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Provider, applyMiddleware, compose } from 'react-redux';
+import { Provider } from 'react-redux';
+//applyMiddleware, compose
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store.js'

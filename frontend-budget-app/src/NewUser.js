@@ -1,5 +1,7 @@
 import React from 'react';
 import './index.css';
+import { connect } from 'react-redux';
+import newCurrentUser from './actions/newUser.js';
 
 export default class NewUser extends React.Component {
 
@@ -10,10 +12,7 @@ export default class NewUser extends React.Component {
             password: "",
             email: ""
         }
-
-    }
-
-    
+    }   
 
     handleUserNameChange = (event) => {
         this.setState({
@@ -36,6 +35,7 @@ export default class NewUser extends React.Component {
     handleOnSubmit = (event) => {
         event.preventDefault();
         console.log("state:", this.state)
+        console.log("props1:", this.props.newCurrentUser)
         fetch('http://localhost:3001/users', {
             method: 'POST',
             headers: {
@@ -51,7 +51,12 @@ export default class NewUser extends React.Component {
             })
         })
         .then(r => r.json())
-        .then((myjson) => console.log("user:", myjson ))
+        .then((myjson) => {
+            console.log("user:", myjson )
+            console.log("props:", this.props.newCurrentUser)
+            this.props.newCurrentUser(myjson.user)
+        }
+            )
     }
 
     render() {
@@ -74,7 +79,15 @@ export default class NewUser extends React.Component {
                     <input type="submit" value="Sign Up" />
                 </form>
             </div>
-        )
-        
+        )       
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newCurrentUser: (user) => dispatch(newCurrentUser(user) )
+    };
+};
+
+
+connect(null, mapDispatchToProps)(NewUser)
