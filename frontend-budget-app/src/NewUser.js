@@ -37,6 +37,7 @@ class NewUser extends React.Component {
         console.log("state:", this.state)
         console.log("props1:", this.props.newCurrentUser)
         fetch('http://localhost:3001/users', {
+            credentials: include,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

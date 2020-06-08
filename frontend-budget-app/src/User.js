@@ -31,6 +31,7 @@ class User extends React.Component {
         event.preventDefault();
         console.log("state:", this.state)
         fetch('http://localhost:3001/login', {
+            credentials: "include",
             method: 'POST',
             headers: {
                  'Content-Type': 'application/json',
