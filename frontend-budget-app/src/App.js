@@ -4,8 +4,29 @@ import './App.css';
 import NewUser from './NewUser.js';
 import User from './User.js';
 import Navigation from './Navigation.js'
+//import getcurrentuser action
 
-function App() {
+class App extends React.Component {
+
+  getUser = () => {
+    fetch('http://localhost:3001/get_current_user', {
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+        }
+    })
+    .then( r => r.json())
+    .then(myjson => {
+      this.props.getCurrentUser();
+    } )
+
+  }
+
+  componentDidMount(){
+    //dispatch action w action.type GET_CURRENT_USER
+  }
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -29,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { getCurrentUser } )(App);
