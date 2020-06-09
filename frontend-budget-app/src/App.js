@@ -5,6 +5,7 @@ import NewUser from './NewUser.js';
 import User from './User.js';
 import Navigation from './Navigation.js';
 import getCurrentUser from './actions/getCurrentUser.js';
+import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
 
   render(){
     return (
+      this.props.user ? <LogOut/> :
       <div className="App">
         <Navigation/>
         <NewUser/>
@@ -40,4 +42,9 @@ class App extends React.Component {
   };
 };
 
-export default connect(null, { getCurrentUser } )(App);
+const mapStateToProps = ({ user }) => {
+  return {
+    user
+  }
+}
+export default connect(mapStateToProps, { getCurrentUser } )(App);

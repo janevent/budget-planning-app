@@ -10,9 +10,12 @@ export default ( state = null, action) => {
             return action.user
         case "GET_CURRENT_USER":
             console.log("action:", action)
+            console.log("user:", action.user)
             return action.user
         case "LOG_OUT_USER":
-            return {}
+            //debugger
+            return null
+            
         default:
             return state
     }

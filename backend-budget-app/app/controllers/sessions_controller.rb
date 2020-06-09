@@ -7,10 +7,12 @@ class SessionsController < ApplicationController
                 render json: {user: {userName: user.username, email: user.email} }
                 session[:user_id] = user.id
             else
-                render json: { error: "no good password"}
+                #render json: { error: "no good password"}
+                render json: false
             end
         else
-            render json: { status: "error", code: 3000, message: "can not find user" }
+            #render json: { status: "error", code: 3000, message: "can not find user" }
+            render json: false
         end
     end 
 
@@ -19,11 +21,12 @@ class SessionsController < ApplicationController
             user = current_user
             render json: user 
         else
-            render json: { error: "Not logged in"}
+            render json: false
         end
     end
 
     def destroy 
+        #debugger
         session.clear
         render json: {message: "Logged Out"}
     end
