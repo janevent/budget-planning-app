@@ -11,6 +11,8 @@ export default ( state = null, action) => {
         case "GET_CURRENT_USER":
             console.log("action:", action)
             return action.user
+        case "LOG_OUT_USER":
+            return {}
         default:
             return state
     }

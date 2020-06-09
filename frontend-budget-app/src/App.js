@@ -3,8 +3,9 @@ import React from 'react';
 import './App.css';
 import NewUser from './NewUser.js';
 import User from './User.js';
-import Navigation from './Navigation.js'
-//import getcurrentuser action
+import Navigation from './Navigation.js';
+import getCurrentUser from './actions/getCurrentUser.js';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
 
@@ -18,36 +19,25 @@ class App extends React.Component {
     })
     .then( r => r.json())
     .then(myjson => {
-      this.props.getCurrentUser();
+      this.props.getCurrentUser(myjson);
     } )
 
   }
 
   componentDidMount(){
     //dispatch action w action.type GET_CURRENT_USER
+    this.getUser();
   }
 
-  return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-     {/*</header>*/}
-      <Navigation/>
-      <NewUser/>
-      <User/>
-    </div>
-  );
-}
+  render(){
+    return (
+      <div className="App">
+        <Navigation/>
+        <NewUser/>
+        <User/>
+      </div>
+    );
+  };
+};
 
 export default connect(null, { getCurrentUser } )(App);
