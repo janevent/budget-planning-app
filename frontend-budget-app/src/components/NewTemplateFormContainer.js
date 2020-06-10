@@ -4,6 +4,12 @@ import NewTemplateForm from './NewTemplateForm';
 
 class NewTemplateFormContainer extends React.Component {
 
+    render(){
+        render (
+            <NewTemplateForm user={this.props.user} />
+        )
+    }
+
 }
 
 const mapStateToProps = (state) => {

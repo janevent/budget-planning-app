@@ -4,6 +4,7 @@ import './App.css';
 import NewUser from './NewUser.js';
 import User from './User.js';
 import NavigationBar from './Navigation.js';
+import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
 import getCurrentUser from './actions/getCurrentUser.js';
 import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
@@ -32,7 +33,11 @@ class App extends React.Component {
 
   render(){
     return (
-      this.props.user ? <NavigationBar/> :
+      this.props.user ? 
+        <div>
+          <NavigationBar/>  
+          <NewTemplateFormContainer />
+        </div>:
       <div className="App">
         <NewUser/>
         <User/>
