@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import NewUser from './NewUser.js';
 import User from './User.js';
-import Navigation from './Navigation.js';
+import NavigationBar from './Navigation.js';
 import getCurrentUser from './actions/getCurrentUser.js';
 import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
@@ -32,9 +32,8 @@ class App extends React.Component {
 
   render(){
     return (
-      this.props.user ? <LogOut/> :
+      this.props.user ? <NavigationBar/> :
       <div className="App">
-        <Navigation/>
         <NewUser/>
         <User/>
       </div>

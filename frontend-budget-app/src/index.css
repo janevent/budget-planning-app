@@ -20,6 +20,20 @@ body {
   
 }
 
+.nav-container {
+  border-color: blueviolet;
+  border: cyan;
+  padding: 50px;
+  margin: 20px;
+ 
+
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+}
+
 .center {
   display: flex;
   flex-direction: column;
