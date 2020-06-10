@@ -5,7 +5,7 @@ import NewTemplateForm from './NewTemplateForm';
 class NewTemplateFormContainer extends React.Component {
 
     render(){
-        render (
+        return (
             <NewTemplateForm user={this.props.user} />
         )
     }
