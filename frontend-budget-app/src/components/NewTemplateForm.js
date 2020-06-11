@@ -35,7 +35,8 @@ export default class NewTemplateForm extends React.Component {
         })
 
         this.totalExpenditure();
-        this.createNewExpense();
+        console.log("tE:", this.state.totalExpenditure)
+        
     }
 
     handleIncomeChange = (event, id) => {
@@ -58,13 +59,17 @@ export default class NewTemplateForm extends React.Component {
     addFunc = (total, num) => {
         return total + num;
     }
-//totalExpenditure
+
     totalIncome = () => {
         let incomes = this.state.incomes.map((income, index) => {
-            return parseFloat(income.amount)
+            let n = parseFloat(income.amount)
+            if !Number.isNaN(n)
+                return n
+            end
         })
         //reduce
         let incomeTotal = incomes.reduce(this.addFunc);
+        //isNaN
         this.setState({
             totalIncome: incomeTotal
         })
@@ -75,6 +80,7 @@ export default class NewTemplateForm extends React.Component {
             return parseFloat(expense.amount)
         })
         //reduce
+        console.log("expenses:", expenses)
         let expenseTotal = expenses.reduce(this.addFunc);
         this.setState({
             totalExpenditure: expenseTotal
@@ -85,6 +91,10 @@ export default class NewTemplateForm extends React.Component {
         this.setState({
             expenses: [...this.state.expenses, {description: "", amount: ""}]
         })
+    }
+
+    handleExpenseMouseClick = () => {
+        this.createNewExpense();
     }
 
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
@@ -98,7 +108,7 @@ export default class NewTemplateForm extends React.Component {
         let listExpenses = this.state.expenses.map( (expense, index) => {
             console.log("expense:", expense)
             return (
-                <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} />
+                <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
             )
         })
 
