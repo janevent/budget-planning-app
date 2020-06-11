@@ -8,8 +8,8 @@ export default class NewTemplateForm extends React.Component {
         super();
         //console.log("constructorState1:", this.state)
         this.state = {
-            expenses: [{description: "", amount: ""}],
-            incomes: [{description: "", amount: ""}],
+            expenses: [{description: "", amount: "0"}],
+            incomes: [{description: "", amount: "0"}],
             totalIncome: null,
             totalExpenditure: null,
             totalDifference: null
@@ -17,6 +17,9 @@ export default class NewTemplateForm extends React.Component {
        // console.log("constructorState2:", this.state)
        // this.handleChange.bind(this)
     }
+
+    //save to store or backend every 5 minutes?
+
 
     handleChange = (event, id) => {
         //
@@ -34,9 +37,12 @@ export default class NewTemplateForm extends React.Component {
         this.setState({
            expenses: [ ...firstPart, newEx, ...lastPart]
         })
+        //debugger
 
         this.totalExpenditure();
         console.log("tE:", this.state.totalExpenditure)
+        this.setTotalDifference();
+    
         
     }
 
@@ -52,8 +58,10 @@ export default class NewTemplateForm extends React.Component {
         this.setState({
             incomes: [ ...firstPart, newInc, ...lastPart]
         })
+        console.log(this.state)
 
         this.totalIncome();
+        this.setTotalDifference();
 
     }
 
@@ -63,15 +71,13 @@ export default class NewTemplateForm extends React.Component {
 
     totalIncome = () => {
         let incomes = this.state.incomes.map((income, index) => {
-            let n = parseFloat(income.amount);
-            console.log("n:", n)
-            //debugger
-            if(!Number.isNaN(n)){
-               return n
-            }
+            return parseFloat(income.amount);
+            console.log("income.amount:", income.amount)
+    
         })
-        //reduce
-        let incomeTotal = incomes.reduce(this.addFunc);
+        let newIncomes = incomes.filter((e) => e != NaN)
+        let incomeTotal = newIncomes.reduce(this.addFunc, 0);
+        console.log("incomeTotal:", incomeTotal)
         //isNaN
         this.setState({
             totalIncome: incomeTotal
@@ -80,14 +86,18 @@ export default class NewTemplateForm extends React.Component {
 
     totalExpenditure = () => {
         let expenses = this.state.expenses.map((expense, index) => {
-            let n = parseFloat(expense.amount)
-            if(!Number.isNaN(n)){
-                return n
-            }
+            return parseFloat(expense.amount)
+            //if(!Number.isNaN(n)){
+              //  return n
+            //}
         })
-        //reduce
+        //debugger
         console.log("expenses:", expenses)
-        let expenseTotal = expenses.reduce(this.addFunc);
+        let newExpenses = expenses.filter(Boolean)
+        //reduce
+        console.log("newexpenses:", newExpenses)
+        let expenseTotal = newExpenses.reduce(this.addFunc, 0);
+        console.log("et", expenseTotal)
         this.setState({
             totalExpenditure: expenseTotal
         })
@@ -95,13 +105,26 @@ export default class NewTemplateForm extends React.Component {
 
     createNewExpense = () => {
         this.setState({
-            expenses: [...this.state.expenses, {description: "", amount: ""}]
+            expenses: [...this.state.expenses, {description: "", amount: "0"}]
         })
     }
 
     handleExpenseMouseClick = () => {
         this.createNewExpense();
+        //unless there are more then two empty expenses
     }
+
+    createNewIncome = () => {
+        this.setState({
+            incomes: [...this.state.expenses, {description: "", amount: "0"}]
+        })
+    }
+
+    handleIncomeMouseClick = () => {
+        this.createNewIncome();
+    }
+
+
 
     calculateTotalDifference = () => {
         let tE = this.totalExpenditure();
@@ -135,7 +158,7 @@ export default class NewTemplateForm extends React.Component {
         {
             console.log("income:", income);
             return (
-                <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} />
+                <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
             )
         })
         //calculate total expenditure and income ..onChange..
@@ -158,7 +181,11 @@ export default class NewTemplateForm extends React.Component {
                 </form>
                 
                 {this.state.totalIncome ? <p>Total Income is {this.state.totalIncome}</p> : ""}
-
+                <br>
+                </br>
+                {this.state.totalDifference ? 
+                    <p>{this.state.totalDifference}</p> :
+                    ""}
             </div>
         )
     }
