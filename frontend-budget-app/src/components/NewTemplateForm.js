@@ -8,7 +8,9 @@ export default class NewTemplateForm extends React.Component {
         super();
         //console.log("constructorState1:", this.state)
         this.state = {
-            expenses: [{description: "", amount: ""}]
+            expenses: [{description: "", amount: ""}],
+            incomes: [{description: "", amount: ""}],
+            totalIncome: null
         };
        // console.log("constructorState2:", this.state)
        // this.handleChange.bind(this)
@@ -23,7 +25,7 @@ export default class NewTemplateForm extends React.Component {
         let { name, value } = event.target;
 
         let ex = this.state.expenses.find((e, index) => index === id)
-        let newEx = Object.assign( ex, { [name]: value})
+        let newEx = Object.assign( ex, { [name]: value});
         let firstPart = this.state.expenses.slice(0, id);
         let lastPart = this.state.expenses.slice(id+1);
 
@@ -32,11 +34,34 @@ export default class NewTemplateForm extends React.Component {
         })
     }
 
-    handleIncomeChange = (event) => {
+    handleIncomeChange = (event, id) => {
         event.persist();
         let { name, value } = event.target;
 
-        let in = this.state.incomes.find()
+        let inc = this.state.incomes.find((income, index) => index === id);
+        let newInc = Object.assign(inc, { [name]: value});
+        let firstPart = this.state.incomes.slice(0, id);
+        let lastPart = this.state.incomes.slice(id+1);
+
+        this.setState({
+            incomes: [ ...firstPart, newInc, ...lastPart]
+        })
+
+    }
+
+    addFunc = (total, num) => {
+        return total + num;
+    }
+//totalExpenditure
+    totalIncome = () => {
+        let incomes = this.state.incomes.map((income, index) => {
+            return parseFloat(income.amount)
+        })
+        //reduce
+        let incomeTotal = incomes.reduce(this.addFunc);
+        this.setState({
+            totalIncome: incomeTotal
+        })
     }
 
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
@@ -53,7 +78,15 @@ export default class NewTemplateForm extends React.Component {
                 <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} />
             )
         })
-        
+
+        let listIncomes = this.state.incomes.map( (income, index) =>
+        {
+            console.log("income:", income);
+            return (
+                <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} />
+            )
+        })
+        //calculate total expenditure and income ..onChange..
         return (
             <div>
                 <h2>List Expenses</h2>
@@ -61,13 +94,17 @@ export default class NewTemplateForm extends React.Component {
                 <form>
                     {listExpenses}   
                 </form>
+                
+                
                 <br>
                 </br>
                 <h2>List Incomes</h2>
                 <br></br>
                 <form>
-                    <IncomeInput/>
+                    {listIncomes}
                 </form>
+                
+                {this.state.totalIncome ? <p>Total Income is {this.state.totalIncome}</p> : ""}
 
             </div>
         )
