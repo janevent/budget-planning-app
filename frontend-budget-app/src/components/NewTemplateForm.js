@@ -10,7 +10,8 @@ export default class NewTemplateForm extends React.Component {
         this.state = {
             expenses: [{description: "", amount: ""}],
             incomes: [{description: "", amount: ""}],
-            totalIncome: null
+            totalIncome: null,
+            totalExpenditure: null
         };
        // console.log("constructorState2:", this.state)
        // this.handleChange.bind(this)
@@ -32,6 +33,9 @@ export default class NewTemplateForm extends React.Component {
         this.setState({
            expenses: [ ...firstPart, newEx, ...lastPart]
         })
+
+        this.totalExpenditure();
+        this.createNewExpense();
     }
 
     handleIncomeChange = (event, id) => {
@@ -47,6 +51,8 @@ export default class NewTemplateForm extends React.Component {
             incomes: [ ...firstPart, newInc, ...lastPart]
         })
 
+        this.totalIncome();
+
     }
 
     addFunc = (total, num) => {
@@ -61,6 +67,23 @@ export default class NewTemplateForm extends React.Component {
         let incomeTotal = incomes.reduce(this.addFunc);
         this.setState({
             totalIncome: incomeTotal
+        })
+    }
+
+    totalExpenditure = () => {
+        let expenses = this.state.expenses.map((expense, index) => {
+            return parseFloat(expense.amount)
+        })
+        //reduce
+        let expenseTotal = expenses.reduce(this.addFunc);
+        this.setState({
+            totalExpenditure: expenseTotal
+        })
+    }
+
+    createNewExpense = () => {
+        this.setState({
+            expenses: [...this.state.expenses, {description: "", amount: ""}]
         })
     }
 
@@ -94,6 +117,7 @@ export default class NewTemplateForm extends React.Component {
                 <form>
                     {listExpenses}   
                 </form>
+                {this.state.totalExpenditure ? <p>Total Expenditure is {this.state.totalExpenditure}</p> : "" }
                 
                 
                 <br>
