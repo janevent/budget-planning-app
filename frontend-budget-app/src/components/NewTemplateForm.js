@@ -11,7 +11,8 @@ export default class NewTemplateForm extends React.Component {
             expenses: [{description: "", amount: ""}],
             incomes: [{description: "", amount: ""}],
             totalIncome: null,
-            totalExpenditure: null
+            totalExpenditure: null,
+            totalDifference: null
         };
        // console.log("constructorState2:", this.state)
        // this.handleChange.bind(this)
@@ -62,10 +63,12 @@ export default class NewTemplateForm extends React.Component {
 
     totalIncome = () => {
         let incomes = this.state.incomes.map((income, index) => {
-            let n = parseFloat(income.amount)
-            if !Number.isNaN(n)
-                return n
-            end
+            let n = parseFloat(income.amount);
+            console.log("n:", n)
+            //debugger
+            if(!Number.isNaN(n)){
+               return n
+            }
         })
         //reduce
         let incomeTotal = incomes.reduce(this.addFunc);
@@ -77,7 +80,10 @@ export default class NewTemplateForm extends React.Component {
 
     totalExpenditure = () => {
         let expenses = this.state.expenses.map((expense, index) => {
-            return parseFloat(expense.amount)
+            let n = parseFloat(expense.amount)
+            if(!Number.isNaN(n)){
+                return n
+            }
         })
         //reduce
         console.log("expenses:", expenses)
@@ -95,6 +101,19 @@ export default class NewTemplateForm extends React.Component {
 
     handleExpenseMouseClick = () => {
         this.createNewExpense();
+    }
+
+    calculateTotalDifference = () => {
+        let tE = this.totalExpenditure();
+        let tI = this.totalIncome();
+        return tI - tE
+    }
+
+    setTotalDifference = () => {
+        let tD = this.calculateTotalDifference()
+        this.setState({
+            totalDifference: tD
+        })
     }
 
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
