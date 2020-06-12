@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(48, 194, 252);
 }
 
 .form {
@@ -23,16 +24,40 @@ body {
 .nav-container {
   border-color: blueviolet;
   border: cyan;
-  padding: 50px;
-  margin: 20px;
- 
-
+  padding: 20px;
+  margin: 20px; 
+  
 }
 
 .nav-bar {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.nav-item {
+  padding: 10px;
+
+}
+
+.NewTemplateForm {
+  padding: 20px;
+  margin: 20px;
+  padding-left: 50px;
+  margin-left: 50px;
+}
+
+.new-template-item {
+  padding: 10px;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.label {
+  font-weight: lighter;
 }
 
 .center {
