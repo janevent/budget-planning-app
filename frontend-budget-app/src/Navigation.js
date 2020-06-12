@@ -7,8 +7,16 @@ export default class NavigationBar extends React.Component {
         return(
             <div className="nav-container">
                 <div className="nav-bar">
-                    <p>Navigation</p>
+                    
                     <LogOut/>
+                    <br></br>
+                    <p>>New Budget Template</p>
+                    <br></br>
+                    <p>New Budget</p>
+                    <br></br>
+                    <p>Budget Templates</p>
+                    <br></br>
+                    <p>Budgets</p>
                 </div>
             </div>
         )
