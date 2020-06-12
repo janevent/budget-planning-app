@@ -2,6 +2,8 @@ import React from 'react';
 import ExpenseInput from './ExpenseInput.js';
 import IncomeInput from './IncomeInput.js';
 
+//if inputs blank, set to 0 to calculate totals
+
 export default class NewTemplateForm extends React.Component {
 
     constructor(){
@@ -58,9 +60,10 @@ export default class NewTemplateForm extends React.Component {
         this.setState({
             incomes: [ ...firstPart, newInc, ...lastPart]
         })
-        console.log(this.state)
+        console.log("state:", this.state)
 
         this.totalIncome();
+        //aysynchronous or sychronus?
         this.setTotalDifference();
 
     }
@@ -79,9 +82,15 @@ export default class NewTemplateForm extends React.Component {
         let incomeTotal = newIncomes.reduce(this.addFunc, 0);
         console.log("incomeTotal:", incomeTotal)
         //isNaN
+        
         this.setState({
             totalIncome: incomeTotal
-        })
+            },
+            () => {
+             this.setTotalDifference(); 
+            }
+        );
+        //this.setTotalDifference();
     }
 
     totalExpenditure = () => {
@@ -100,7 +109,12 @@ export default class NewTemplateForm extends React.Component {
         console.log("et", expenseTotal)
         this.setState({
             totalExpenditure: expenseTotal
-        })
+            },
+            () => {
+                this.setTotalDifference();
+            }
+        );
+        //this.setTotalDifference();
     }
 
     createNewExpense = () => {
@@ -116,7 +130,7 @@ export default class NewTemplateForm extends React.Component {
 
     createNewIncome = () => {
         this.setState({
-            incomes: [...this.state.expenses, {description: "", amount: "0"}]
+            incomes: [...this.state.incomes, {description: "", amount: "0"}]
         })
     }
 
@@ -127,13 +141,19 @@ export default class NewTemplateForm extends React.Component {
 
 
     calculateTotalDifference = () => {
-        let tE = this.totalExpenditure();
-        let tI = this.totalIncome();
+        let tE = this.state.totalExpenditure;
+        let tI = this.state.totalIncome;
+        console.log("tI:", tI, "tE:", tE)
         return tI - tE
     }
 
     setTotalDifference = () => {
-        let tD = this.calculateTotalDifference()
+        //let tD = this.calculateTotalDifference()
+        let tE = this.state.totalExpenditure;
+        let tI = this.state.totalIncome;
+        console.log("tI:", tI, "tE:", tE)
+        let tD =  tI - tE
+        console.log("td:", tD)
         this.setState({
             totalDifference: tD
         })
