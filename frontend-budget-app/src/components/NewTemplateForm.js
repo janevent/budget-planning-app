@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpenseInput from './ExpenseInput.js';
 import IncomeInput from './IncomeInput.js';
+import TitleForm from './TitleForm.js'
 
 //if inputs blank, set to 0 to calculate totals
 
@@ -10,6 +11,7 @@ export default class NewTemplateForm extends React.Component {
         super();
         //console.log("constructorState1:", this.state)
         this.state = {
+            title: "",
             expenses: [{description: "", amount: "0"}],
             incomes: [{description: "", amount: "0"}],
             totalIncome: null,
@@ -22,6 +24,13 @@ export default class NewTemplateForm extends React.Component {
 
     //save to store or backend every 5 minutes?
 
+    handleTitleChange = ( event) => {
+        event.persist();
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
 
     handleChange = (event, id) => {
         //
@@ -183,28 +192,30 @@ export default class NewTemplateForm extends React.Component {
         })
         //calculate total expenditure and income ..onChange..
         return (
-            <div>
-                <h2>List Expenses</h2>
+            <div className="NewTemplateForm">
+                <h1 className="new-template-item">Create Your Budget Template</h1>
+                <TitleForm title={this.state.title} handleTitleChange={this.handleTitleChange} />
+                <h2 className="new-template-item">List Expenses</h2>
                 <br></br>
-                <form>
+                <form className="new-template-item">
                     {listExpenses}   
                 </form>
-                {this.state.totalExpenditure ? <p>Total Expenditure is {this.state.totalExpenditure}</p> : "" }
+                {this.state.totalExpenditure ? <p className="new-template-item">Total Expenditure is {this.state.totalExpenditure}</p> : "" }
                 
                 
                 <br>
                 </br>
-                <h2>List Incomes</h2>
+                <h2 className="new-template-item">List Incomes</h2>
                 <br></br>
-                <form>
+                <form className="new-template-item">
                     {listIncomes}
                 </form>
                 
-                {this.state.totalIncome ? <p>Total Income is {this.state.totalIncome}</p> : ""}
+                {this.state.totalIncome ? <p className="new-template-item">Total Income is {this.state.totalIncome}</p> : ""}
                 <br>
                 </br>
                 {this.state.totalDifference ? 
-                    <p>{this.state.totalDifference}</p> :
+                    <p className="new-template-item">{this.state.totalDifference}</p> :
                     ""}
             </div>
         )
