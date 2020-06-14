@@ -200,7 +200,7 @@ export default class NewTemplateForm extends React.Component {
                 <form className="new-template-item">
                     {listExpenses}   
                 </form>
-                {this.state.totalExpenditure ? <p className="new-template-item">Total Expenditure is {this.state.totalExpenditure}</p> : "" }
+                {this.state.totalExpenditure ? <p className="new-template-item total">Total Expenditure is {this.state.totalExpenditure}</p> : "" }
                 
                 
                 <br>
@@ -211,11 +211,11 @@ export default class NewTemplateForm extends React.Component {
                     {listIncomes}
                 </form>
                 
-                {this.state.totalIncome ? <p className="new-template-item">Total Income is {this.state.totalIncome}</p> : ""}
+                {this.state.totalIncome ? <p className="new-template-item total">Total Income is {this.state.totalIncome}</p> : ""}
                 <br>
                 </br>
                 {this.state.totalDifference ? 
-                    <p className="new-template-item">{this.state.totalDifference}</p> :
+                    <p className="new-template-item total">{this.state.totalDifference}</p> :
                     ""}
             </div>
         )
