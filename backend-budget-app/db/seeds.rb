@@ -17,4 +17,10 @@ expenses = budgy.expenses.create([{description: 'mortgage', amount: 800}, {descr
 
 incomes = budgy.incomes.create([{description: 'employment', amount: 5000}, {description: 'detective work', amount: 3000}])
 
+temp = User.first.templates.create(title: 'Generic', total_income: 9000, total_expenditure: 5000, total_difference: 4000)
+
+ex = temp.expenses.create([{description: 'swimming pool', amount: 300}, {description: 'groceries', amount: 1200}, {description:'books', amount: 1000}, {description: 'caravan', amount: 500}, {description: 'travel', amount: 1000}, {description: 'investments', amount: 500}, {description: 'charity', amount: 500}])
+
+inc = temp.incomes.create([{description: 'detective side hustle', amount: 4500}, {description: 'programmer j-o-b', amount: 4500}])
+
 #budgy.incomes.create(incomes)
