@@ -27,15 +27,15 @@ export default class NavigationBar extends React.Component {
             <div className="nav-container">
                 <div className="nav-bar">
                     
-                    <p className="nav-item"><LogOut/></p>
+                    <div className="nav-item"><LogOut/></div>
                     <br></br>
-                    <p className="nav-item"> New Budget Template </p>
+                    <div className="nav-item"> New Budget Template </div>
                     <br></br>
-                    <p className="nav-item">  New Budget  </p>
+                    <div className="nav-item">  New Budget  </div>
                     <br></br>
-                    <p className="nav-item"><DropDown title="Select Template" items={this.state.templates}/></p>
+                    <div className="nav-item"><DropDown title="Select Template" items={this.state.templates}/></div>
                     <br></br>
-                    <p className="nav-item"> Budgets </p>
+                    <div className="nav-item"> Budgets </div>
                 </div>
             </div>
         )

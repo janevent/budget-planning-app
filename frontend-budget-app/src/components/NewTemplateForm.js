@@ -190,7 +190,16 @@ export default class NewTemplateForm extends React.Component {
                 <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
             )
         })
-        //calculate total expenditure and income ..onChange..
+        
+        var message
+        if(this.state.totalDifference && this.state.totalDifference >= 0){
+           message = ( <p className="new-template-item total">Your balance is {this.state.totalDifference}.  Consider adding to your rainy days savings.</p> )
+        }else if(this.state.totalDifference && this.state.totalDifference < 1 ){
+            message = (<p className="new-template-item total">Your balance is {this.state.totalDifference}</p>)
+        }else{
+            message = ""
+        }
+
         return (
             <div className="NewTemplateForm">
                 <h1 className="new-template-item">Create Your Budget Template</h1>
@@ -211,12 +220,10 @@ export default class NewTemplateForm extends React.Component {
                     {listIncomes}
                 </form>
                 
-                {this.state.totalIncome ? <p className="new-template-item total">Total Income is {this.state.totalIncome}</p> : ""}
+                
                 <br>
                 </br>
-                {this.state.totalDifference ? 
-                    <p className="new-template-item total">{this.state.totalDifference}</p> :
-                    ""}
+                {message}
             </div>
         )
     }

@@ -4,7 +4,11 @@ class SessionsController < ApplicationController
         #binding.pry 
         if !params.empty? && user   
             if user.authenticate(params[:password]) 
-                render json: {user: {userName: user.username, email: user.email} }
+                options = {
+                    include: [:templates, :budgets]
+                }
+                hash = UserSerializer.new(user, options).serialized_json 
+                render json: hash
                 session[:user_id] = user.id
             else
                 #render json: { error: "no good password"}
@@ -19,7 +23,11 @@ class SessionsController < ApplicationController
     def get_current_user
         if logged_in?
             user = current_user
-            render json: user 
+            options = {
+                include: [:templates, :budgets]
+            }
+            hash =  UserSerializer.new(user, options).serialized_json
+            render json: hash
         else
             render json: false
         end

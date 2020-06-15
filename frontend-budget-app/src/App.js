@@ -21,6 +21,7 @@ class App extends React.Component {
     })
     .then( r => r.json())
     .then(myjson => {
+      console.log("user:", myjson)
       this.props.getCurrentUser(myjson);
     } )
 
