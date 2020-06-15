@@ -6,6 +6,8 @@ import User from './User.js';
 import NavigationBar from './Navigation.js';
 import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
 import getCurrentUser from './actions/getCurrentUser.js';
+import getTemplates from './actions/getTemplates.js';
+import getBudgets from './actions/getBudgets.js';
 import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
 
@@ -23,6 +25,14 @@ class App extends React.Component {
     .then(myjson => {
       console.log("user:", myjson)
       this.props.getCurrentUser(myjson);
+      let budgies = myjson.included.filter( b => b.type==="budget");
+      let tempies = myjson.included.filter( t => t.type==="template");
+      console.log("b:", budgies);
+      console.log("t:", tempies)
+      this.props.getTemplates(tempies);
+      this.props.getBudgets(budgies);
+      //get budgets
+      //get templates
     } )
 
   }
@@ -52,4 +62,4 @@ const mapStateToProps = ({ user }) => {
     user
   }
 }
-export default connect(mapStateToProps, { getCurrentUser } )(App);
+export default connect(mapStateToProps, { getCurrentUser, getTemplates, getBudgets } )(App);
