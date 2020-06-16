@@ -38,6 +38,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    console.log("App did mount")
     //dispatch action w action.type GET_CURRENT_USER
     this.getUser();
   }

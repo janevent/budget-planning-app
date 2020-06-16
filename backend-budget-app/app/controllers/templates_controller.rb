@@ -1,18 +1,20 @@
 class TemplatesController < ApplicationController
     def create 
-        user = User.find_by(id: params[:id])
+        #user = User.find_by(id: params[:id])
+        user = User.find_by(id: session[:user_id])
         if user
-            template = user.templates.create(title: params[:template][:title])
-            if template
-                expenses = template.create.expenses(params[:template][:expenses])
-                incomes = template.create.incomes(params[:template][:incomes])
+            # template = user.templates.create(title: params[:template][:title])
+            template = user.templates.create(template_params)
+            if template.save
+                # expenses = template.expenses.create(params[:template][:expenses])
+                # incomes = template.incomes.create(params[:template][:incomes])
                 options = { include: [:expenses, :incomes]}
-                render json: TemplateSerializer.new(template, options)
+                render json: TemplateSerializer.new(template, options).serialized_json
             else
                 render json: {status: "error", code: 3000, message: "Template is not valid"}
             end
         else
-            render json: {status: "error", code: 3000, message: "Can not find template"}
+            render json: {status: "error", code: 3000, message: "Can not find user"}
         end
         #error messages if no user or invalid template
     end 
@@ -44,10 +46,11 @@ class TemplatesController < ApplicationController
     def update 
         template = Template.find_by(id: params[:id])
         if template 
-            template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
-            render json: template
-            # options = { include: [:incomes, :expenses]}
-            #render TemplateSerializer.new(template, options)
+            template.update(template_params)
+            # template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
+            #render json: template
+            options = { include: [:incomes, :expenses]}
+            render json: TemplateSerializer.new(template, options).serialized_json
 
             #template.expenses.update(params[:expenses])
             #template.incomes.update(params[:incomes])
@@ -59,5 +62,11 @@ class TemplatesController < ApplicationController
     end
 
     def destroy 
+    end
+
+    private 
+    #nested strong params
+    def template_params
+        params.require(:template).permit(:title, :total_income, :total_expenditure, :total_difference)
     end
 end

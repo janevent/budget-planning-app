@@ -168,6 +168,12 @@ export default class NewTemplateForm extends React.Component {
         })
     }
 
+    componentDidMount(){
+        console.log('NewTemplateForm did mount');
+        console.log('state:', this.state)
+        this.props.createTemplate(this.state);
+    }
+
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
 
     //another function for the event of saving info - moving expenses into store
