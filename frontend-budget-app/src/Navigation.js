@@ -3,41 +3,44 @@ import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
 import DropDown from './components/DropDown.js';
 
-export default class NavigationBar extends React.Component {
+class NavigationBar extends React.Component {
     //links to budgets list, templates list budget form, template form, log out, only displayed when logged in
-    state = {
-        templates: [
-            {
-                id:0,
-                title: 'May',
-                key: 'templates',
-                selected: false
-            },
-            { 
-                id: 1,
-                title: '2020',
-                key: 'templates',
-                selected: false
-            }
-        ]
-    }
+    
 
     render(){
+        const { templates, budgets } = this.props
+        console.log(templates[0])
         return(
             <div className="nav-container">
-                <div className="nav-bar">
-                    
+                <div className="nav-bar">                
                     <div className="nav-item"><LogOut/></div>
                     <br></br>
                     <div className="nav-item"> New Budget Template </div>
                     <br></br>
                     <div className="nav-item">  New Budget  </div>
                     <br></br>
-                    <div className="nav-item"><DropDown title="Select Template" items={this.state.templates}/></div>
+                    
+                        
+                        {/* <ul className="list">
+                            {this.props.templates.map((t) => {
+                                return <DropDown key={t.id} item={t.attributes}/>    
+                            })}               
+                        </ul> */}
+                    
+                    <div className="nav-item"><DropDown title="Select Template" items={templates}/></div>
                     <br></br>
-                    <div className="nav-item"> Budgets </div>
+                    <div className="nav-item"><DropDown title="Select Budget" items={budgets}/></div> 
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ templates, budgets}) => {
+    return {
+        templates,
+        budgets
+    }
+}
+
+export default connect(mapStateToProps)(NavigationBar)

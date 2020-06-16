@@ -48,6 +48,8 @@ class User extends React.Component {
             //dispatch action
             console.log("props:", this.props)
             this.props.setCurrentUser(myjson.user);
+            //this.props.getBudgets
+            //this.props.getTemplates
         }
         )
         .catch(error => console.log(error))

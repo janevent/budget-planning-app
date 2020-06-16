@@ -1,4 +1,4 @@
-export default(state = null, action) => {
+export default(state = [], action) => {
     switch(action.type){
         case 'GET_BUDGETS':
             //return action.included[1].attributes;

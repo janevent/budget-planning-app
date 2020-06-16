@@ -1,6 +1,6 @@
 const getTemplates = (templates) => {
     return {
-        type: 'GET_TEMPlATES',
+        type: 'GET_TEMPLATES',
         templates: templates
     }
 }
