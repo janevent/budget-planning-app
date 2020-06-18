@@ -2,7 +2,8 @@ import userReducer from './reducers/user.js';
 import budgetReducer from './reducers/budget.js';
 import budgetsReducer from './reducers/budgets.js';
 import templateReducer from './reducers/template.js';
-import templatesReducer from './reducers/templates.js'
+import templatesReducer from './reducers/templates.js';
+import newTemplate from './reducers/newTemplate.js';
 
 import { createStore, combineReducers } from 'redux';
 
@@ -11,7 +12,8 @@ const reducer = combineReducers({
     budget: budgetReducer,
     budgets: budgetsReducer,
     template: templateReducer,
-    templates: templatesReducer
+    templates: templatesReducer,
+    newTemplate: newTemplate
   })
   
   const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

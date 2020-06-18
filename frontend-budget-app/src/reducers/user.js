@@ -6,12 +6,12 @@ export default ( state = null, action) => {
             //console.log(action)
             return action.user
         case "CREATE_CURRENT_USER":
-            console.log("action:", action.user.data.attributes)
-            return action.user.data.attributes
+            console.log("action:", action.user)
+            return action.user
         case "GET_CURRENT_USER":
             console.log("action:", action)
-            console.log("user:", action.user.data.attributes)
-            return action.user.data.attributes
+            console.log("user:", action.user)
+            return action.user
         case "LOG_OUT_USER":
             //debugger
             return null

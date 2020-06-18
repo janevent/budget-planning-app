@@ -24,7 +24,8 @@ class App extends React.Component {
     .then( r => r.json())
     .then(myjson => {
       console.log("user:", myjson)
-      this.props.getCurrentUser(myjson);
+      this.props.getCurrentUser(myjson.data.attributes);
+      //do I need to make an object w key of user etc?
       let budgies = myjson.included.filter( b => b.type==="budget");
       let tempies = myjson.included.filter( t => t.type==="template");
       console.log("b:", budgies);
