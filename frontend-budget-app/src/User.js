@@ -47,7 +47,7 @@ class User extends React.Component {
             console.log("object:", myjson); 
             //dispatch action
             console.log("props:", this.props)
-            this.props.setCurrentUser(myjson.user);
+            this.props.setCurrentUser(myjson.data.attributes);
             //this.props.getBudgets
             //this.props.getTemplates
         }

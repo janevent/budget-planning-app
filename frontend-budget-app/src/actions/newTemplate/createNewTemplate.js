@@ -1,7 +1,7 @@
-const createNewTemplate = (template) => {
+const createNewTemplate = (newTemplate) => {
     return {
         type: 'CREATE_NEW_TEMPLATE',
-        template: template
+        newTemplate: newTemplate
     }
 }
 

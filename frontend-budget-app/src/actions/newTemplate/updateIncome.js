@@ -1,7 +1,8 @@
-const updateIncome = (income) => {
+const updateIncome = (income, id) => {
     return {
         type: 'UPDATE_INCOME',
-        income: income
+        income: income,
+        id: id
     }
 }
 

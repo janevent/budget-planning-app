@@ -1,7 +1,8 @@
-const updateExpense = (expense) => {
+const updateExpense = (expense, id) => {
     return {
         type: 'UPDATE_EXPENSE',
-        expense: expense
+        expense: expense,
+        id: id
     }
 }
 

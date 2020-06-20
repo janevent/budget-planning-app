@@ -1,26 +1,35 @@
 import React from 'react';
 import ExpenseInput from './ExpenseInput.js';
 import IncomeInput from './IncomeInput.js';
-import TitleForm from './TitleForm.js'
+import TitleForm from './TitleForm.js';
+import { connect } from 'react-redux';
+import updateTitle from '../actions/newTemplate/updateTitle.js';
+import updateExpense from '../actions/newTemplate/updateExpense.js';
+import updateIncome from '../actions/newTemplate/updateIncome.js';
+import updateTotalExpense from '../actions/newTemplate/updateTotalExpense.js';
+import updateTotalIncome from '../actions/newTemplate/updateTotalIncome.js'
+import updateTotalDifference from '../actions/newTemplate/updateTotalDifference.js'
+import createNewExpense from '../actions/newTemplate/createNewExpense.js';
+import createNewIncome from '../actions/newTemplate/createNewIncome.js';
+
 
 //if inputs blank, set to 0 to calculate totals
 
-export default class NewTemplateForm extends React.Component {
+class NewTemplateForm extends React.Component {
 
-    // constructor(){
-    //     super();
-    //     //console.log("constructorState1:", this.state)
-    //     this.state = {
+    //  constructor(props){
+    //      super(props);
+    //      console.log("props:", props)
+    //      let template = {
     //         title: "untitled",
     //         expenses: [{description: "", amount: "0"}],
     //         incomes: [{description: "", amount: "0"}],
     //         totalIncome: null,
     //         totalExpenditure: null,
     //         totalDifference: null
-    //     };
-
-    //    // console.log("constructorState2:", this.state)
-    //    // this.handleChange.bind(this)
+    //         };
+    //      props.createTemplate(template);
+    //      console.log("props2:", props)
     // }
 
     //save to store or backend every 5 minutes?
@@ -28,10 +37,7 @@ export default class NewTemplateForm extends React.Component {
     handleTitleChange = ( event) => {
         event.persist();
         const { name, value } = event.target
-        // this.setState({
-        //     [name]: value
-        // })
-        //use a function passed down from NewTemplateFormContainer to dispatch an action to update global state
+        this.props.updateTitle(value)
     }
 
     handleChange = (event, id) => {
@@ -41,22 +47,16 @@ export default class NewTemplateForm extends React.Component {
         console.log("event", event)
         console.log("id", id)
         let { name, value } = event.target;
-        //find the expense in state
-        //write an action called updateexpense
-        //write a reducer that finds the expense in template.expenses
-        //returns a new expenses array
-        // let ex = this.state.expenses.find((e, index) => index === id)
-        // let newEx = Object.assign( ex, { [name]: value});
-        // let firstPart = this.state.expenses.slice(0, id);
-        // let lastPart = this.state.expenses.slice(id+1);
-
-        // this.setState({
-        //    expenses: [ ...firstPart, newEx, ...lastPart]
-        // })
-        //debugger
+        console.log("target-event:", event.target)
+        let ex = this.props.newTemplate.expenses.find( (e, i) => i === id )
+        console.log("ex-found:", ex);
+        let newEx = Object.assign({}, ex, {[name]: value} )
+        console.log("new-ex:", newEx)
+        this.props.updateExpense(newEx, id)
+        
 
         this.totalExpenditure();
-        console.log("tE:", this.state.totalExpenditure)
+        console.log("tE:", this.props.newTemplate.totalExpenditure)
         this.setTotalDifference();
     
         
@@ -66,9 +66,9 @@ export default class NewTemplateForm extends React.Component {
         event.persist();
         let { name, value } = event.target;
 
-        // let inc = this.state.incomes.find((income, index) => index === id);
+        let inc = this.props.newTemplate.incomes.find((income, index) => index === id);
         //find income in global state and alter it
-        // let newInc = Object.assign(inc, { [name]: value});
+        let newInc = Object.assign( {}, inc, { [name]: value});
         // let firstPart = this.state.incomes.slice(0, id);
         // let lastPart = this.state.incomes.slice(id+1);
 
@@ -76,7 +76,7 @@ export default class NewTemplateForm extends React.Component {
         //     incomes: [ ...firstPart, newInc, ...lastPart]
         // })
         
-
+        this.props.updateIncome(newInc, id)
         this.totalIncome();
         //aysynchronous or sychronus?
         this.setTotalDifference();
@@ -93,9 +93,9 @@ export default class NewTemplateForm extends React.Component {
         //     console.log("income.amount:", income.amount)
     
         // })
-        let newIncomes = incomes.filter((e) => e != NaN)
-        let incomeTotal = newIncomes.reduce(this.addFunc, 0);
-        console.log("incomeTotal:", incomeTotal)
+        //let newIncomes = incomes.filter((e) => e != NaN)
+        //let incomeTotal = newIncomes.reduce(this.addFunc, 0);
+        //console.log("incomeTotal:", incomeTotal)
         //isNaN
         
         // this.setState({
@@ -108,31 +108,25 @@ export default class NewTemplateForm extends React.Component {
     }
 
     totalExpenditure = () => {
-        // let expenses = this.state.expenses.map((expense, index) => {
-        //     return parseFloat(expense.amount)
-        //     //if(!Number.isNaN(n)){
-        //       //  return n
-        //     //}
-        // })
+        let expenses = this.props.newTemplate.expenses.map((expense, index) => {
+             return parseFloat(expense.amount)
+             
+             
+         })
         //get expenses from global state and return an array of parseFloat(expense.amount)
         //debugger
-        console.log("expenses:", expenses)
+        //console.log("expenses:", expenses)
         let newExpenses = expenses.filter(Boolean)
         //reduce
-        console.log("newexpenses:", newExpenses)
+        //console.log("newexpenses:", newExpenses)
         let expenseTotal = newExpenses.reduce(this.addFunc, 0);
-        console.log("et", expenseTotal)
-        // this.setState({
-        //     totalExpenditure: expenseTotal
-        //     },
-        //     () => {
-        //         this.setTotalDifference();
-        //     }
-        // );
+        this.props.updateTotalExpense(expenseTotal)
+        
        //set global state attribute totalExpenditure //call setTotalDifference
     }
 
     createNewExpense = () => {
+        this.props.createNewExpense();
         // this.setState({
         //     expenses: [...this.state.expenses, {description: "", amount: "0"}]
         // })
@@ -145,6 +139,7 @@ export default class NewTemplateForm extends React.Component {
     }
 
     createNewIncome = () => {
+        this.props.createNewIncome();
         // this.setState({
         //     incomes: [...this.state.incomes, {description: "", amount: "0"}]
         // })
@@ -169,9 +164,9 @@ export default class NewTemplateForm extends React.Component {
       //  let tE = this.state.totalExpenditure;
       //  let tI = this.state.totalIncome;
       //grab attributes from global state sent down from container
-        console.log("tI:", tI, "tE:", tE)
-        let tD =  tI - tE
-        console.log("td:", tD)
+        //console.log("tI:", tI, "tE:", tE)
+        //let tD =  tI - tE
+        //console.log("td:", tD)
         //this.setState({
           //  totalDifference: tD
         //})
@@ -183,16 +178,18 @@ export default class NewTemplateForm extends React.Component {
         //console.log('state:', this.state)
         //create a initial form state in global store and send post fetch request
         //this.props.createTemplate(this.state);
-        this.updateTem = setInterval( () => {
-            console.log(this.props.template.data);
+        //this.props.createNewTemplateForm();
+        //this.updateTem = setInterval( () => {
+            console.log(this.props);
             //send fetch put/patch request
            // this.props.updateTemplate(this.props.template.data)
-        },
-             30000)
+        //},
+          //   30000)
     }
 
     componentWillUnmount(){
-       clearInterval(this.updateTem)
+        //fetch request to find or create a template //or save button
+       //clearInterval(this.updateTem)
     }
 
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
@@ -201,25 +198,25 @@ export default class NewTemplateForm extends React.Component {
 
     
     //list of expenses
-    render(){
-
+    render() {
+        console.log('props:', this.props)
         //find listExpenses from global state template.expenses passed in as props from container
         //map over and display <ExpenseInput/>
 
-        //let listExpenses = this.state.expenses.map( (expense, index) => {
-        //     console.log("expense:", expense)
-        //     return (
-        //         <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
-        //     )
-        // })
+        let listExpenses = this.props.newTemplate.expenses.map( (expense, index) => {
+            console.log("expense:", expense)
+             return (
+                 <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
+             )
+         })
 
-        // let listIncomes = this.state.incomes.map( (income, index) =>
-        // {
-        //     console.log("income:", income);
-        //     return (
-        //         <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
-        //     )
-        // })
+        let listIncomes = this.props.newTemplate.incomes.map( (income, index) =>
+         {
+             console.log("income:", income);
+             return (
+                 <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
+             )
+        })
         
         var message = "total"
         // if(this.state.totalDifference && this.state.totalDifference >= 0){
@@ -234,7 +231,7 @@ export default class NewTemplateForm extends React.Component {
             <div className="NewTemplateForm">
                 <h1 className="new-template-item">Create Your Budget Template</h1>
 
-                <TitleForm title={this.state.title} handleTitleChange={this.handleTitleChange} />
+                <TitleForm title={this.props.newTemplate.title} handleTitleChange={this.handleTitleChange} />
 
                 <h2 className="new-template-item">List Expenses</h2>
                 <br></br>
@@ -242,7 +239,7 @@ export default class NewTemplateForm extends React.Component {
                     {listExpenses}   
                 </form>
 
-                {this.state.totalExpenditure ? <p className="new-template-item total">Total Expenditure is {this.state.totalExpenditure}</p> : "" }
+                {this.props.template.totalExpenditure ? <p className="new-template-item total">Total Expenditure is {this.props.template.totalExpenditure}</p> : "" }
                 
                 
                 <br>
@@ -251,14 +248,24 @@ export default class NewTemplateForm extends React.Component {
                 <br></br>
                 <form className="new-template-item">
                     {listIncomes}
+                    
                 </form>
                 
                 
                 <br>
                 </br>
-                {message}
+                {
+                //message
+                }
             </div>
         )
     }
 }
 
+const mapStateToProps = ({ newTemplate }) => {
+    return {
+        newTemplate
+    }
+}
+
+export default connect(mapStateToProps, { updateTitle, updateExpense, updateIncome, updateTotalExpense, updateTotalIncome, updateTotalDifference, createNewExpense, createNewIncome } )(NewTemplateForm);

@@ -4,10 +4,11 @@ import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewTemplateForm from './NewTemplateForm';
 
+import createNewTemplate from '../actions/newTemplate/createNewTemplate.js'
+
 class NewTemplateFormContainer extends React.Component {
     //create a reducer to create a template, and update
-
-    createTemplateInStore = () => {
+    createNewTemplateForm = () => {
         let template = {
                      title: "untitled",
                      expenses: [{description: "", amount: "0"}],
@@ -16,8 +17,10 @@ class NewTemplateFormContainer extends React.Component {
                      totalExpenditure: null,
                      totalDifference: null
         };
+        console.log('props:', this.props)
+        this.props.createNewTemplate(template)
         //dispatch an action type='create_template' action.template= template
-        //fetchCreateTemplate(template)
+        //this.fetchCreateTemplate(template) //don't need to save it on the backend yet
     }
 
     fetchCreateTemplate = (template) => {
@@ -41,7 +44,7 @@ class NewTemplateFormContainer extends React.Component {
         )
     }
 
-    updateTemplateInStore
+    //updateTemplateInStore
 
     updateTemplate = (template) => {
         console.log(template.id)
@@ -76,7 +79,7 @@ class NewTemplateFormContainer extends React.Component {
 
     render(){
         return (
-            <NewTemplateForm user={this.props.user} createTemplate={this.createTemplate} updateTemplate={this.updateTemplate} template={this.props.template}/>
+            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateTemplate={this.updateTemplate} template={this.props.newTemplate}/>
         )
     }
 
@@ -85,8 +88,8 @@ class NewTemplateFormContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        template: state.template
+        newTemplate: state.newTemplate
     }
 }
 
-export default connect(mapStateToProps, { getTemplate })(NewTemplateFormContainer)
+export default connect(mapStateToProps, { getTemplate, createNewTemplate })(NewTemplateFormContainer)
