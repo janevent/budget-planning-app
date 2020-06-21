@@ -15,7 +15,7 @@ export default (state=null, action) => {
                 let incomes = [...firstPart, action.income, ...lastPart]
                 return {...state, incomes: incomes}
             case 'UPDATE_TOTAL_INCOME':
-                 return Object.assign({}, state, action.totalIncome)
+                 return Object.assign({}, state, { totalIncome: action.totalIncome } )
             case 'CREATE_NEW_EXPENSE':
                 let es = [...state.expenses, {description: "", amount: "0"}];
                 console.log("es:", es)
@@ -50,9 +50,10 @@ export default (state=null, action) => {
                 }
                 return {...state, expenses: expenses}
             case 'UPDATE_TOTAL_EXPENSE':
-                return Object.assign({}, state, action.totalExpense)  
+                console.log("Action:", action)
+                return Object.assign({}, state, {totalExpenditure: action.totalExpense} )  
             case 'UPDATE_TOTAL_DIFFERENCE':
-                return Object.assign({}, state, action.totalDifference) 
+                return Object.assign({}, state, {totalDifference: action.totalDifference} ) 
             case 'CLEAR_NEW_TEMPLATE':
                 return {
                     title: "untitled",

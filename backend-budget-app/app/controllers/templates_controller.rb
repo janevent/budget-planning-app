@@ -6,6 +6,11 @@ class TemplatesController < ApplicationController
             # template = user.templates.create(title: params[:template][:title])
             template = user.templates.create(template_params)
             if template.save
+                # exes = template_params[:expenses].map do | expense |
+                #   x = template.expenses.create(expense)
+                #   x.save
+                #end
+
                 # expenses = template.expenses.create(params[:template][:expenses])
                 # incomes = template.incomes.create(params[:template][:incomes])
                 options = { include: [:expenses, :incomes]}
@@ -45,8 +50,14 @@ class TemplatesController < ApplicationController
 
     def update 
         template = Template.find_by(id: params[:id])
+        #template_params[:id]
         if template 
             template.update(template_params)
+            #binding.pry
+            params.template.relationships.expense.data.each do |e|
+                template.expenses.find_or_create_by(id: e.id)
+                #if found update
+            end
             # template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
             #render json: template
             options = { include: [:incomes, :expenses]}
@@ -67,6 +78,6 @@ class TemplatesController < ApplicationController
     private 
     #nested strong params
     def template_params
-        params.require(:template).permit(:title, :total_income, :total_expenditure, :total_difference)
+        params.require(:template).permit(:title, :total_income, :total_expenditure, :total_difference, expenses: [], incomes: [])
     end
 end

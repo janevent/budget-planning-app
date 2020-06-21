@@ -43,15 +43,9 @@ class NewTemplateForm extends React.Component {
     handleChange = (event, id) => {
         //
         event.persist();
-        console.log("handleChangeState:", this.state)
-        console.log("event", event)
-        console.log("id", id)
         let { name, value } = event.target;
-        console.log("target-event:", event.target)
         let ex = this.props.newTemplate.expenses.find( (e, i) => i === id )
-        console.log("ex-found:", ex);
         let newEx = Object.assign({}, ex, {[name]: value} )
-        console.log("new-ex:", newEx)
         this.props.updateExpense(newEx, id)
         
 
@@ -65,17 +59,8 @@ class NewTemplateForm extends React.Component {
     handleIncomeChange = (event, id) => {
         event.persist();
         let { name, value } = event.target;
-
         let inc = this.props.newTemplate.incomes.find((income, index) => index === id);
-        //find income in global state and alter it
         let newInc = Object.assign( {}, inc, { [name]: value});
-        // let firstPart = this.state.incomes.slice(0, id);
-        // let lastPart = this.state.incomes.slice(id+1);
-
-        // this.setState({
-        //     incomes: [ ...firstPart, newInc, ...lastPart]
-        // })
-        
         this.props.updateIncome(newInc, id)
         this.totalIncome();
         //aysynchronous or sychronus?
@@ -109,17 +94,14 @@ class NewTemplateForm extends React.Component {
 
     totalExpenditure = () => {
         let expenses = this.props.newTemplate.expenses.map((expense, index) => {
-             return parseFloat(expense.amount)
-             
-             
-         })
-        //get expenses from global state and return an array of parseFloat(expense.amount)
-        //debugger
+             return parseFloat(expense.amount)            
+        })
         //console.log("expenses:", expenses)
         let newExpenses = expenses.filter(Boolean)
         //reduce
         //console.log("newexpenses:", newExpenses)
         let expenseTotal = newExpenses.reduce(this.addFunc, 0);
+        //console.log("expenseTotal:", expenseTotal)
         this.props.updateTotalExpense(expenseTotal)
         
        //set global state attribute totalExpenditure //call setTotalDifference
@@ -185,11 +167,15 @@ class NewTemplateForm extends React.Component {
            // this.props.updateTemplate(this.props.template.data)
         //},
           //   30000)
+           this.totEx = setInterval( () => {
+            this.totalExpenditure();
+          }, 3000)
     }
 
     componentWillUnmount(){
         //fetch request to find or create a template //or save button
        //clearInterval(this.updateTem)
+       clearInterval(this.totEx)
     }
 
     //another function on an event handler for when a user moves away from input field, creates another empty expense in state
