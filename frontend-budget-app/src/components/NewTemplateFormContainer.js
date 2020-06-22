@@ -4,7 +4,9 @@ import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewTemplateForm from './NewTemplateForm';
 
-import createNewTemplate from '../actions/newTemplate/createNewTemplate.js'
+import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
+
+import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
 
 class NewTemplateFormContainer extends React.Component {
     //create a reducer to create a template, and update
@@ -48,7 +50,12 @@ class NewTemplateFormContainer extends React.Component {
         .then(
             myjson => {
                 console.log("mytemplatejson:", myjson)
+                //let nT = myjson.data.attributes;
+                //nT.expenses = [];
+                //myjson.data.include
+                //nT.id = myjson.data.id;
                 //set New Template to json.data.attributes
+                this.props.setNewTemplateID(myjson.data.id)
             }
         )
     }
@@ -101,4 +108,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getTemplate, createNewTemplate })(NewTemplateFormContainer)
+export default connect(mapStateToProps, { getTemplate, createNewTemplate, setNewTemplateID })(NewTemplateFormContainer)

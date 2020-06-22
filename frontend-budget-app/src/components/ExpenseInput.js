@@ -4,7 +4,7 @@ const ExpenseInput = (props) => {
     return (
         
         <div className="ExpenseInput" key={props.key}>
-            {console.log("id: ", props.id, "key: ")}
+            
 
             <label className="label">Description <input type="text" value={props.expense.description} name="description" onChange={(event) => props.handleChange(event, props.id)} onClick={props.handleExpenseMouseClick} /></label>
 

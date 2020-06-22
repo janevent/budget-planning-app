@@ -31,7 +31,7 @@ class NewTemplateForm extends React.Component {
         let newEx = Object.assign({}, ex, {[name]: value} )
         this.props.updateExpense(newEx, id)
         this.totalExpenditure();
-        console.log("tE:", this.props.newTemplate.totalExpenditure)
+        //console.log("tE:", this.props.newTemplate.totalExpenditure)
         this.setTotalDifference();    
     }
 
@@ -121,12 +121,12 @@ class NewTemplateForm extends React.Component {
     
     //list of expenses
     render() {
-        console.log('props:', this.props)
+        //console.log('props:', this.props)
         //find listExpenses from global state template.expenses passed in as props from container
         //map over and display <ExpenseInput/>
 
         let listExpenses = this.props.newTemplate.expenses.map( (expense, index) => {
-            console.log("expense:", expense)
+           // console.log("expense:", expense)
              return (
                  <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
              )
@@ -134,13 +134,13 @@ class NewTemplateForm extends React.Component {
 
         let listIncomes = this.props.newTemplate.incomes.map( (income, index) =>
          {
-             console.log("income:", income);
+             //console.log("income:", income);
              return (
                  <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
              )
         })
         
-        var message = "total"
+        //var message = "total"
         // if(this.state.totalDifference && this.state.totalDifference >= 0){
         //    message = ( <p className="new-template-item total">Your balance is {this.state.totalDifference}.  Consider adding to your rainy days savings.</p> )
         // }else if(this.state.totalDifference && this.state.totalDifference < 1 ){
