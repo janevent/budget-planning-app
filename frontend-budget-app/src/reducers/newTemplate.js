@@ -18,14 +18,14 @@ export default (state=null, action) => {
                  return Object.assign({}, state, { totalIncome: action.totalIncome } )
             case 'CREATE_NEW_EXPENSE':
                 let es = [...state.expenses, {description: "", amount: "0"}];
-                console.log("es:", es)
+                
                 return { ...state, expenses: es}
             case 'UPDATE_EXPENSE':
                 //let e = state.expenses.find((expense, index)=> index === action.id)
                 //debugger
                 //pass the whole expense object through and replace at the specific index
                 //let e2 = Object.assign( {}, e, {[action.name]:action.expense} )
-                console.log("action:", action)
+                
                 let e2 = action.expense;
                 //debugger
                 let expenses
@@ -35,22 +35,18 @@ export default (state=null, action) => {
                     firstP = state.expenses.slice(0, action.id)
                     lastP = state.expenses.slice(action.id + 1)
                     expenses = [...firstP, e2, ...lastP]
-                    console.log("firstp1:", firstP, "lastP:", lastP, "expenses1:", expenses)
+                    
                 }else if(action.id > 0){
                     firstP = state.expenses.slice(0, action.id);
                     expenses = [...firstP, e2];
-                    console.log("firstP2:",  firstP, "expenses2:", expenses)
                 }else if(action.id !== state.expenses.length){
                     lastP = state.expenses.slice(action.id +1);
                     expenses = [e2, ...lastP]
-                    console.log("lastP:", lastP, "expenses3", expenses)
                 }else {
                     expenses = [ e2]
-                    console.log("expenses4:", expenses)
                 }
                 return {...state, expenses: expenses}
             case 'UPDATE_TOTAL_EXPENSE':
-                console.log("Action:", action)
                 return Object.assign({}, state, {totalExpenditure: action.totalExpense} )  
             case 'UPDATE_TOTAL_DIFFERENCE':
                 return Object.assign({}, state, {totalDifference: action.totalDifference} ) 

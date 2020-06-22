@@ -11,27 +11,11 @@ import updateTotalIncome from '../actions/newTemplate/updateTotalIncome.js'
 import updateTotalDifference from '../actions/newTemplate/updateTotalDifference.js'
 import createNewExpense from '../actions/newTemplate/createNewExpense.js';
 import createNewIncome from '../actions/newTemplate/createNewIncome.js';
-
+import SaveNewTemplate from './SaveNewTemplate.js';
 
 //if inputs blank, set to 0 to calculate totals
 
 class NewTemplateForm extends React.Component {
-
-    //  constructor(props){
-    //      super(props);
-    //      console.log("props:", props)
-    //      let template = {
-    //         title: "untitled",
-    //         expenses: [{description: "", amount: "0"}],
-    //         incomes: [{description: "", amount: "0"}],
-    //         totalIncome: null,
-    //         totalExpenditure: null,
-    //         totalDifference: null
-    //         };
-    //      props.createTemplate(template);
-    //      console.log("props2:", props)
-    // }
-
     //save to store or backend every 5 minutes?
 
     handleTitleChange = ( event) => {
@@ -41,19 +25,14 @@ class NewTemplateForm extends React.Component {
     }
 
     handleChange = (event, id) => {
-        //
         event.persist();
         let { name, value } = event.target;
         let ex = this.props.newTemplate.expenses.find( (e, i) => i === id )
         let newEx = Object.assign({}, ex, {[name]: value} )
         this.props.updateExpense(newEx, id)
-        
-
         this.totalExpenditure();
         console.log("tE:", this.props.newTemplate.totalExpenditure)
-        this.setTotalDifference();
-    
-        
+        this.setTotalDifference();    
     }
 
     handleIncomeChange = (event, id) => {
@@ -65,7 +44,6 @@ class NewTemplateForm extends React.Component {
         this.totalIncome();
        
         this.setTotalDifference();
-
     }
 
     addFunc = (total, num) => {
@@ -107,19 +85,15 @@ class NewTemplateForm extends React.Component {
         this.createNewIncome();
     }
 
-    setTotalDifference = () => {
-       
+    setTotalDifference = () => {   
         let tE = this.props.newTemplate.totalExpenditure;
-        let tI = this.props.newTemplate.totalIncome;
-      
-        let tD =  tI - tE
-        
+        let tI = this.props.newTemplate.totalIncome;  
+        let tD =  tI - tE   
         this.props.updateTotalDifference(tD);
     }
 
     componentDidMount(){
-        console.log('NewTemplateForm did mount');
-        
+        console.log('NewTemplateForm did mount');   
         this.totEx = setInterval( () => {
             this.totalExpenditure();
         }, 1000)
@@ -206,6 +180,7 @@ class NewTemplateForm extends React.Component {
                 {this.props.newTemplate.totalDifference ? 
                 <p className="new-template-item total" >Total Difference is {this.props.newTemplate.totalDifference}</p> :
                 "" }
+                <SaveNewTemplate save={this.props.save} />
             </div>
         )
     }

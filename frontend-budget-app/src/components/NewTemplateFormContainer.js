@@ -23,7 +23,9 @@ class NewTemplateFormContainer extends React.Component {
         //this.fetchCreateTemplate(template) //don't need to save it on the backend yet
     }
 
-    fetchCreateTemplate = (template) => {
+    save = () => {
+        console.log(this.props.newTemplate)
+        let template = this.props.newTemplate;
         fetch('http://localhost:3001/templates', {
             credentials: 'include',
             method: 'POST',
@@ -32,14 +34,21 @@ class NewTemplateFormContainer extends React.Component {
                 Accept: 'application/json'
             },
             body: JSON.stringify({
-                template: template
+                template: {
+                    title: template.title,
+                    total_income: template.totalIncome,
+                    total_expenditure: template.totalExpenditure,
+                    total_difference: template.totalDifference,
+                    expenses_attributes: template.expenses,
+                    incomes_attributes: template.incomes
+                }
             })
         })
         .then(response => response.json())
         .then(
             myjson => {
-                console.log(myjson)
-                //this.props.getTemplate(myjson);
+                console.log("mytemplatejson:", myjson)
+                //set New Template to json.data.attributes
             }
         )
     }
@@ -79,7 +88,7 @@ class NewTemplateFormContainer extends React.Component {
 
     render(){
         return (
-            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateTemplate={this.updateTemplate} template={this.props.newTemplate}/>
+            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
         )
     }
 
