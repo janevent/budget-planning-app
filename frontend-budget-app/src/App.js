@@ -5,6 +5,7 @@ import NewUser from './NewUser.js';
 import User from './User.js';
 import NavigationBar from './Navigation.js';
 import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
+import ShowTemplateContainer from './components/ShowTemplateContainer.js';
 import getCurrentUser from './actions/getCurrentUser.js';
 import getTemplates from './actions/getTemplates.js';
 import getBudgets from './actions/getBudgets.js';
@@ -53,6 +54,7 @@ class App extends React.Component {
         <div>
           <NavigationBar/>  
           <NewTemplateFormContainer />
+          <ShowTemplateContainer />
         </div>:
       <div className="App">
         <NewUser/>

@@ -11,7 +11,7 @@ class DropDown extends React.Component {
              
             <ul className="list">
                 { this.props.items.map( (i) => {
-                    return <li className="list-item" key={i.id}>{i.attributes.title}</li>
+                    return <li className="list-item" key={i.id} onClick={ (e) => this.props.fetchAndSet(i.id)}>{i.attributes.title}</li>
                     })
                 }
             </ul>

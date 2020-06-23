@@ -4,3 +4,5 @@ const setTemplate = (template) => {
         template
     }
 }
+
+export default setTemplate;
