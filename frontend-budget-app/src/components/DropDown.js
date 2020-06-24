@@ -1,5 +1,6 @@
 import React from 'react';
-import ShowTemplateContainer from './ShowTemplateContainer.js'
+import ShowTemplateContainer from './ShowTemplateContainer.js';
+import ShowBudgetContainer from './ShowBudgetContainer.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,6 +14,7 @@ class DropDown extends React.Component {
         //console.log("props:", this.props.items)
         
         //debugger
+        
         return (
             <Router>
                 <div>
@@ -21,9 +23,10 @@ class DropDown extends React.Component {
                         
                         <ul className="list">
                             { this.props.items.map( (i) => {
+                                
                                 return (
                                     <li className="list-item" key={i.id} onClick={ (e) => this.props.fetchAndSet(i.id)}>
-                                        <Link to='/template'>{i.attributes.title}</Link>
+                                        <Link to={this.props.link}>{i.attributes.title}</Link>
                                     </li>
                                 )
                                 })
@@ -33,9 +36,15 @@ class DropDown extends React.Component {
                     <Switch>
                         { this.props.items.map( (i) => {
                             return (
+                                <>
                                 <Route path='/template'>
                                     <ShowTemplateContainer />
                                 </Route>
+                                <Route path='/budget'>
+                                    <ShowBudgetContainer />
+                                </Route>
+                                </>
+
                             )
                         })}
                     </Switch>

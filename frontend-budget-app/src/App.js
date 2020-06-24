@@ -24,7 +24,10 @@ class App extends React.Component {
     })
     .then( r => r.json())
     .then(myjson => {
-      //console.log("user:", myjson.data.attributes)
+      if(myjson.error){
+        alert(myjson.error)
+      }else {
+      console.log("user:", myjson)
       //console.log("props:", this.props)
       //debugger
       this.props.getCurrentUser(myjson.data.attributes);
@@ -36,9 +39,11 @@ class App extends React.Component {
       console.log("t:", tempies)
       this.props.getTemplates(tempies);
       this.props.getBudgets(budgies);
+      }
       //get budgets
       //get templates
     } )
+    .catch(console.log)
 
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import getTemplate from '../actions/getTemplate';
+//import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewTemplateForm from './NewTemplateForm';
 
@@ -108,4 +108,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getTemplate, createNewTemplate, setNewTemplateID })(NewTemplateFormContainer)
+export default connect(mapStateToProps, {  createNewTemplate, setNewTemplateID })(NewTemplateFormContainer)

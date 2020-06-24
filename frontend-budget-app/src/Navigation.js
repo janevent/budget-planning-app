@@ -3,6 +3,7 @@ import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
 import DropDown from './components/DropDown.js';
 import setTemplate from './actions/showTemplate/setTemplate.js';
+import setBudget from './actions/showBudget/setBudget.js';
 
 class NavigationBar extends React.Component {
     //links to budgets list, templates list budget form, template form, log out, only displayed when logged in
@@ -37,6 +38,35 @@ class NavigationBar extends React.Component {
             }
         }).catch(console.log)
     }
+
+    fetchAndSetBudget = (id) => {
+        fetch(`http://localhost:3001/budgets/${id}`, {
+            credentials: 'include',
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(myjson => {
+            if(myjson.error){
+                alert(myjson.error)
+            } else {
+                console.log(myjson);
+                let budget = myjson.data.attributes;
+                budget.id = myjson.data.id;
+                let expenses = myjson.included.filter((item)  => item.type === 'expense');
+                let incomes = myjson.included.filter((item) => item.type === 'income')
+                budget.expenses = expenses;
+                budget.incomes = incomes;
+                budget.type = myjson.data.type
+                //?
+                console.log(this.props);
+                this.props.setBudget(budget)
+            }
+        }).catch(console.log)
+    }
  
 
     render(){
@@ -59,9 +89,9 @@ class NavigationBar extends React.Component {
                             })}               
                         </ul> */}
                     
-                    <div className="nav-item"><DropDown title="Select Template" items={templates} fetchAndSet={this.fetchAndSetTemplate}/></div>
+                    <div className="nav-item"><DropDown title="Select Template" items={templates} link='/template' fetchAndSet={this.fetchAndSetTemplate}/></div>
                     <br></br>
-                    <div className="nav-item"><DropDown title="Select Budget" items={budgets}/></div> 
+                    <div className="nav-item"><DropDown title="Select Budget" items={budgets} link= '/budget' fetchAndSet={this.fetchAndSetBudget}/></div> 
                 </div>
             </div>
         )
@@ -75,4 +105,4 @@ const mapStateToProps = ({ templates, budgets}) => {
     }
 }
 
-export default connect(mapStateToProps, { setTemplate })(NavigationBar)
+export default connect(mapStateToProps, { setTemplate, setBudget })(NavigationBar)

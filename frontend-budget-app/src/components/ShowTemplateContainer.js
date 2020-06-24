@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ShowTemplate from './ShowTemplate.js';
+import ShowPage from './ShowPage.js';
 //import setTemplate from '../showTemplate/setTemplate.js';
 
 //when click new_form set newtemplate state to empty and show form
-export default class ShowTemplateContainer extends React.Component {
+class ShowTemplateContainer extends React.Component {
     //fetch, which means I want the id in the stores template list X
     //set template to the data fetched
     //display on ShowTempalte
@@ -35,7 +35,7 @@ export default class ShowTemplateContainer extends React.Component {
         return (
             <div>
                 <p>This is the ShowTemplateContainer</p>
-                <ShowTemplate />
+                <ShowPage data={this.props.template} />
             </div>
         )
     }
@@ -43,3 +43,10 @@ export default class ShowTemplateContainer extends React.Component {
 } 
 
 //export default connect(null, { setTemplate })(ShowTemplateContainer)
+const mapStateToProps = (state) => {
+    return {
+        template: state.template
+    }
+}
+
+export default connect(mapStateToProps)(ShowTemplateContainer)
