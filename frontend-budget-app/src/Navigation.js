@@ -20,16 +20,22 @@ class NavigationBar extends React.Component {
         })
         .then(res => res.json())
         .then(myjson => {
-            console.log(myjson);
-            let template = myjson.data.attributes;
-            template.id = myjson.data.id;
-            let expenses = myjson.included.filter((item)  => item.type === 'expense');
-            let incomes = myjson.included.filter((item) => item.type === 'income')
-            template.expenses = expenses;
-            template.incomes = incomes;
-            console.log(this.props);
-            this.props.setTemplate(template)
-        })
+            if(myjson.error){
+                alert(myjson.error)
+            } else {
+                console.log(myjson);
+                let template = myjson.data.attributes;
+                template.id = myjson.data.id;
+                let expenses = myjson.included.filter((item)  => item.type === 'expense');
+                let incomes = myjson.included.filter((item) => item.type === 'income')
+                template.expenses = expenses;
+                template.incomes = incomes;
+                template.type = myjson.data.type
+                //?
+                console.log(this.props);
+                this.props.setTemplate(template)
+            }
+        }).catch(console.log)
     }
  
 
