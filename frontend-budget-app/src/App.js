@@ -6,11 +6,19 @@ import User from './User.js';
 import NavigationBar from './Navigation.js';
 import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
 import ShowTemplateContainer from './components/ShowTemplateContainer.js';
+import ShowBudgetContainer from './components/ShowBudgetContainer.js'
 import getCurrentUser from './actions/getCurrentUser.js';
 import getTemplates from './actions/getTemplates.js';
 import getBudgets from './actions/getBudgets.js';
 import LogOut from './LogOut.js';
 import { connect } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 
 class App extends React.Component {
 
@@ -44,7 +52,6 @@ class App extends React.Component {
       //get templates
     } )
     .catch(console.log)
-
   }
 
   componentDidMount(){
@@ -53,20 +60,24 @@ class App extends React.Component {
     this.getUser();
   }
 
-  render(){
-    return (
-      this.props.user ? 
-        <div>
-          <NavigationBar/>  
-          <NewTemplateFormContainer />
-          <ShowTemplateContainer />
-        </div>:
-      <div className="App">
-        <NewUser/>
-        <User/>
-      </div>
-    );
-  };
+  render(){     
+      return (
+        this.props.user ?
+          <div>
+            <NavigationBar /> 
+            <Switch>
+              <Route path='/new_template' component={NewTemplateFormContainer } />  
+              <Route path='/template' component={ShowTemplateContainer} />
+              <Route path='/budget' component={ShowBudgetContainer} />
+            </Switch>                      
+          </div> :        
+          <div className="App">
+            <NewUser/>
+            <User/>
+          </div>
+        
+      )
+  }
 };
 
 const mapStateToProps = ({ user }) => {

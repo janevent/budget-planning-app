@@ -5,13 +5,16 @@ import { Provider } from 'react-redux';
 //applyMiddleware, compose
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './store.js'
+import store from './store.js';
+import {
+  BrowserRouter as Router
+} from "react-router-dom"
 
 
 ReactDOM.render(
   //<React.StrictMode>
   <Provider store={store}>
-    <App />
+    <Router><App /></Router>
   </Provider>,
    
   document.getElementById('root')
