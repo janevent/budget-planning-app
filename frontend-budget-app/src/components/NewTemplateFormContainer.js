@@ -95,7 +95,7 @@ class NewTemplateFormContainer extends React.Component {
 
     render(){
         return (
-            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
+            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateNewTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
         )
     }
 

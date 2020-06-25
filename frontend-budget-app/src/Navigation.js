@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import DropDown from './components/DropDown.js';
 import setTemplate from './actions/showTemplate/setTemplate.js';
 import setBudget from './actions/showBudget/setBudget.js';
+import {
+    Link
+} from 'react-router-dom';
 
 class NavigationBar extends React.Component {
     //links to budgets list, templates list budget form, template form, log out, only displayed when logged in
@@ -77,7 +80,7 @@ class NavigationBar extends React.Component {
                 <div className="nav-bar">                
                     <div className="nav-item"><LogOut/></div>
                     <br></br>
-                    <div className="nav-item"> New Budget Template </div>
+                    <div className="nav-item" ><Link to='/new_template'>New Budget Template</Link> </div>
                     <br></br>
                     <div className="nav-item">  New Budget  </div>
                     <br></br>
