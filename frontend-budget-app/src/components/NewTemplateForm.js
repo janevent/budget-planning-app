@@ -11,7 +11,7 @@ import updateTotalIncome from '../actions/newTemplate/updateTotalIncome.js'
 import updateTotalDifference from '../actions/newTemplate/updateTotalDifference.js'
 import createNewExpense from '../actions/newTemplate/createNewExpense.js';
 import createNewIncome from '../actions/newTemplate/createNewIncome.js';
-import SaveNewTemplate from './SaveNewTemplate.js';
+import SaveNew from './SaveNew.js';
 
 //if inputs blank, set to 0 to calculate totals
 
@@ -68,7 +68,7 @@ class NewTemplateForm extends React.Component {
         let expenseTotal = newExpenses.reduce(this.addFunc, 0);
         this.props.updateTotalExpense(expenseTotal)
     }
-
+//unnecessary
     createNewExpense = () => {
         this.props.createNewExpense();
     }
@@ -84,6 +84,7 @@ class NewTemplateForm extends React.Component {
     handleIncomeMouseClick = () => {
         this.createNewIncome();
     }
+    //
 
     setTotalDifference = () => {   
         let tE = this.props.newTemplate.totalExpenditure;
@@ -180,7 +181,7 @@ class NewTemplateForm extends React.Component {
                 {this.props.newTemplate.totalDifference ? 
                 <p className="new-template-item total" >Total Difference is {this.props.newTemplate.totalDifference}</p> :
                 "" }
-                <SaveNewTemplate save={this.props.save} />
+                <SaveNew save={this.props.save} />
             </div>
         )
     }

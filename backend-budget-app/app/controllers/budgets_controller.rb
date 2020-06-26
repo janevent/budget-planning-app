@@ -56,4 +56,6 @@ class BudgetsController < ApplicationController
 
     def destroy 
     end
+
+    
 end

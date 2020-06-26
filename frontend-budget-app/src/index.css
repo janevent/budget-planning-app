@@ -21,6 +21,7 @@ body {
   
 }
 
+/*navBar and dropdown*/
 .nav-container {
   border-color: rgb(161, 220, 247);
   border-bottom-style: solid;
@@ -67,8 +68,8 @@ body {
 .header-title:hover {
   background:  rgb(161, 220, 247);
 }
-/* new template form*/
-.NewTemplateForm {
+/* new template form and new budget form*/
+.NewTemplateForm .NewBudgetForm{
   padding: 20px;
   margin: 20px;
   padding-left: 50px;
@@ -77,7 +78,7 @@ body {
   border-color: rgb(48, 194, 252);
 }
 
-.new-template-item {
+.new-template-item .new-item .new-budget-item {
   padding: 10px;
 }
 
