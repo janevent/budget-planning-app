@@ -116,9 +116,21 @@ class NewBudgetFormContainer extends React.Component {
         this.props.updateTotalDifference(tD);
     }
 
+    //create new incomes and expenses
+
+    handleCreateNewIncome = (event) => {
+        event.persist();
+        this.props.createNewIncome();
+    }
+
+    handleCreateNewExpense = (event) => {
+        event.persist();
+        this.props.createNewExpense();
+    }
+
     render(){
         return (
-            <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.props.createNewIncome} createNewExpense={this.props.createNewExpense} handleTitleChange={this.handleTitleChange} />
+            <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange} />
         )
     }
 

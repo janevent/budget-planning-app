@@ -69,7 +69,16 @@ body {
   background:  rgb(161, 220, 247);
 }
 /* new template form and new budget form*/
-.NewTemplateForm .NewBudgetForm{
+.NewTemplateForm {
+  padding: 20px;
+  margin: 20px;
+  padding-left: 50px;
+  margin-left: 50px;
+  
+  border-color: rgb(48, 194, 252);
+}
+
+.NewBudgetForm {
   padding: 20px;
   margin: 20px;
   padding-left: 50px;

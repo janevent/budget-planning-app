@@ -1,26 +1,27 @@
 class BudgetsController < ApplicationController
 
     def create 
-        # user = User.find_by(id: params[:id])
-        user = User.find_by(id: 1)
-        #budget = user.budgets.create(title: params[:title])
-        budget = user.budgets.create(title: params[:budget][:title])
-        expenses = budget.create.expenses(params[:budget][:expenses])
-        incomes = budget.create.incomes(params[:budget][:incomes])
-        options = { include: [:expenses, :incomes]}
-        render json: BudgetSerializer.new(budget, options)
-
-        #budget is created when user moves away from title field
-        #or when user clicks save button 
-
+        user = User.find_by(id: session[:user_id])
+        if user
+            #binding.pry
+            budget = user.budgets.create_or_find_by(id: budget_params[:id])
+            budget.update(budget_params)
+            if budget.save
+                options = { include: [:expenses, :incomes]}
+                render json: BudgetSerializer.new(budget, options).serialized_json
+            else
+                render json: {status: 'error', code: 3000, message: 'Can not find or create budget'}
+            end
+        else
+            render json: {status: 'error', code: 3000, message: 'can not find user'}
+        end
     end 
 
     def show 
         budget = Budget.find_by(id: params[:id]) 
-        options = { include: [:expenses, :incomes] }
         if budget
-            #render json: budget
-            render json: BudgetSerializer.new(budget, options)
+            options = { include: [:expenses, :incomes] }
+            render json: BudgetSerializer.new(budget, options).serialized_json
         else
             render json: { status: "error", code: 3000, message: "Can not find budget"}
         end
@@ -57,5 +58,10 @@ class BudgetsController < ApplicationController
     def destroy 
     end
 
-    
+    private 
+
+    def budget_params
+        params.require(:budget).permit(:id, :title, :total_expenditure, :total_income, :total_difference, incomes_attributes: [:description, :amount], expenses_attributes: [:description, :amount])
+    end
+
 end

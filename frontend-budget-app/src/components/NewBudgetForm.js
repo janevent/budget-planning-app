@@ -17,6 +17,10 @@ export default class NewBudgetForm extends React.Component {
         this.totDif = setInterval( () => {
             this.props.setTotalDifference();
         }, 1000)
+        //this.s = setInterval( () => {
+          //  this.props.save();
+        //}, 1000)
+        //why does this not work?
     }
 
     componentWillUnmount(){
@@ -24,6 +28,9 @@ export default class NewBudgetForm extends React.Component {
         clearInterval(this.totEx)
         clearInterval(this.totIn)
         clearInterval(this.totDif)
+        this.props.save();
+        //why does it not work here?
+        //clearInterval(this.s)
     }
     
     render() {
@@ -44,7 +51,7 @@ export default class NewBudgetForm extends React.Component {
 
         return (
             <div className="NewBudgetForm">
-                <h1 className="new-budget-item">Create Your Budget Template</h1>
+                <h1 className="new-budget-item">Create Your Budget</h1>
 
                 <TitleForm title={this.props.newBudget.title} handleTitleChange={this.props.handleTitleChange} />
 
