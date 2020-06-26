@@ -5,6 +5,7 @@ import NewUser from './NewUser.js';
 import User from './User.js';
 import NavigationBar from './Navigation.js';
 import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
+import NewBudgetFormContainer from './components/NewBudgetFormContainer.js';
 import ShowTemplateContainer from './components/ShowTemplateContainer.js';
 import ShowBudgetContainer from './components/ShowBudgetContainer.js'
 import getCurrentUser from './actions/getCurrentUser.js';
@@ -67,6 +68,7 @@ class App extends React.Component {
             <NavigationBar /> 
             <Switch>
               <Route path='/new_template' component={NewTemplateFormContainer } />  
+              <Route path='/new_budget' component={NewBudgetFormContainer} />
               <Route path='/template' component={ShowTemplateContainer} />
               <Route path='/budget' component={ShowBudgetContainer} />
             </Switch>                      

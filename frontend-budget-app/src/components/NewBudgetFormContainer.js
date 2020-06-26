@@ -25,7 +25,7 @@ class NewBudgetFormContainer extends React.Component {
 
     save = () => {
         console.log(this.props.newBudget)
-        let budgets = this.props.newBudget;
+        let budget = this.props.newBudget;
         fetch(('http://localhost:3001/budgets'),{
             credentials: 'include',
             method: 'POST',

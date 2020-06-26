@@ -82,7 +82,7 @@ class NavigationBar extends React.Component {
                     <br></br>
                     <div className="nav-item" ><Link to='/new_template'>New Budget Template</Link> </div>
                     <br></br>
-                    <div className="nav-item">  New Budget  </div>
+                    <div className="nav-item"><Link to='/new_budget'>New Budget</Link></div>
                     <br></br>
                     
                         
