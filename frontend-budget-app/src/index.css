@@ -82,8 +82,15 @@ body {
   padding: 20px;
   margin: 20px;
   padding-left: 50px;
-  margin-left: 50px;
-  
+  margin-left: 50px; 
+  border-color: rgb(48, 194, 252);
+}
+
+.ShowPage {
+  padding: 20px;
+  margin: 20px;
+  padding-left: 50px;
+  margin-left: 50px; 
   border-color: rgb(48, 194, 252);
 }
 

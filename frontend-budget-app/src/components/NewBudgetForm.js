@@ -3,6 +3,7 @@ import ExpenseInput from './ExpenseInput.js';
 import IncomeInput from './IncomeInput.js';
 import TitleForm from './TitleForm.js';
 import SaveNew from './SaveNew.js';
+import UploadDropDown from'./UploadDropDown.js';
 
 export default class NewBudgetForm extends React.Component {
 
@@ -34,8 +35,6 @@ export default class NewBudgetForm extends React.Component {
     }
     
     render() {
-        
-
         let listExpenses = this.props.newBudget.expenses.map( (expense, index) => {
            // console.log("expense:", expense)
              return (
@@ -52,7 +51,7 @@ export default class NewBudgetForm extends React.Component {
         return (
             <div className="NewBudgetForm">
                 <h1 className="new-budget-item">Create Your Budget</h1>
-
+                <UploadDropDown />
                 <TitleForm title={this.props.newBudget.title} handleTitleChange={this.props.handleTitleChange} />
 
                 <h2 className="new-budget-item">List Expenses</h2>

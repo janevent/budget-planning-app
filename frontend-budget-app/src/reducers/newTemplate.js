@@ -53,7 +53,6 @@ export default (state=null, action) => {
             case 'SET_NEW_TEMPLATE_ID':
                 return { ...state, ...{ id: action.id }}
             case 'CLEAR_NEW_TEMPLATE':
-
                 return {
                     title: "untitled",
                     expenses: [{description: "", amount: "0"}],
@@ -62,6 +61,7 @@ export default (state=null, action) => {
                     totalExpenditure: null,
                     totalDifference: null
                 };
+            
             default:
                     return {
                     title: "untitled",

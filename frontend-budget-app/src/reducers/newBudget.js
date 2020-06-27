@@ -53,6 +53,11 @@ export default (state=null, action) => {
                 totalExpenditure: null,
                 totalDifference: null
             };
+        case 'ADD_TEMPLATE_DATA':
+            let exs = [ ...action.expenses, ...state.expenses ]
+            let ins = [ ...action.incomes, ...state.incomes ]
+            console.log(exs, "and", ins)              
+            return Object.assign( {}, state, action.template, {expenses: exs}, {incomes: ins} )
         default:
             return {
                 title: "untitled",

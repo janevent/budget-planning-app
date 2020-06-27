@@ -9,7 +9,7 @@ import React from 'react';
 const ShowPage = ( { data }) => {
     
         return (
-            <div>
+            <div className="ShowPage">
                 { data ?
                     <div>
                         <h2>{data.title}</h2>
