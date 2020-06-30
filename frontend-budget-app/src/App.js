@@ -64,7 +64,7 @@ class App extends React.Component {
   render(){     
       return (
         this.props.user ?
-          <div>
+          <div className="App">
             <NavigationBar /> 
             <Switch>
               <Route path='/new_template' component={NewTemplateFormContainer } />  

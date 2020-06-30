@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 //import getBudget from '../actions/getBudget';
 import NewBudgetForm from './NewBudgetForm.js';
 import UploadDropDown from './UploadDropDown.js';
+import ClearForm from './ClearForm.js';
+
 
 import createNewBudget from '../actions/newBudget/createNewBudget.js';
 import setNewBudgetID from '../actions/newBudget/setNewBudgetID.js';
@@ -15,6 +17,7 @@ import updateTitle from '../actions/newBudget/updateTitle.js';
 import updateTotalDifference from '../actions/newBudget/updateTotalDifference.js';
 import updateTotalExpense from '../actions/newBudget/updateTotalExpense.js';
 import updateTotalIncome from '../actions/newBudget/updateTotalIncome.js';
+import clearNewBudget from '../actions/newBudget/clearNewBudget.js';
 
 class NewBudgetFormContainer extends React.Component {
     //create a reducer to create a template, and update
@@ -132,7 +135,10 @@ class NewBudgetFormContainer extends React.Component {
     render(){
         return (
             <div className='container'>
-                <UploadDropDown />
+                <div className="to-the-left"> 
+                    <UploadDropDown />
+                    <ClearForm clearForm={this.props.clearNewBudget} />
+                </div>
                 <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange} />
             </div>
         )
@@ -147,4 +153,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome })(NewBudgetFormContainer)
+export default connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget })(NewBudgetFormContainer)

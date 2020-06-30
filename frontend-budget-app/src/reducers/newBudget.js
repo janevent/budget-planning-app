@@ -42,9 +42,9 @@ export default (state=null, action) => {
             return Object.assign({}, state, {totalExpenditure: action.totalExpense} )  
         case 'UPDATE_TOTAL_DIFFERENCE':
             return Object.assign({}, state, {totalDifference: action.totalDifference} ) 
-        case 'SET_NEW_TEMPLATE_ID':
+        case 'SET_NEW_BUDGET_ID':
             return { ...state, ...{ id: action.id }}
-        case 'CLEAR_NEW_TEMPLATE':
+        case 'CLEAR_NEW_BUDGET':
             return {
                 title: "untitled",
                 expenses: [{description: "", amount: "0"}],
