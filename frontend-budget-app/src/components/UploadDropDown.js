@@ -20,7 +20,7 @@ class UploadDropDown extends React.Component {
             }else {
                 console.log('templateData:', templateData)
                 let tem = templateData.data.attributes;
-                tem.id = templateData.data.id;
+                //tem.id = templateData.data.id;
                 console.log("tem:", tem);
                 let expenses = templateData.included.filter((item) => item.type === "expense");
                 let incomes = templateData.included.filter( (item) => item.type === "income" );
@@ -38,7 +38,7 @@ class UploadDropDown extends React.Component {
     
     render(){
         return (
-            <div className="wrapper">
+            <div className="wrapper transfer">
                 <div className="header-title">Transfer a Template To This Page</div>
                 <ul className="list">
                     {this.props.templates.map( (t) => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 //import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewBudgetForm from './NewBudgetForm.js';
+import UploadDropDown from './UploadDropDown.js';
 
 import createNewBudget from '../actions/newBudget/createNewBudget.js';
 import setNewBudgetID from '../actions/newBudget/setNewBudgetID.js';
@@ -130,7 +131,10 @@ class NewBudgetFormContainer extends React.Component {
 
     render(){
         return (
-            <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange} />
+            <div className='container'>
+                <UploadDropDown />
+                <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange} />
+            </div>
         )
     }
 

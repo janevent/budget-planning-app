@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import ShowPage from './ShowPage.js';
 //import setTemplate from '../showTemplate/setTemplate.js';
 
@@ -33,8 +32,9 @@ class ShowTemplateContainer extends React.Component {
 
     render(){
         return (
-            <div>
+            <div className='container'>
                 <p>This is the ShowTemplateContainer</p>
+                
                 <ShowPage data={this.props.template} />
             </div>
         )

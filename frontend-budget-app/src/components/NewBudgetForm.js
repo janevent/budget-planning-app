@@ -51,7 +51,7 @@ export default class NewBudgetForm extends React.Component {
         return (
             <div className="NewBudgetForm">
                 <h1 className="new-budget-item">Create Your Budget</h1>
-                <UploadDropDown />
+                
                 <TitleForm title={this.props.newBudget.title} handleTitleChange={this.props.handleTitleChange} />
 
                 <h2 className="new-budget-item">List Expenses</h2>

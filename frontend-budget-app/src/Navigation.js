@@ -78,11 +78,11 @@ class NavigationBar extends React.Component {
         return(
             <div className="nav-container">
                 <div className="nav-bar">                
-                    <div className="nav-item"><LogOut/></div>
+                    <div className="nav-item "><LogOut/></div>
                     <br></br>
-                    <div className="nav-item" ><Link to='/new_template'>New Budget Template</Link> </div>
+                    <div className="nav-item" ><Link to='/new_template' className="high-light">New Budget Template</Link> </div>
                     <br></br>
-                    <div className="nav-item"><Link to='/new_budget'>New Budget</Link></div>
+                    <div className="nav-item"><Link to='/new_budget' className="high-light">New Budget</Link></div>
                     <br></br>
                     
                         
