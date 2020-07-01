@@ -206,6 +206,34 @@ h1, h2 {
   background-color: rgb(247, 252, 248);
   border-radius: 15px;
 }
+
+.Home {
+  margin: 50px;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: rgb(40, 250, 40);
+}
+
+.orange {
+  color: rgb(253, 110, 44);
+}
+
+.red {
+  color: rgb(252, 11, 11);
+}
+.purple {
+  color: rgb(247, 9, 247)
+}
+
+.blue {
+  color: rgb(69, 208, 243)
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
