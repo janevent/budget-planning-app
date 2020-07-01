@@ -7,6 +7,7 @@ class TemplatesController < ApplicationController
             template = user.templates.find_or_create_by(id: template_params[:id])
             template.update(template_params)
             if template.save
+                #binding.pry
                 options = { include: [:expenses, :incomes]}
                 render json: TemplateSerializer.new(template, options).serialized_json
             else

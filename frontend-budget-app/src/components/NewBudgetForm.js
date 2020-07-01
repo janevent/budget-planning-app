@@ -60,7 +60,7 @@ export default class NewBudgetForm extends React.Component {
                     {listExpenses}   
                 </form>
 
-                {this.props.newBudget.totalExpenditure ? <p className="new-budget-item total">Total Expenditure is {this.props.newBudget.totalExpenditure}</p> : "" }
+                {this.props.newBudget.totalExpenditure ? <p className="new-budget-item total">Total Expenditure is ${this.props.newBudget.totalExpenditure}</p> : "" }
                 
                 
                 <br>
@@ -72,12 +72,12 @@ export default class NewBudgetForm extends React.Component {
                 </form>
 
                 {this.props.newBudget.totalIncome ?
-                <p className="new-budget-item total">Total Income is {this.props.newBudget.totalIncome}</p> :
+                <p className="new-budget-item total">Total Income is ${this.props.newBudget.totalIncome}</p> :
                 "" }               
                 <br>
                 </br>
                 {this.props.newBudget.totalDifference ? 
-                <p className="new-budget-item total" >Total Difference is {this.props.newBudget.totalDifference}</p> :
+                <p className="new-budget-item total" >Total Difference is ${this.props.newBudget.totalDifference}</p> :
                 "" }
                 <SaveNew save={this.props.save} />
             </div>

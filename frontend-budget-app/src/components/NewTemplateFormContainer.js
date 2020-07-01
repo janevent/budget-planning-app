@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 //import getBudget from '../actions/getBudget';
 import NewTemplateForm from './NewTemplateForm.js';
 import ClearForm from './ClearForm.js';
+import { withRouter } from 'react-router';
+
 import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
 import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
 import clearNewTemplate from '../actions/newTemplate/clearNewTemplate.js';
+
+
 class NewTemplateFormContainer extends React.Component {
     //create a reducer to create a template, and update
     createNewTemplateForm = () => {
@@ -55,6 +59,8 @@ class NewTemplateFormContainer extends React.Component {
                 //nT.id = myjson.data.id;
                 //set New Template to json.data.attributes
                 this.props.setNewTemplateID(myjson.data.id)
+                //withRouter
+                this.props.history.push('/');
             }
         )
     }
@@ -112,4 +118,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate })(NewTemplateFormContainer)
+export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate })(NewTemplateFormContainer));

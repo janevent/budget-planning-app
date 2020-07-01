@@ -162,7 +162,7 @@ class NewTemplateForm extends React.Component {
                     {listExpenses}   
                 </form>
 
-                {this.props.template.totalExpenditure ? <p className="new-template-item total">Total Expenditure is {this.props.template.totalExpenditure}</p> : "" }
+                {this.props.template.totalExpenditure ? <p className="new-template-item total">Total Expenditure is ${this.props.template.totalExpenditure}</p> : "" }
                 
                 
                 <br>
@@ -174,12 +174,12 @@ class NewTemplateForm extends React.Component {
                 </form>
 
                 {this.props.newTemplate.totalIncome ?
-                <p className="new-template-item total">Total Income is {this.props.newTemplate.totalIncome}</p> :
+                <p className="new-template-item total">Total Income is ${this.props.newTemplate.totalIncome}</p> :
                 "" }               
                 <br>
                 </br>
                 {this.props.newTemplate.totalDifference ? 
-                <p className="new-template-item total" >Total Difference is {this.props.newTemplate.totalDifference}</p> :
+                <p className="new-template-item total" >Total Difference is ${this.props.newTemplate.totalDifference}</p> :
                 "" }
                 <SaveNew save={this.props.save} />
             </div>

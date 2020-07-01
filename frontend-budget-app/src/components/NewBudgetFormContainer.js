@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 //import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewBudgetForm from './NewBudgetForm.js';
@@ -60,6 +61,7 @@ class NewBudgetFormContainer extends React.Component {
             myjson => {
                 console.log("mybudgetjson:", myjson)
                 this.props.setNewBudgetID(myjson.data.id)
+                this.props.history.push('/');
             }
         )
     }
@@ -153,4 +155,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget })(NewBudgetFormContainer)
+export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget })(NewBudgetFormContainer));
