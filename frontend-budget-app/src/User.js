@@ -59,12 +59,12 @@ class User extends React.Component {
         return (
             <div className="center">
                 <h1>Log In</h1>
-                <br></br>
+                
                 <form className="form" onSubmit= {this.handleOnSubmit} >
                     <label>
                         UserName <input type="text" name="username" value={this.state.userName} onChange={this.handleUserNameChange} />
                     </label>
-                    <br></br>
+                    
                     <label>
                         Password <input type="text" name="password" value={this.state.password}  onChange={this.handlePasswordChange} />
                     </label>

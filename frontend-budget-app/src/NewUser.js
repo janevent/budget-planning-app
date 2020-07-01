@@ -68,11 +68,11 @@ class NewUser extends React.Component {
                     <label>
                         UserName <input type="text" name="username" onChange={this.handleUserNameChange} value={this.state.userName} />
                     </label>
-                    <br></br>
+                    
                     <label>
                         Password <input type="text" name="password" value= {this.state.password} onChange={this.handlePasswordChange}/>
                     </label>
-                    <br></br>
+                    
                     <label>
                         Email <input type="text" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
                     </label>
