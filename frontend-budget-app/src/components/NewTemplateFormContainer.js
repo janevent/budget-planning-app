@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 //import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
-import NewTemplateForm from './NewTemplateForm';
-
+import NewTemplateForm from './NewTemplateForm.js';
+import ClearForm from './ClearForm.js';
 import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
-
 import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
-
+import clearNewTemplate from '../actions/newTemplate/clearNewTemplate.js';
 class NewTemplateFormContainer extends React.Component {
     //create a reducer to create a template, and update
     createNewTemplateForm = () => {
@@ -95,7 +94,12 @@ class NewTemplateFormContainer extends React.Component {
 
     render(){
         return (
-            <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateNewTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
+            <div className='container'>
+                <div className='to-the-left'>
+                    <ClearForm clearForm={this.props.clearNewTemplate}/>
+                </div>
+                <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateNewTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
+            </div>
         )
     }
 
@@ -108,4 +112,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {  createNewTemplate, setNewTemplateID })(NewTemplateFormContainer)
+export default connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate })(NewTemplateFormContainer)

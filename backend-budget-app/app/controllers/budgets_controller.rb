@@ -3,7 +3,7 @@ class BudgetsController < ApplicationController
     def create 
         user = User.find_by(id: session[:user_id])
         if user
-            #binding.pry
+            #rbinding.pry
             budget = user.budgets.create_or_find_by(id: budget_params[:id])
             budget.update(budget_params)
             if budget.save

@@ -114,6 +114,9 @@ body {
 }
 /* new template form and new budget form*/
 .NewTemplateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
   margin: 20px;
   padding-left: 50px;
