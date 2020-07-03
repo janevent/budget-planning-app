@@ -10,7 +10,7 @@ class ShowBudgetContainer extends React.Component {
         let id = this.props.match.params.id;
         let budget = this.props.budgets.find( (b) => b.id === id);
         return (
-            <div className='container'>                
+            <div className='show-container'>                
                 <ShowPage data={budget} />
             </div>
         )

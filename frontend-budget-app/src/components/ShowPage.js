@@ -16,7 +16,7 @@ const ShowPage = ( { data }) => {
                         <h3>Expenses</h3>
                         <div>{
                             data.expenses ?
-                            data.expenses.map (t => <div className="expenses-wrapper"><p>{t.attributes.description} : ${t.attributes.amount}</p></div> ) :
+                            data.expenses.map (t => <p className="expenses-wrapper">{t.attributes.description} : ${t.attributes.amount}</p> ) :
                             ""
                         }
                         </div>
@@ -24,7 +24,7 @@ const ShowPage = ( { data }) => {
                         <h3>Incomes</h3>
                         <div>{
                             data.incomes ?
-                            data.incomes.map ( i => <div className='incomes-wrapper'><p>{i.attributes.description} : ${i.attributes.amount}</p></div>) :
+                            data.incomes.map ( i => <p className='incomes-wrapper'>{i.attributes.description} : ${i.attributes.amount}</p>) :
                             ""
                         }
                         </div>
