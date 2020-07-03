@@ -27,8 +27,20 @@ class NewTemplateForm extends React.Component {
     handleChange = (event, id) => {
         event.persist();
         let { name, value } = event.target;
+
+        let newV = value;
+        if(name==='amount'){
+            newV = Array.from(value).filter( (c) => c !== ',')
+        }
+        let newValue = newV;
+        if(Array.isArray(newV)){
+            newValue = newV.join('');
+        }
+        console.log('newV', newValue)
+
         let ex = this.props.newTemplate.expenses.find( (e, i) => i === id )
-        let newEx = Object.assign({}, ex, {[name]: value} )
+
+        let newEx = Object.assign({}, ex, {[name]: newValue} )
         this.props.updateExpense(newEx, id)
         this.totalExpenditure();
         //console.log("tE:", this.props.newTemplate.totalExpenditure)

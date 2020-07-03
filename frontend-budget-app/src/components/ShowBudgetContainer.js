@@ -8,8 +8,7 @@ class ShowBudgetContainer extends React.Component {
 
     render(){
         return (
-            <div>
-                <p>Hey! It's me the budget container.</p>
+            <div className='container'>                
                 <ShowPage data={this.props.budget} />
             </div>
         )

@@ -72,6 +72,7 @@ body {
   align-items: flex-end;
 }
 
+/*drop down menu */
 .list {
   display: none;
   position: static;
@@ -94,7 +95,9 @@ body {
   overflow: visible;
 }
 .wrapper {
-  overflow: visible;
+  /*overflow: visible;*/
+  position: relative;
+  display: inline-block;
 }
 
 .list-item {
@@ -193,15 +196,18 @@ body {
   font-weight: lighter;
 }
 
-.center, .ShowPage, .NewTemplateForm, .NewBudgetForm {
+.ShowPage, .NewTemplateForm, .NewBudgetForm {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .center {
   color: rgb(8, 220, 235);
   font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .center > h1 {

@@ -70,6 +70,14 @@ class NavigationBar extends React.Component {
             }
         }).catch(console.log)
     }
+
+    templateLink = (id) => {
+        return `/templates/${id}`
+    }
+
+    budgetLink = (id) => {
+        return `/budgets/${id}`
+    }
  
 
     render(){
@@ -92,9 +100,9 @@ class NavigationBar extends React.Component {
                             })}               
                         </ul> */}
                     
-                    <div className="nav-item"><DropDown title="Select Template" items={templates} link='/template' fetchAndSet={this.fetchAndSetTemplate}/></div>
+                    <div className="nav-item"><DropDown title="Select Template" items={templates} link={this.templateLink} fetchAndSet={this.fetchAndSetTemplate}/></div>
                     <br></br>
-                    <div className="nav-item"><DropDown title="Select Budget" items={budgets} link= '/budget' fetchAndSet={this.fetchAndSetBudget}/></div> 
+                    <div className="nav-item"><DropDown title="Select Budget" items={budgets} link={this.budgetLink} fetchAndSet={this.fetchAndSetBudget}/></div> 
                 </div>
             </div>
         )

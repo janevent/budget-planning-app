@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import newCurrentUser from './actions/newUser.js';
 
 class NewUser extends React.Component {
@@ -91,4 +92,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(null, mapDispatchToProps)(NewUser)
+export default withRouter(connect(null, mapDispatchToProps)(NewUser));

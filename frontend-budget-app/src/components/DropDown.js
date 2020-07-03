@@ -25,7 +25,7 @@ export default class DropDown extends React.Component {
                     { this.props.items.map((i)  => {                             
                         return (
                             <li className="list-item" key={i.id} onClick={ (e) => this.props.fetchAndSet(i.id)}>
-                                <Link to={this.props.link}>{i.attributes.title}</Link>
+                                <Link to={this.props.link(i.id)} >{i.title}</Link>
                             </li>
                         )
                     })

@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import setCurrentUser from './actions/user.js'
 
 class User extends React.Component {
@@ -48,6 +49,7 @@ class User extends React.Component {
             //dispatch action
             console.log("props:", this.props)
             this.props.setCurrentUser(myjson.data.attributes);
+            this.props.history.push('/');
             //this.props.getBudgets
             //this.props.getTemplates
         }
@@ -82,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(User)
+export default withRouter(connect(null, mapDispatchToProps)(User))

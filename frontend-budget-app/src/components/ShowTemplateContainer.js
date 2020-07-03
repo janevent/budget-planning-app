@@ -30,10 +30,17 @@ class ShowTemplateContainer extends React.Component {
     //     })
     // }
 
+
+    //findAndSetTemplate(id)
+
+    componentDidMount(){
+        let id = this.props.match.params.id
+        this.props.findAndSetTemplate(id)
+    }
     render(){
         return (
             <div className='container'>
-                <p>This is the ShowTemplateContainer</p>
+                
                 
                 <ShowPage data={this.props.template} />
             </div>

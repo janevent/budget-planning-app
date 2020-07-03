@@ -43,7 +43,7 @@ class UploadDropDown extends React.Component {
                 <ul className="list">
                     {this.props.templates.map( (t) => {
                         return (
-                        <li className="list-item" key={t.id} onClick={(e) => this.fetchTemplate(t.id)}>{t.attributes.title}</li>
+                        <li className="list-item" key={t.id} onClick={(e) => this.fetchTemplate(t.id)}>{t.title}</li>
                         )
                     })}
                 </ul>
