@@ -7,17 +7,19 @@ import ShowPage from './ShowPage.js';
 class ShowBudgetContainer extends React.Component {
 
     render(){
+        let id = this.props.match.params.id;
+        let budget = this.props.budgets.find( (b) => b.id === id);
         return (
             <div className='container'>                
-                <ShowPage data={this.props.budget} />
+                <ShowPage data={budget} />
             </div>
         )
     }
 }
 
-const mapStateToProps = ( { budget }) => {
+const mapStateToProps = ( { budgets }) => {
     return ({
-        budget
+        budgets
     })
 }
 

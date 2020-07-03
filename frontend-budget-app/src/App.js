@@ -68,21 +68,32 @@ class App extends React.Component {
         //console.log("t:", tempies)
         this.props.getTemplates(tempies);
         this.props.getBudgets(budgies);
+        debugger
       }
     } )
     .catch(console.log)
   }
 
-  findAndSetTemplate = (id) => {
-    let tm = this.props.templates.find((t) => t.id === id )
-    this.props.setTemplate(tm)
-  }
+  // findAndSetTemplate = (id) => {
+  //   //debugger
+  //   let tm = this.props.templates.find((t) => t.id === id )
+  //   this.props.setTemplate(tm)
+  // }
 
-  findAndSetBudget = (id) => {
-    let bt = this.props.budgets.find(b => b.id === id )
-    this.props.setTemplate(bt)
-    //or just populate the ShowPage directly passing bt in as data?
-  }
+  // findAndSetBudget = (id) => {
+  //   let bt = this.props.budgets.find(b => b.id === id )
+  //   this.props.setTemplate(bt)
+  //   //or just populate the ShowPage directly passing bt in as data?
+  // }
+
+  // findTemplate = (id) => {
+  //   let t = this.props.templates.find(t => t.id === id)
+  // }
+
+  // findBudget = (id) => {
+  //   let b = this.props.budgets.find(b => b.id === id)
+  //   return b
+  // }
 
   componentDidMount(){
     console.log("App did mount")
@@ -99,8 +110,8 @@ class App extends React.Component {
               
               <Route path='/new_template' component={NewTemplateFormContainer } />  
               <Route path='/new_budget' component={NewBudgetFormContainer} />
-              <Route path='/templates/:id' render={ (props) => <ShowTemplateContainer findAndSetTemplate={this.findAndSetTemplate} {...props} /> } />
-              <Route path='/budgets/:id' render={(props) => <ShowBudgetContainer findAndSetBudget={this.findAndSetBudget} {...props} />} /> 
+              <Route path='/templates/:id' render={ (props) => <ShowTemplateContainer findAndSetTemplate={this.findAndSetTemplate} findTemplate={this.findTemplate} {...props} /> } />
+              <Route path='/budgets/:id' render={(props) => <ShowBudgetContainer findAndSetBudget={this.findAndSetBudget} findBudget={this.findBudget} {...props} />} /> 
               <Route path='/' component={Home} />
             </Switch>                      
           </div> :        

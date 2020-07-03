@@ -33,16 +33,13 @@ class ShowTemplateContainer extends React.Component {
 
     //findAndSetTemplate(id)
 
-    componentDidMount(){
-        let id = this.props.match.params.id
-        this.props.findAndSetTemplate(id)
-    }
+    
     render(){
+        let id = this.props.match.params.id;
+        let template = this.props.templates.find((t) => t.id === id)
         return (
-            <div className='container'>
-                
-                
-                <ShowPage data={this.props.template} />
+            <div className='container'>                
+                <ShowPage data={template} />
             </div>
         )
     }
@@ -52,7 +49,7 @@ class ShowTemplateContainer extends React.Component {
 //export default connect(null, { setTemplate })(ShowTemplateContainer)
 const mapStateToProps = (state) => {
     return {
-        template: state.template
+        templates: state.templates
     }
 }
 

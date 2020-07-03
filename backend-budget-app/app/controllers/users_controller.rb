@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     #binding.pry
         if user.valid?
             render json: UserSerializer.new(user)
+            session[:user_id] = user.id
         else
             render json: {message: "can not create user"}
         end
