@@ -1,12 +1,13 @@
 import React from 'react';
 //import edit button/ or link
+import Delete from './Delete.js';
 
 
 
 
 //why this in render works even though it is not binding this or an arrow function
 
-const ShowPage = ( { data }) => {
+const ShowPage = ( { data, deleteData, hoverDelete }) => {
     
         return (
             <div className="ShowPage">
@@ -30,6 +31,8 @@ const ShowPage = ( { data }) => {
                         </div>
                         <h3>Total Income: ${data.total_income}</h3>
                         <h3>Total Difference: ${data.total_difference}</h3>
+                        <br></br>
+                        <Delete item={data} deleteData={deleteData} hoverDelete={hoverDelete} />
                     </div>
                 :
                 "" }

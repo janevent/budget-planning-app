@@ -58,6 +58,9 @@ class BudgetsController < ApplicationController
     end
 
     def destroy 
+        b =  Budget.find_by(id: params[:id])
+        b.destroy
+        render json: { message: "Item #{params[:id]} is deleted"}
     end
 
     private 
