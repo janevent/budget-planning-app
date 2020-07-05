@@ -7,7 +7,7 @@ import NewBudgetForm from './NewBudgetForm.js';
 import UploadDropDown from './UploadDropDown.js';
 import ClearForm from './ClearForm.js';
 
-
+import addBudget from '../actions/budgets/addBudget.js';
 import createNewBudget from '../actions/newBudget/createNewBudget.js';
 import setNewBudgetID from '../actions/newBudget/setNewBudgetID.js';
 import createNewExpense from '../actions/newBudget/createNewExpense.js';
@@ -38,6 +38,10 @@ class NewBudgetFormContainer extends React.Component {
     save = () => {
         console.log(this.props.newBudget)
         let budget = this.props.newBudget;
+        let expenses = budget.expenses.filter( (e) => e.description!== "");
+        let incomes = budget.incomes.filter( (i) => i.description!== "" );
+       // debugger
+
         fetch(('http://localhost:3001/budgets'),{
             credentials: 'include',
             method: 'POST',
@@ -51,19 +55,32 @@ class NewBudgetFormContainer extends React.Component {
                     total_income: budget.totalIncome,
                     total_expenditure: budget.totalExpenditure,
                     total_difference: budget.totalDifference,
-                    expenses_attributes: budget.expenses,
-                    incomes_attributes: budget.incomes
+                    expenses_attributes: expenses,
+                    incomes_attributes: incomes
                 }
             })
         })
         .then(response => response.json())
         .then(
             myjson => {
-                console.log("mybudgetjson:", myjson)
-                this.props.setNewBudgetID(myjson.data.id)
-                this.props.history.push('/');
+                if(myjson.error){
+                    console.log(myjson.error)
+                }else {
+                    console.log("mybudgetjson:", myjson)
+                    //this.props.setNewBudgetID(myjson.data.id);
+                    let budge = myjson.data.attributes;
+                    budge.id = myjson.data.id;
+                    let expenses = myjson.included.filter( (i) => i.type === 'expense');
+                    let incomes = myjson.included.filter( (i) => i.type === 'income');
+                    budge.incomes = incomes;
+                    budge.expenses = expenses;
+
+                    this.props.addBudget(budge)
+                    this.props.history.push('/');
+                }
             }
         )
+        .catch(console.log)
     }
 
     handleTitleChange = ( event) => {
@@ -141,7 +158,7 @@ class NewBudgetFormContainer extends React.Component {
                     <UploadDropDown />
                     <ClearForm clearForm={this.props.clearNewBudget} />
                 </div>
-                <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange} />
+                <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange}  />
             </div>
         )
     }
@@ -155,4 +172,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget })(NewBudgetFormContainer));
+export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget, addBudget })(NewBudgetFormContainer));

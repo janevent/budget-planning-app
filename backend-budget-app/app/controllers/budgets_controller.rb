@@ -4,9 +4,11 @@ class BudgetsController < ApplicationController
         user = User.find_by(id: session[:user_id])
         if user
             #rbinding.pry
-            budget = user.budgets.create_or_find_by(id: budget_params[:id])
-            budget.update(budget_params)
+            budget = user.budgets.create(budget_params)
+            #budget.update(budget_params)
+            #binding.pry
             if budget.save
+                #binding.pry
                 options = { include: [:expenses, :incomes]}
                 render json: BudgetSerializer.new(budget, options).serialized_json
             else

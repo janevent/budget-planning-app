@@ -3,5 +3,18 @@ class Budget < ApplicationRecord
     has_many :expenses, as: :paymentable
     has_many :incomes, as: :gainsable
     #validates :title, presence: true
-    accepts_nested_attributes_for :expenses, :incomes
+    #, dependent: :destroy
+
+    accepts_nested_attributes_for :expenses,
+        :reject_if => :reject_description 
+
+    accepts_nested_attributes_for :incomes,
+        :reject_if => :reject_description
+
+    def reject_description(attributes)
+        #binding.pry
+        attributes['description'] === ""
+    end
+    
+
 end

@@ -29,7 +29,7 @@ export default class NewBudgetForm extends React.Component {
         clearInterval(this.totEx)
         clearInterval(this.totIn)
         clearInterval(this.totDif)
-        this.props.save();
+        //this.props.save();
         //why does it not work here?
         //clearInterval(this.s)
     }
@@ -44,7 +44,7 @@ export default class NewBudgetForm extends React.Component {
          //do I need both key and id
         let listIncomes = this.props.newBudget.incomes.map( (income, index) => {
              return (
-                 <IncomeInput handleIncomeChange={this.props.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.props.handleIncomeMouseClick} />
+                 <IncomeInput handleIncomeChange={this.props.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.props.createNewIncome} />
              )
         })
 

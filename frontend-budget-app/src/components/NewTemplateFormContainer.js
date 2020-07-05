@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
 import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
 import clearNewTemplate from '../actions/newTemplate/clearNewTemplate.js';
+import addTemplate from '../actions/templates/addTemplate.js';
 
 
 class NewTemplateFormContainer extends React.Component {
@@ -31,6 +32,8 @@ class NewTemplateFormContainer extends React.Component {
     save = () => {
         console.log(this.props.newTemplate)
         let template = this.props.newTemplate;
+        let expenses = template.expenses.filter( (e) => e.description!== "")
+        let incomes = template.incomes.filter( (i) => i.description!== "");
         fetch('http://localhost:3001/templates', {
             credentials: 'include',
             method: 'POST',
@@ -44,8 +47,8 @@ class NewTemplateFormContainer extends React.Component {
                     total_income: template.totalIncome,
                     total_expenditure: template.totalExpenditure,
                     total_difference: template.totalDifference,
-                    expenses_attributes: template.expenses,
-                    incomes_attributes: template.incomes
+                    expenses_attributes: expenses,
+                    incomes_attributes: incomes
                 }
             })
         })
@@ -58,6 +61,7 @@ class NewTemplateFormContainer extends React.Component {
                 //myjson.data.include
                 //nT.id = myjson.data.id;
                 //set New Template to json.data.attributes
+                this.props.addTemplate(myjson)
                 this.props.setNewTemplateID(myjson.data.id)
                 //withRouter
                 this.props.history.push('/');
@@ -118,4 +122,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate })(NewTemplateFormContainer));
+export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate, addTemplate })(NewTemplateFormContainer));

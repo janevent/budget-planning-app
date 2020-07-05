@@ -68,7 +68,7 @@ class App extends React.Component {
         //console.log("t:", tempies)
         this.props.getTemplates(tempies);
         this.props.getBudgets(budgies);
-        debugger
+        //debugger
       }
     } )
     .catch(console.log)

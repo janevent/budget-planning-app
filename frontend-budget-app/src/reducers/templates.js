@@ -5,6 +5,8 @@ export default (state =  [], action) => {
             //return action.user.included[1].attributes
             console.log("t-action:", action)
             return action.templates
+        case 'ADD_TEMPLATE':
+            return [...state, action.template];
         default:
             return state
     }
