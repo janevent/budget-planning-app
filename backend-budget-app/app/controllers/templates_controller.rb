@@ -68,6 +68,9 @@ class TemplatesController < ApplicationController
     end
 
     def destroy 
+        t = Template.find_by(id: params[:id])
+        t.destroy
+        render json: { message: "Budget #{params[:id]} is destroyed"}
     end
 
     private 
