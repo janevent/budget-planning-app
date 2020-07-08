@@ -75,7 +75,7 @@ body {
 /*drop down menu */
 .list {
   display: none;
-  position: static;
+  position: static;/*absolute*/
   /*background-color: rgb(161, 220, 247) ;
   min-width: 80px;*/
   max-width: 90px;
@@ -91,7 +91,7 @@ body {
 
 
 .wrapper:hover .list {
-  display: block;
+  display: block; /*inline*/
   overflow: visible;
 }
 .wrapper {

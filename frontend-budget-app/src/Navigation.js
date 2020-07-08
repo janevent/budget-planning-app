@@ -94,15 +94,11 @@ class NavigationBar extends React.Component {
                     <br></br>
                     
                         
-                        {/* <ul className="list">
-                            {this.props.templates.map((t) => {
-                                return <DropDown key={t.id} item={t.attributes}/>    
-                            })}               
-                        </ul> */}
+                        
                     
-                    <div className="nav-item"><DropDown title="Select Template" items={templates} link={this.templateLink} fetchAndSet={this.fetchAndSetTemplate}/></div>
+                    <div className="nav-item"><DropDown title="Select Template" items={templates} link={this.templateLink} /></div>
                     <br></br>
-                    <div className="nav-item"><DropDown title="Select Budget" items={budgets} link={this.budgetLink} fetchAndSet={this.fetchAndSetBudget}/></div> 
+                    <div className="nav-item"><DropDown title="Select Budget" items={budgets} link={this.budgetLink} /></div> 
                 </div>
             </div>
         )

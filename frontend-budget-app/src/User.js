@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import setCurrentUser from './actions/user.js'
+import fetchSetCurrentUser from './actions/user.js'
 
 class User extends React.Component {
 
@@ -31,32 +31,13 @@ class User extends React.Component {
     handleOnSubmit = (event) => {
         event.preventDefault();
         console.log("state:", this.state)
-        fetch('http://localhost:3001/login', {
-            credentials: "include",
-            method: 'POST',
-            headers: {
-                 'Content-Type': 'application/json',
-                 Accept: 'application/json'
-             },
-            body: JSON.stringify( {
-                user_name: this.state.userName,
-                password: this.state.password
-            })
-        })
-        .then(res => res.json())
-        .then(myjson => { 
-            console.log("object:", myjson); 
-            //dispatch action
-            console.log("props:", this.props)
-            this.props.setCurrentUser(myjson.data.attributes);
-            this.props.history.push('/');
-            //this.props.getBudgets
-            //this.props.getTemplates
+        let logIn = { 
+            username: this.state.userName,
+            password: this.state.password
         }
-        )
-        .catch(error => console.log(error))
-        //catch error
+        this.props.fetchSetCurrentUser(logIn)
     }
+    
     render(){
         return (
             <div className="center">
@@ -80,7 +61,7 @@ class User extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentUser: (user) => dispatch(setCurrentUser(user) )
+        fetchSetCurrentUser: (user) => dispatch(fetchSetCurrentUser(user) )
     };
 };
 

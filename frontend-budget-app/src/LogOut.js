@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './index.css'
-import logOutUser from './actions/logOut.js'
+import fetchLogOutUser from './actions/logOut.js'
 
 class LogOut extends React.Component {
 
@@ -9,11 +9,10 @@ class LogOut extends React.Component {
         //debugger
         event.preventDefault();
         console.log('logging out')
-        console.log('props:', this.props)
+        
+
         fetch('http://localhost:3001/logout', {
             credentials: 'include',
-
-            //method: 'DELETE'
             headers: {
                'Content-Type': 'application/json',
                 Accept: 'application/json'
@@ -21,7 +20,8 @@ class LogOut extends React.Component {
         })
         .then( r => r.json())
         .then(myjson => console.log("logout", myjson))
-        this.props.logOutUser();
+
+        this.props.fetchLogOutUser();
     }
 
     render(){
@@ -33,4 +33,4 @@ class LogOut extends React.Component {
     }
 }
 
-export default connect(null, { logOutUser })(LogOut);
+export default connect(null, { fetchLogOutUser })(LogOut);

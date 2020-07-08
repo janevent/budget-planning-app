@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import newCurrentUser from './actions/newUser.js';
+import fetchNewCurrentUser from './actions/newUser.js';
 
 class NewUser extends React.Component {
 
@@ -36,29 +36,14 @@ class NewUser extends React.Component {
     handleOnSubmit = (event) => {
         event.preventDefault();
         console.log("state:", this.state)
-        console.log("props1:", this.props.newCurrentUser)
-        fetch('http://localhost:3001/users', {
-            credentials: 'include',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify({
-            user: {
+        
+        let user = {
             username: this.state.userName,
             password: this.state.password,
             email: this.state.email
-            }
-            })
-        })
-        .then(r => r.json())
-        .then((myjson) => {
-            console.log("user:", myjson )
-            console.log("props:", this.props.newCurrentUser)
-            this.props.newCurrentUser(myjson.data.attributes)
         }
-            )
+        this.props.fetchNewCurrentUser({user: user})
+        
     }
 
     render() {
@@ -87,7 +72,7 @@ class NewUser extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newCurrentUser: (user) => dispatch(newCurrentUser(user) )
+        fetchNewCurrentUser: (user) => dispatch(fetchNewCurrentUser(user) )
     };
 };
 

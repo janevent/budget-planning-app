@@ -5,7 +5,9 @@ import templateReducer from './reducers/template.js';
 import templatesReducer from './reducers/templates.js';
 import newTemplate from './reducers/newTemplate.js';
 import newBudget from './reducers/newBudget.js';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+import thunk from 'redux-thunk';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -17,7 +19,9 @@ const reducer = combineReducers({
     newBudget: newBudget
   })
   
-  const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  const store = createStore(reducer, applyMiddleware(thunk));
+
+  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
   export default store
   

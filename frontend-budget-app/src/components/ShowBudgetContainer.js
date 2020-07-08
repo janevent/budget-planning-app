@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 
 import ShowPage from './ShowPage.js';
 
-import removeBudget from '../actions/budgets/removeBudget.js';
+import fetchDeleteBudget from '../actions/budgets/removeBudget.js';
 
 //import component to show budget
 
@@ -13,24 +13,9 @@ class ShowBudgetContainer extends React.Component {
     deleteData = (event) => {
         event.persist();
         // ?
-        fetch( `http://localhost:3001/budgets/${this.props.match.params.id}`, {
-            credentials: 'include',
-            method: 'delete'           
-        })
-        .then( resp => resp.json())
-        .then( myjson => {
-            if(myjson.error){
-                console.error(myjson.error)
-            }else {
-                console.log('myjson:', myjson)
-                //remove from budgets in store
-                //redirect to.. home
-                this.props.removeBudget(this.props.match.params.id)
-                this.props.history.push('/')
-            }
-        })
-        .catch(console.log)
-
+        console.log('props:', this.props);
+        this.props.fetchDeleteBudget(this.props.match.params.id)
+        this.props.history.push('/');
     }
 
    
@@ -59,4 +44,4 @@ const mapStateToProps = ( { budgets }) => {
     })
 }
 
-export default withRouter(connect(mapStateToProps, { removeBudget })(ShowBudgetContainer))
+export default withRouter(connect(mapStateToProps, { fetchDeleteBudget })(ShowBudgetContainer))

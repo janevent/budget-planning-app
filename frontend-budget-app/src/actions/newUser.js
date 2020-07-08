@@ -5,4 +5,24 @@ const newCurrentUser = (user) => {
     };
 };
 
-export default newCurrentUser;
+const fetchNewCurrentUser = (user) => {
+    return (dispatch) => {
+        fetch('http://localhost:3001/users', {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(r => r.json())
+        .then((myjson) => {
+            console.log("user:", myjson )
+            
+            dispatch(newCurrentUser(myjson.data.attributes));
+        })           
+    }
+}
+
+export default fetchNewCurrentUser;
