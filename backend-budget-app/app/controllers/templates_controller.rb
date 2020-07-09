@@ -4,8 +4,8 @@ class TemplatesController < ApplicationController
     def create       
         user = User.find_by(id: session[:user_id])
         if user
-            template = user.templates.find_or_create_by(id: template_params[:id])
-            template.update(template_params)
+            template = user.templates.create(template_params)
+            
             if template.save
                 #binding.pry
                 options = { include: [:expenses, :incomes]}
@@ -49,10 +49,10 @@ class TemplatesController < ApplicationController
         if template 
             template.update(template_params)
             #binding.pry
-            params.template.relationships.expense.data.each do |e|
-                template.expenses.find_or_create_by(id: e.id)
+            # params.template.relationships.expense.data.each do |e|
+            #     template.expenses.find_or_create_by(id: e.id)
                 #if found update
-            end
+            # end
             # template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
             #render json: template
             options = { include: [:incomes, :expenses]}

@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 //import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewTemplateForm from './NewTemplateForm.js';
 import ClearForm from './ClearForm.js';
-import { withRouter } from 'react-router';
+
 
 import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
 import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
 import clearNewTemplate from '../actions/newTemplate/clearNewTemplate.js';
-import addTemplate from '../actions/templates/addTemplate.js';
+import fetchAndAddTemplate from '../actions/templates/addTemplate.js';
 
 
 class NewTemplateFormContainer extends React.Component {
@@ -34,39 +35,16 @@ class NewTemplateFormContainer extends React.Component {
         let template = this.props.newTemplate;
         let expenses = template.expenses.filter( (e) => e.description!== "")
         let incomes = template.incomes.filter( (i) => i.description!== "");
-        fetch('http://localhost:3001/templates', {
-            credentials: 'include',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify({
-                template: {
-                    title: template.title,
-                    total_income: template.totalIncome,
-                    total_expenditure: template.totalExpenditure,
-                    total_difference: template.totalDifference,
-                    expenses_attributes: expenses,
-                    incomes_attributes: incomes
-                }
-            })
-        })
-        .then(response => response.json())
-        .then(
-            myjson => {
-                console.log("mytemplatejson:", myjson)
-                //let nT = myjson.data.attributes;
-                //nT.expenses = [];
-                //myjson.data.include
-                //nT.id = myjson.data.id;
-                //set New Template to json.data.attributes
-                this.props.addTemplate(myjson)
-                this.props.setNewTemplateID(myjson.data.id)
-                //withRouter
-                this.props.history.push('/');
-            }
-        )
+        let t = {
+            title: template.title,
+            total_income: template.totalIncome,
+            total_expenditure: template.totalExpenditure,
+            total_difference: template.totalDifference,
+            expenses_attributes: expenses,
+            incomes_attributes: incomes
+        }
+        this.props.fetchAndAddTemplate(t)
+        this.props.history.push('/');
     }
 
     //updateTemplateInStore
@@ -122,4 +100,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate, addTemplate })(NewTemplateFormContainer));
+export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate, fetchAndAddTemplate })(NewTemplateFormContainer));

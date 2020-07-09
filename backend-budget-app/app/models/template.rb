@@ -1,7 +1,7 @@
 class Template < ApplicationRecord
   belongs_to :user
-  has_many :expenses, as: :paymentable
-  has_many :incomes, as: :gainsable
+  has_many :expenses, as: :paymentable, dependent: :destroy
+  has_many :incomes, as: :gainsable, dependent: :destroy
   #validates :title, presence: true
 
   #why made into symbols?

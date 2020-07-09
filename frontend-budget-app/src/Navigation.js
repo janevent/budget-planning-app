@@ -13,63 +13,63 @@ class NavigationBar extends React.Component {
     // a fetch and set template
     //and a fetch and set budget methods
 
-    fetchAndSetTemplate = (id) => {
-        fetch(`http://localhost:3001/templates/${id}`, {
-            credentials: 'include',
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(myjson => {
-            if(myjson.error){
-                alert(myjson.error)
-            } else {
-                console.log(myjson);
-                let template = myjson.data.attributes;
-                template.id = myjson.data.id;
-                let expenses = myjson.included.filter((item)  => item.type === 'expense');
-                let incomes = myjson.included.filter((item) => item.type === 'income')
-                template.expenses = expenses;
-                template.incomes = incomes;
-                template.type = myjson.data.type
-                //?
-                console.log(this.props);
-                this.props.setTemplate(template)
-            }
-        }).catch(console.log)
-    }
+    // fetchAndSetTemplate = (id) => {
+    //     fetch(`http://localhost:3001/templates/${id}`, {
+    //         credentials: 'include',
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Accept: 'application/json'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(myjson => {
+    //         if(myjson.error){
+    //             alert(myjson.error)
+    //         } else {
+    //             console.log(myjson);
+    //             let template = myjson.data.attributes;
+    //             template.id = myjson.data.id;
+    //             let expenses = myjson.included.filter((item)  => item.type === 'expense');
+    //             let incomes = myjson.included.filter((item) => item.type === 'income')
+    //             template.expenses = expenses;
+    //             template.incomes = incomes;
+    //             template.type = myjson.data.type
+    //             //?
+    //             console.log(this.props);
+    //             this.props.setTemplate(template)
+    //         }
+    //     }).catch(console.log)
+    // }
 
-    fetchAndSetBudget = (id) => {
-        fetch(`http://localhost:3001/budgets/${id}`, {
-            credentials: 'include',
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(myjson => {
-            if(myjson.error){
-                alert(myjson.error)
-            } else {
-                console.log(myjson);
-                let budget = myjson.data.attributes;
-                budget.id = myjson.data.id;
-                let expenses = myjson.included.filter((item)  => item.type === 'expense');
-                let incomes = myjson.included.filter((item) => item.type === 'income')
-                budget.expenses = expenses;
-                budget.incomes = incomes;
-                budget.type = myjson.data.type
-                //?
-                console.log(this.props);
-                this.props.setBudget(budget)
-            }
-        }).catch(console.log)
-    }
+    // fetchAndSetBudget = (id) => {
+    //     fetch(`http://localhost:3001/budgets/${id}`, {
+    //         credentials: 'include',
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Accept: 'application/json'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(myjson => {
+    //         if(myjson.error){
+    //             alert(myjson.error)
+    //         } else {
+    //             console.log(myjson);
+    //             let budget = myjson.data.attributes;
+    //             budget.id = myjson.data.id;
+    //             let expenses = myjson.included.filter((item)  => item.type === 'expense');
+    //             let incomes = myjson.included.filter((item) => item.type === 'income')
+    //             budget.expenses = expenses;
+    //             budget.incomes = incomes;
+    //             budget.type = myjson.data.type
+    //             //?
+    //             console.log(this.props);
+    //             this.props.setBudget(budget)
+    //         }
+    //     }).catch(console.log)
+    // }
 
     templateLink = (id) => {
         return `/templates/${id}`

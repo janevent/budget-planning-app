@@ -7,7 +7,7 @@ import NewBudgetForm from './NewBudgetForm.js';
 import UploadDropDown from './UploadDropDown.js';
 import ClearForm from './ClearForm.js';
 
-import addBudget from '../actions/budgets/addBudget.js';
+import fetchAndAddBudget from '../actions/budgets/addBudget.js';
 import createNewBudget from '../actions/newBudget/createNewBudget.js';
 import setNewBudgetID from '../actions/newBudget/setNewBudgetID.js';
 import createNewExpense from '../actions/newBudget/createNewExpense.js';
@@ -40,47 +40,19 @@ class NewBudgetFormContainer extends React.Component {
         let budget = this.props.newBudget;
         let expenses = budget.expenses.filter( (e) => e.description!== "");
         let incomes = budget.incomes.filter( (i) => i.description!== "" );
+        console.log('expenses:', expenses);
+        console.log('incomes:', incomes);
        // debugger
-
-        fetch(('http://localhost:3001/budgets'),{
-            credentials: 'include',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify({
-                budget: {
-                    title: budget.title,
-                    total_income: budget.totalIncome,
-                    total_expenditure: budget.totalExpenditure,
-                    total_difference: budget.totalDifference,
-                    expenses_attributes: expenses,
-                    incomes_attributes: incomes
-                }
-            })
-        })
-        .then(response => response.json())
-        .then(
-            myjson => {
-                if(myjson.error){
-                    console.log(myjson.error)
-                }else {
-                    console.log("mybudgetjson:", myjson)
-                    //this.props.setNewBudgetID(myjson.data.id);
-                    let budge = myjson.data.attributes;
-                    budge.id = myjson.data.id;
-                    let expenses = myjson.included.filter( (i) => i.type === 'expense');
-                    let incomes = myjson.included.filter( (i) => i.type === 'income');
-                    budge.incomes = incomes;
-                    budge.expenses = expenses;
-
-                    this.props.addBudget(budge)
-                    this.props.history.push('/');
-                }
-            }
-        )
-        .catch(console.log)
+       let b = {
+            title: budget.title,
+            total_income: budget.totalIncome,
+            total_expenditure: budget.totalExpenditure,
+            total_difference: budget.totalDifference,
+            expenses_attributes: expenses,
+            incomes_attributes: incomes
+        }
+        this.props.fetchAndAddBudget(b);
+        this.props.history.push('/')
     }
 
     handleTitleChange = ( event) => {
@@ -172,4 +144,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget, addBudget })(NewBudgetFormContainer));
+export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget, fetchAndAddBudget })(NewBudgetFormContainer));

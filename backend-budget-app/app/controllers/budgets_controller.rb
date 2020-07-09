@@ -10,6 +10,7 @@ class BudgetsController < ApplicationController
             if budget.save
                 #binding.pry
                 options = { include: [:expenses, :incomes]}
+                #binding.pry
                 render json: BudgetSerializer.new(budget, options).serialized_json
             else
                 render json: {status: 'error', code: 3000, message: 'Can not find or create budget'}
