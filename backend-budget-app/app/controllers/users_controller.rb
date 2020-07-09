@@ -2,12 +2,14 @@ class UsersController < ApplicationController
     def create 
         #binding.pry
         user = User.create(user_params)
-    #binding.pry
-        if user.valid?
+
+        #binding.pry
+        if user.save
             render json: UserSerializer.new(user)
             session[:user_id] = user.id
         else
-            render json: {message: "can not create user"}
+
+            render json: {message: user.errors.messages }
         end
     end
 

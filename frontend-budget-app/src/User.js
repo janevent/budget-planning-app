@@ -36,8 +36,9 @@ class User extends React.Component {
             password: this.state.password
         }
         this.props.fetchSetCurrentUser(logIn)
+        this.props.history.push('/');
     }
-    
+
     render(){
         return (
             <div className="center">

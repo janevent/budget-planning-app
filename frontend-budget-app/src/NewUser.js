@@ -43,6 +43,7 @@ class NewUser extends React.Component {
             email: this.state.email
         }
         this.props.fetchNewCurrentUser({user: user})
+        this.props.history.push('/');
         
     }
 
