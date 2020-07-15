@@ -28,6 +28,8 @@ body {
 
 /*navBar and dropdown*/
 .nav-container {
+  /* height */
+  height: 60px;
   border-color: rgb(161, 220, 247);
   border-bottom-style: solid;
   border-width: 10px;
@@ -40,12 +42,14 @@ body {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  /* justify-content: flex-start; */
 }
 
 .nav-item {
   padding: 10px;
 
 }
+/* DropDown child of nav-item */
 
 .high-light:hover {
   background: rgb(161, 220, 247);
@@ -76,28 +80,34 @@ body {
 .list {
   display: none;
   position: static;/*absolute*/
-  /*background-color: rgb(161, 220, 247) ;
-  min-width: 80px;*/
+  background-color: white ;
+  /*min-width: 80px;*/
   max-width: 90px;
  /* padding-left: 10px;
   padding-right: 10px;*/
   padding: 5px;
-  /*border-style: solid;
-  border-color: rgb(3, 19, 24);
-  border-width: 1px;*/
+  border-style: solid;
+  border-color:rgb(7, 199, 55);
+  border-width: 2px;
+  border-radius: 10px;
   /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;*/
 }
 
 
 .wrapper:hover .list {
-  display: block; /*inline*/
+  display: flex; /*inline block*/
+  align-items: flex-start;
+  flex-direction: column;
   overflow: visible;
 }
 .wrapper {
   /*overflow: visible;*/
-  position: relative;
-  display: inline-block;
+  /*position: absolute;*/
+  /*top: 58px;*/
+  /*display: inline-block;*/
+  /*background-color: rgb(161, 220, 247);*/
+  overflow: hidden;
 }
 
 .list-item {
@@ -236,7 +246,7 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: start;
-  border-right-style: solid;
+  border-style: solid;
   border-color: rgb(7, 199, 55);
   background-color: rgb(247, 252, 248);
   border-radius: 15px;

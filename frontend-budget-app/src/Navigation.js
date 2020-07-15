@@ -84,23 +84,19 @@ class NavigationBar extends React.Component {
         const { templates, budgets } = this.props
         console.log(templates[0])
         return(
-            <div className="nav-container">
+            <nav className="nav-container">
                 <div className="nav-bar">                
                     <div className="nav-item "><LogOut/></div>
                     <br></br>
                     <div className="nav-item" ><Link to='/new_template' className="high-light">New Budget Template</Link> </div>
                     <br></br>
                     <div className="nav-item"><Link to='/new_budget' className="high-light">New Budget</Link></div>
-                    <br></br>
-                    
-                        
-                        
-                    
+                    <br></br>                      
                     <div className="nav-item"><DropDown title="Select Template" items={templates} link={this.templateLink} /></div>
                     <br></br>
                     <div className="nav-item"><DropDown title="Select Budget" items={budgets} link={this.budgetLink} /></div> 
                 </div>
-            </div>
+            </nav>
         )
     }
 }

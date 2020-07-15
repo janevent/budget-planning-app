@@ -8,7 +8,6 @@ class UsersController < ApplicationController
             render json: UserSerializer.new(user)
             session[:user_id] = user.id
         else
-
             render json: {message: user.errors.messages }
         end
     end
