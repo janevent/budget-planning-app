@@ -54,10 +54,18 @@ export default (state=null, action) => {
                 totalDifference: null
             };
         case 'ADD_TEMPLATE_DATA':
-            let exs = [ ...action.expenses, ...state.expenses ]
-            let ins = [ ...action.incomes, ...state.incomes ]
+            let templateExpenses = action.template.expenses.map( (e) =>{ 
+                return e.attributes
+            })
+            let templateIncomes = action.template.incomes.map( (i) => {
+                return i.attributes
+            })
+            let exs = [ ...templateExpenses, ...state.expenses ]
+            let ins = [ ...templateIncomes, ...state.incomes ]
             console.log(exs, "and", ins)              
-            return Object.assign( {}, state, action.template, {expenses: exs}, {incomes: ins} )
+            let newObj = Object.assign( {}, state, action.template, {expenses: exs}, {incomes: ins} )
+            console.log('new-template-data-obj:', newObj)
+            return newObj;
         default:
             return {
                 title: "untitled",
