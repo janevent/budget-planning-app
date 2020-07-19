@@ -46,7 +46,8 @@ class App extends React.Component {
               <Route path='/templates/:id' render={ (props) => <ShowTemplateContainer  {...props} /> } />
               <Route path='/budgets/:id' render={(props) => <ShowBudgetContainer  {...props} />} /> 
               <Route path='/' component={Home} />
-            </Switch>                      
+            </Switch>  
+            <p id="delete-warning" className="hidden" >Clicking on button will permanently delete data</p>                    
           </div> :        
           <div className="App">
             <NewUser/>

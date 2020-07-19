@@ -14,21 +14,6 @@ import fetchAndAddTemplate from '../actions/templates/addTemplate.js';
 
 
 class NewTemplateFormContainer extends React.Component {
-    //create a reducer to create a template, and update
-    createNewTemplateForm = () => {
-        let template = {
-                     title: "untitled",
-                     expenses: [{description: "", amount: "0"}],
-                     incomes: [{description: "", amount: "0"}],
-                     totalIncome: null,
-                     totalExpenditure: null,
-                     totalDifference: null
-        };
-        console.log('props:', this.props)
-        this.props.createNewTemplate(template)
-        //dispatch an action type='create_template' action.template= template
-        //this.fetchCreateTemplate(template) //don't need to save it on the backend yet
-    }
 
     save = () => {
         console.log(this.props.newTemplate)
@@ -47,46 +32,13 @@ class NewTemplateFormContainer extends React.Component {
         this.props.history.push('/');
     }
 
-    //updateTemplateInStore
-
-    updateTemplate = (template) => {
-        console.log(template.id)
-        fetch(`http://localhost:3001/templates/${template.id}`,{
-            credentials: 'include',
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            },
-            body: JSON.stringify({
-                template: {
-                    title: template.attributes.title,
-                    total_income: template.attributes.totalIncome,
-                    total_expenditure: template.attributes.totalExpenditure,
-                    total_difference: template.attributes.totalDifference,
-                    expenses: template.relationships.expenses.data,
-                    incomes: template.relationships.incomes.data
-                }
-            })
-        }) 
-        //params.require(:template).permit(:title, :total_income, :total_expenditure, :total_difference, expenses: [], incomes: []) relationships.expenses.data, id, attributes
-        .then(response => response.json())
-        .then(
-            myjson => {
-                console.log(myjson)
-                //this.props.getTemplate(myjson);
-            }
-            //set store- dispatch action settemplate
-         )
-    }
-
     render(){
         return (
             <div className='container'>
                 <div className='to-the-left'>
                     <ClearForm clearForm={this.props.clearNewTemplate}/>
                 </div>
-                <NewTemplateForm user={this.props.user} createTemplate={this.createNewTemplateForm} updateNewTemplate={this.updateTemplate} template={this.props.newTemplate} save={this.save} />
+                <NewTemplateForm user={this.props.user} template={this.props.newTemplate} save={this.save} />
             </div>
         )
     }

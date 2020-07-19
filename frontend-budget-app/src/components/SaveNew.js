@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class SaveNew extends React.Component {
+    
     handleOnSubmit = (event) => {
         event.preventDefault();
         this.props.save()

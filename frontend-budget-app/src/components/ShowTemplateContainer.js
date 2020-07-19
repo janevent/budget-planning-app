@@ -11,17 +11,16 @@ import fetchDeleteTemplate from '../actions/templates/removeTemplate.js';
 class ShowTemplateContainer extends React.Component {
 
     deleteData = (event) => {
-        event.persist();
-        // ?
         this.props.fetchDeleteTemplate(this.props.match.params.id);
         this.props.history.push('/')
     }
 
     hoverDelete = () => {
-        //alert("Only click this button if you want to permanently delete budget")
-        let message = "Only click this button if you want to permanently delete budget";
+        //let e = document.getElementById("delete-warning");
+        //e.classList.remove("hidden");
         
         console.log('hoverDelete method is triggered')
+        
     }
 
     
@@ -31,6 +30,7 @@ class ShowTemplateContainer extends React.Component {
         return (
             <div className='show-container'>                
                 <ShowPage data={template} deleteData={this.deleteData} hoverDelete={this.hoverDelete} />
+               
             </div>
         )
     }

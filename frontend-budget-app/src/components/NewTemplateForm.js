@@ -13,10 +13,7 @@ import createNewExpense from '../actions/newTemplate/createNewExpense.js';
 import createNewIncome from '../actions/newTemplate/createNewIncome.js';
 import SaveNew from './SaveNew.js';
 
-//if inputs blank, set to 0 to calculate totals
-
 class NewTemplateForm extends React.Component {
-    //save to store or backend every 5 minutes?
 
     handleTitleChange = ( event) => {
         event.persist();
@@ -80,23 +77,14 @@ class NewTemplateForm extends React.Component {
         let expenseTotal = newExpenses.reduce(this.addFunc, 0);
         this.props.updateTotalExpense(expenseTotal)
     }
-//unnecessary
-    createNewExpense = () => {
+
+    handleExpenseMouseClick = () => {
         this.props.createNewExpense();
     }
 
-    handleExpenseMouseClick = () => {
-        this.createNewExpense();
-    }
-
-    createNewIncome = () => {
+    handleIncomeMouseClick = () => {
         this.props.createNewIncome();
     }
-
-    handleIncomeMouseClick = () => {
-        this.createNewIncome();
-    }
-    //
 
     setTotalDifference = () => {   
         let tE = this.props.newTemplate.totalExpenditure;
@@ -120,26 +108,15 @@ class NewTemplateForm extends React.Component {
 
     componentWillUnmount(){
         console.log("TemplateForm App Dismounted")
-        //fetch request to find or create a template //or save button
-       //clearInterval(this.updateTem)
        clearInterval(this.totEx)
        clearInterval(this.totIn)
        clearInterval(this.totDif)
     }
 
-    //another function on an event handler for when a user moves away from input field, creates another empty expense in state
-
-    //another function for the event of saving info - moving expenses into store
-
-    
-    //list of expenses
     render() {
-        //console.log('props:', this.props)
-        //find listExpenses from global state template.expenses passed in as props from container
-        //map over and display <ExpenseInput/>
 
         let listExpenses = this.props.newTemplate.expenses.map( (expense, index) => {
-           // console.log("expense:", expense)
+           
              return (
                  <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
              )
@@ -147,20 +124,10 @@ class NewTemplateForm extends React.Component {
 
         let listIncomes = this.props.newTemplate.incomes.map( (income, index) =>
          {
-             //console.log("income:", income);
              return (
                  <IncomeInput handleIncomeChange={this.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.handleIncomeMouseClick} />
              )
         })
-        
-        //var message = "total"
-        // if(this.state.totalDifference && this.state.totalDifference >= 0){
-        //    message = ( <p className="new-template-item total">Your balance is {this.state.totalDifference}.  Consider adding to your rainy days savings.</p> )
-        // }else if(this.state.totalDifference && this.state.totalDifference < 1 ){
-        //     message = (<p className="new-template-item total">Your balance is {this.state.totalDifference}</p>)
-        // }else{
-        //     message = ""
-        // }
 
         return (
             <div className="NewTemplateForm">

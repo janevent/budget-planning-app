@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 //import getTemplate from '../actions/getTemplate';
 //import getBudget from '../actions/getBudget';
 import NewBudgetForm from './NewBudgetForm.js';
-import UploadDropDown from './UploadDropDown.js';
+import TransferDropDown from './TransferDropDown.js';
 import ClearForm from './ClearForm.js';
 
 import fetchAndAddBudget from '../actions/budgets/addBudget.js';
@@ -127,7 +127,7 @@ class NewBudgetFormContainer extends React.Component {
         return (
             <div className='container'>
                 <div className="to-the-left"> 
-                    <UploadDropDown />
+                    <TransferDropDown />
                     <ClearForm clearForm={this.props.clearNewBudget} />
                 </div>
                 <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange}  />

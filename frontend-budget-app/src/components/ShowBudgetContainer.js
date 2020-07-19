@@ -11,19 +11,12 @@ import fetchDeleteBudget from '../actions/budgets/removeBudget.js';
 class ShowBudgetContainer extends React.Component {
 
     deleteData = (event) => {
-        event.persist();
-        // ?
         console.log('props:', this.props);
         this.props.fetchDeleteBudget(this.props.match.params.id)
         this.props.history.push('/');
-    }
-
-   
+    }   
 
     hoverDelete = () => {
-        //alert("Only click this button if you want to permanently delete budget")
-        let message = "Only click this button if you want to permanently delete budget";
-        
         console.log('hoverDelete method is triggered')
     }
 
