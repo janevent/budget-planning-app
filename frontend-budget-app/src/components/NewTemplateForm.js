@@ -25,33 +25,31 @@ class NewTemplateForm extends React.Component {
         event.persist();
         let { name, value } = event.target;
 
-        let newV = value;
+        let newValue = value;
         if(name==='amount'){
-            newV = Array.from(value).filter( (c) => c !== ',')
+            newValue = Array.from(value).filter( (c) => c !== ',')
         }
-        let newValue = newV;
-        if(Array.isArray(newV)){
-            newValue = newV.join('');
+        let newValue2 = newValue;
+        if(Array.isArray(newValue)){
+            newValue2 = newValue.join('');
         }
-        console.log('newV', newValue)
+        console.log('newV', newValue2)
 
-        let ex = this.props.newTemplate.expenses.find( (e, i) => i === id )
+        let expense = this.props.newTemplate.expenses.find( (e, index) => index === id )
 
-        let newEx = Object.assign({}, ex, {[name]: newValue} )
-        this.props.updateExpense(newEx, id)
+        let newExpense = Object.assign({}, expense, {[name]: newValue2} )
+        this.props.updateExpense(newExpense, id)
         this.totalExpenditure();
-        //console.log("tE:", this.props.newTemplate.totalExpenditure)
         this.setTotalDifference();    
     }
 
     handleIncomeChange = (event, id) => {
         event.persist();
         let { name, value } = event.target;
-        let inc = this.props.newTemplate.incomes.find((income, index) => index === id);
-        let newInc = Object.assign( {}, inc, { [name]: value});
-        this.props.updateIncome(newInc, id)
+        let income = this.props.newTemplate.incomes.find((i, index) => index === id);
+        let newIncome = Object.assign( {}, income, { [name]: value});
+        this.props.updateIncome(newIncome, id)
         this.totalIncome();
-       
         this.setTotalDifference();
     }
 
@@ -60,7 +58,7 @@ class NewTemplateForm extends React.Component {
     }
 
     totalIncome = () => {
-        let incomes = this.props.newTemplate.incomes.map((income, index) => {
+        let incomes = this.props.newTemplate.incomes.map( income => {
              return parseFloat(income.amount);    
         })
         let newIncomes = incomes.filter(Boolean)
@@ -87,36 +85,34 @@ class NewTemplateForm extends React.Component {
     }
 
     setTotalDifference = () => {   
-        let tE = this.props.newTemplate.totalExpenditure;
-        let tI = this.props.newTemplate.totalIncome;  
-        let tD =  tI - tE   
-        this.props.updateTotalDifference(tD);
+        let totalExpenditure = this.props.newTemplate.totalExpenditure;
+        let totalIncome = this.props.newTemplate.totalIncome;  
+        let totalDifference =  totalIncome - totalExpenditure;  
+        this.props.updateTotalDifference(totalDifference);
     }
 
     componentDidMount(){
         console.log('NewTemplateForm did mount');   
-        this.totEx = setInterval( () => {
+        this.setTotalExpenditure = setInterval( () => {
             this.totalExpenditure();
         }, 1000)
-        this.totIn = setInterval( () => {
+        this.setTotalIncome = setInterval( () => {
             this.totalIncome();
         }, 1000)
-        this.totDif = setInterval( () => {
+        this.totalDifference = setInterval( () => {
             this.setTotalDifference();
         }, 1000)
     }
 
     componentWillUnmount(){
         console.log("TemplateForm App Dismounted")
-       clearInterval(this.totEx)
-       clearInterval(this.totIn)
-       clearInterval(this.totDif)
+       clearInterval(this.setTotalExpenditure)
+       clearInterval(this.setTotalIncome)
+       clearInterval(this.totalDifference)
     }
 
     render() {
-
-        let listExpenses = this.props.newTemplate.expenses.map( (expense, index) => {
-           
+        let listExpenses = this.props.newTemplate.expenses.map( (expense, index) => {           
              return (
                  <ExpenseInput handleChange={this.handleChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.handleExpenseMouseClick} />
              )
