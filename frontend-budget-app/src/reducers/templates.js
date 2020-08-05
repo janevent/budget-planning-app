@@ -13,11 +13,11 @@ export default (state =  [], action) => {
             let lastPart = state.slice(index+1);
             return [...firstPart, ...lastPart]
         case 'EDIT_TEMPLATE':
-            let index = state.findIndex( (template) => template.id === action.id);
+            let i = state.findIndex( (template) => template.id === action.id);
             let template = state.template;
-            let firstPart = state.slice(0, index);
-            let lastPart = state.slice( index+1);
-            return [...firstPart, template, ...lastPart]
+            let first = state.slice(0, i);
+            let last = state.slice( i+1);
+            return [...first, template, ...last]
 
         default:
             return state
