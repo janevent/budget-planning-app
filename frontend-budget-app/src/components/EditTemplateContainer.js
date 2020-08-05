@@ -1,23 +1,29 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import EditTemplate from './EditTemplate';
+import EditForm from './EditForm';
 import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
 
 class EditTemplateContainer extends React.Component {
 
-    saveEdit = () => {
+    saveEdit = (template) => {
         let iD = this.props.match.params.id;
-        this.props.fetchEditTemplate(iD);
+        this.props.fetchEditTemplate(iD, template);
     }
 
     render (){
         return (
             <div>
-                <EditComponent />
+                <EditForm saveEdit={this.saveEdit} />
             </div>
         )
     }
 }
 
-export default withRouter(connect(null, fetchEditTemplate)(EditTemplateContainer))
+const mapStateToProps = (state) => {
+    return {
+        templates: state.templates
+    }
+}
+
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate })(EditTemplateContainer))
