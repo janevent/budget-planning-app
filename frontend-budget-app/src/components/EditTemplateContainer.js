@@ -11,10 +11,17 @@ class EditTemplateContainer extends React.Component {
         this.props.fetchEditTemplate(iD, template);
     }
 
+    getTemplate = () => {
+        let template = this.props.templates.find( (template) => template.id === iD )
+        return template
+    }
+
     render (){
+       let template = getTemplate();
         return (
             <div>
-                <EditForm saveEdit={this.saveEdit} />
+                <h2>Edit Template Below</h2>
+                <EditForm saveEdit={this.saveEdit} data={template} />
             </div>
         )
     }
