@@ -8,6 +8,7 @@ import NewTemplateFormContainer from './components/NewTemplateFormContainer.js';
 import NewBudgetFormContainer from './components/NewBudgetFormContainer.js';
 import ShowTemplateContainer from './components/ShowTemplateContainer.js';
 import ShowBudgetContainer from './components/ShowBudgetContainer.js';
+import EditTemplateContainer from './components/EditTemplateContainer.js';
 import Home from './components/Home.js';
 import Budgets from './components/Budgets.js';
 
