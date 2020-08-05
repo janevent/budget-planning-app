@@ -12,12 +12,13 @@ class EditTemplateContainer extends React.Component {
     }
 
     getTemplate = () => {
+        let iD = this.props.match.params.id;
         let template = this.props.templates.find( (template) => template.id === iD )
         return template
     }
 
     render (){
-       let template = getTemplate();
+       let template = this.getTemplate();
         return (
             <div>
                 <h2>Edit Template Below</h2>
