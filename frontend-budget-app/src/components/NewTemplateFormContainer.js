@@ -7,7 +7,7 @@ import NewTemplateForm from './NewTemplateForm.js';
 import ClearForm from './ClearForm.js';
 
 
-import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
+//import createNewTemplate from '../actions/newTemplate/createNewTemplate.js';
 import setNewTemplateID from '../actions/newTemplate/setNewTemplateID.js';
 import clearNewTemplate from '../actions/newTemplate/clearNewTemplate.js';
 import fetchAndAddTemplate from '../actions/templates/addTemplate.js';
@@ -20,7 +20,7 @@ class NewTemplateFormContainer extends React.Component {
         let template = this.props.newTemplate;
         let expenses = template.expenses.filter( (e) => e.description!== "")
         let incomes = template.incomes.filter( (i) => i.description!== "");
-        let t = {
+        let newTemplate = {
             title: template.title,
             total_income: template.totalIncome,
             total_expenditure: template.totalExpenditure,
@@ -28,7 +28,8 @@ class NewTemplateFormContainer extends React.Component {
             expenses_attributes: expenses,
             incomes_attributes: incomes
         }
-        this.props.fetchAndAddTemplate(t)
+        this.props.fetchAndAddTemplate(newTemplate)
+        //go to home page
         this.props.history.push('/');
     }
 
@@ -52,4 +53,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {  createNewTemplate, setNewTemplateID, clearNewTemplate, fetchAndAddTemplate })(NewTemplateFormContainer));
+export default withRouter(connect(mapStateToProps, {   setNewTemplateID, clearNewTemplate, fetchAndAddTemplate })(NewTemplateFormContainer));

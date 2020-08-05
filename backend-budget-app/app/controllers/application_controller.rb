@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
     include ::ActionController::Cookies
         def current_user 
-            User.find_by(id: session[:user_id]) #remind dif b/w find & find_by
+            User.find_by(id: session[:user_id]) 
         end
 
         def logged_in?

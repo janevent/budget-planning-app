@@ -3,7 +3,7 @@ import ExpenseInput from './ExpenseInput.js';
 import IncomeInput from './IncomeInput.js';
 import TitleForm from './TitleForm.js';
 import SaveNew from './SaveNew.js';
-import UploadDropDown from'./TransferDropDown.js';
+//import UploadDropDown from'./TransferDropDown.js';
 
 
 export default class NewBudgetForm extends React.Component {
@@ -19,10 +19,6 @@ export default class NewBudgetForm extends React.Component {
         this.totDif = setInterval( () => {
             this.props.setTotalDifference();
         }, 1000)
-        //this.s = setInterval( () => {
-          //  this.props.save();
-        //}, 1000)
-        //why does this not work?
     }
 
     componentWillUnmount(){
@@ -30,19 +26,15 @@ export default class NewBudgetForm extends React.Component {
         clearInterval(this.totEx)
         clearInterval(this.totIn)
         clearInterval(this.totDif)
-        //this.props.save();
-        //why does it not work here?
-        //clearInterval(this.s)
     }
     
     render() {
         let listExpenses = this.props.newBudget.expenses.map( (expense, index) => {
-           // console.log("expense:", expense)
              return (
                  <ExpenseInput handleChange={this.props.handleExpenseChange} key={index} expense={expense} id={index} handleExpenseMouseClick={this.props.createNewExpense} />
              )
          })
-         //do I need both key and id
+         
         let listIncomes = this.props.newBudget.incomes.map( (income, index) => {
              return (
                  <IncomeInput handleIncomeChange={this.props.handleIncomeChange} key={index} income={income} id={index} handleIncomeMouseClick={this.props.createNewIncome} />

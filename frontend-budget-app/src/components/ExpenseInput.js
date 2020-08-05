@@ -9,6 +9,4 @@ const ExpenseInput = (props) => {
     )
 }
 
-//onChange={(event) => props.handleChange(event. props.id)}
-
 export default ExpenseInput;

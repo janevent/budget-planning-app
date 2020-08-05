@@ -18,7 +18,7 @@ const fetchNewCurrentUser = (user) => {
         })
         .then(r => r.json())
         .then((myjson) => {
-            console.log("user:", myjson )
+            console.log("user:", myjson.data.attributes )
             
             dispatch(newCurrentUser(myjson.data.attributes));
         })           

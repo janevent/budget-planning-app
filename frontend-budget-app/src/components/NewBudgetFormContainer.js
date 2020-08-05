@@ -8,7 +8,7 @@ import TransferDropDown from './TransferDropDown.js';
 import ClearForm from './ClearForm.js';
 
 import fetchAndAddBudget from '../actions/budgets/addBudget.js';
-import createNewBudget from '../actions/newBudget/createNewBudget.js';
+//import createNewBudget from '../actions/newBudget/createNewBudget.js';
 import setNewBudgetID from '../actions/newBudget/setNewBudgetID.js';
 import createNewExpense from '../actions/newBudget/createNewExpense.js';
 import createNewIncome from '../actions/newBudget/createNewIncome.js';
@@ -21,19 +21,6 @@ import updateTotalIncome from '../actions/newBudget/updateTotalIncome.js';
 import clearNewBudget from '../actions/newBudget/clearNewBudget.js';
 
 class NewBudgetFormContainer extends React.Component {
-    //create a reducer to create a template, and update
-    createNewBudgetForm = () => {
-        let budget = {
-                     title: "untitled",
-                     expenses: [{description: "", amount: "0"}],
-                     incomes: [{description: "", amount: "0"}],
-                     totalIncome: null,
-                     totalExpenditure: null,
-                     totalDifference: null
-        };
-        console.log('props:', this.props)
-        this.props.createNewBudget(budget)
-    }
 
     save = () => {
         console.log(this.props.newBudget)
@@ -42,7 +29,7 @@ class NewBudgetFormContainer extends React.Component {
         let incomes = budget.incomes.filter( (i) => i.description!== "" );
         console.log('expenses:', expenses);
         console.log('incomes:', incomes);
-       // debugger
+       
        let b = {
             title: budget.title,
             total_income: budget.totalIncome,
@@ -60,6 +47,7 @@ class NewBudgetFormContainer extends React.Component {
         const { name, value } = event.target
         this.props.updateTitle(value)
     }
+
     handleExpenseChange = (event, id) => {
         event.persist();
         let { name, value } = event.target;
@@ -67,7 +55,6 @@ class NewBudgetFormContainer extends React.Component {
         let newEx = Object.assign({}, ex, {[name]: value} )
         this.props.updateExpense(newEx, id)
         this.totalExpenditure();
-        //console.log("tE:", this.props.newTemplate.totalExpenditure)
         this.setTotalDifference();   
 
     }
@@ -104,22 +91,19 @@ class NewBudgetFormContainer extends React.Component {
         return total + num;
     }
 
-    setTotalDifference = () => {   
-        let tE = this.props.newBudget.totalExpenditure;
-        let tI = this.props.newBudget.totalIncome;  
-        let tD =  tI - tE   
-        this.props.updateTotalDifference(tD);
+    setTotalDifference = () => {  
+        let { totalExpenditure, totalIncome } = this.props.newBudget;       
+        let totalDifference =  totalIncome - totalExpenditure;  
+        this.props.updateTotalDifference(totalDifference);
     }
 
     //create new incomes and expenses
 
     handleCreateNewIncome = (event) => {
-        event.persist();
         this.props.createNewIncome();
     }
 
     handleCreateNewExpense = (event) => {
-        event.persist();
         this.props.createNewExpense();
     }
 
@@ -130,7 +114,7 @@ class NewBudgetFormContainer extends React.Component {
                     <TransferDropDown />
                     <ClearForm clearForm={this.props.clearNewBudget} />
                 </div>
-                <NewBudgetForm user={this.props.user} createNewBudget={this.createNewBudgetForm} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange}  />
+                <NewBudgetForm user={this.props.user} newBudget={this.props.newBudget} save={this.save} handleExpenseChange={this.handleExpenseChange} setTotalDifference={this.setTotalDifference} totalExpenditure={this.totalExpenditure} handleIncomeChange={this.handleIncomeChange} totalIncome={this.totalIncome} createNewIncome={this.handleCreateNewIncome} createNewExpense={this.handleCreateNewExpense} handleTitleChange={this.handleTitleChange}  />
             </div>
         )
     }
@@ -144,4 +128,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { createNewBudget, createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget, fetchAndAddBudget })(NewBudgetFormContainer));
+export default withRouter(connect(mapStateToProps, { createNewIncome, createNewExpense, setNewBudgetID, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpense, updateTotalIncome, clearNewBudget, fetchAndAddBudget })(NewBudgetFormContainer));

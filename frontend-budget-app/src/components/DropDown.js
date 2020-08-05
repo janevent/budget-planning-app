@@ -11,16 +11,11 @@ import {
 
 export default class DropDown extends React.Component {
     render(){
-        //console.log("props:", this.props.items)
         
-        //debugger
-        
-        return (
-            
+        return (          
                 
                 <div className="wrapper">
-                    {//another elemtn that is created when hovering ?
-                    }
+                   
                     <div className="header-title">{this.props.title}</div>
                         
                     <ul className="list">

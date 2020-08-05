@@ -1,7 +1,5 @@
 export default (state=null, action) => {
     switch(action.type){
-        case 'CREATE_NEW_BUDGET':
-            return action.budget
         case 'UPDATE_TITLE':
             return Object.assign({}, state, {title: action.title} )
                 //action.title

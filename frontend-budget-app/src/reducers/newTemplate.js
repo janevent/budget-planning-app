@@ -1,7 +1,6 @@
 export default (state=null, action) => {
         switch(action.type){
-            case 'CREATE_NEW_TEMPLATE':
-                return action.newTemplate;
+            
             case 'UPDATE_TITLE':
                 return Object.assign({}, state, {title: action.title} )
                 //action.title
