@@ -46,9 +46,9 @@ class App extends React.Component {
               <Route path='/new_template' component={NewTemplateFormContainer } />  
               <Route path='/new_budget' component={NewBudgetFormContainer} />
               <Route path='/budgets' component={Budgets} />
+              <Route path='/templates/edit/:id' render={ (props) => <EditTemplateContainer {...props} />} />
               <Route path='/templates/:id' render={ (props) => <ShowTemplateContainer  {...props} /> } />
               <Route path='/budgets/:id' render={(props) => <ShowBudgetContainer  {...props} />} /> 
-              <Route path='/templates/edit/:id' render={ (props) => <EditTemplateContainer {...props} />} />
               <Route path='/' component={Home} />
             </Switch>  
             <p id="delete-warning" className="hidden" >Clicking on button will permanently delete data</p>                    
