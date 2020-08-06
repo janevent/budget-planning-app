@@ -9,12 +9,18 @@ const editTemplate = (template, id) => {
 const fetchEditTemplate = (template, id) => {
     return (
         (dispatch) => {
-            fetch(`http//:3000:localhost/templates/${id}`, {
-                method: 'PUT',
+            fetch(`http://3001:localhost/templates/${id}`, {
+                method: 'PUT',    
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
                 body: JSON.stringify(template)
             })
             .then(resp => resp.json())
             .then( json => {
+                console.log('response:', json)
                 dispatch(editTemplate(template, id))
             })
         }
