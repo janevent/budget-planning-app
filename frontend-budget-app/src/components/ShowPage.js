@@ -1,6 +1,7 @@
 import React from 'react';
 //import edit button/ or link later
 import Delete from './Delete.js';
+import EditButton from './EditButton';
 
 const ShowPage = ( { data, deleteData, hoverDelete }) => {
     
@@ -26,6 +27,7 @@ const ShowPage = ( { data, deleteData, hoverDelete }) => {
                         <h3>Total Income: ${data.total_income}</h3>
                         <h3>Total Difference: ${data.total_difference}</h3>
                         <br></br>
+                        <EditButton />
                         <Delete item={data} deleteData={deleteData} hoverDelete={hoverDelete} />                       
                     </div>
                 :
