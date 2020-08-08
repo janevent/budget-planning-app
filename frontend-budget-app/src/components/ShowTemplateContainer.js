@@ -27,9 +27,10 @@ class ShowTemplateContainer extends React.Component {
     render(){
         let id = this.props.match.params.id;
         let template = this.props.templates.find((t) => t.id === id)
+        let editLink = `/templates/edit/${id}`;
         return (
             <div className='show-container'>                
-                <ShowPage data={template} deleteData={this.deleteData} hoverDelete={this.hoverDelete} />
+                <ShowPage data={template} deleteData={this.deleteData} editLink={editLink} hoverDelete={this.hoverDelete} />
                
             </div>
         )

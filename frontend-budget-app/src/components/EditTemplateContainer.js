@@ -6,6 +6,11 @@ import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
 
 class EditTemplateContainer extends React.Component {
 
+    constructor(props){
+        super(props)
+        console.log('edittemplate container constructor:', props)
+    }
+
     saveEdit = (template) => {
         let iD = this.props.match.params.id;
         this.props.fetchEditTemplate(iD, template);
@@ -14,17 +19,25 @@ class EditTemplateContainer extends React.Component {
     getTemplate = () => {
         let iD = this.props.match.params.id;
         let template = this.props.templates.find( (template) => template.id === iD )
+        console.log('getTemplate:', this.props.templates)
         return template
     }
 
+    componentDidMount(){
+        console.log('componentDidMount templates:', this.props.templates) 
+    }
+
     render (){
-       let template = this.getTemplate();
+        
+       console.log('this is EditTemplateContainer:', this.props.templates);
         return (
-            <div>
-                <h2>Edit Template Below</h2>
-                <EditForm saveEdit={this.saveEdit} data={template} />
+            <div className='edit-container'>
+                
+                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} />
+                <p></p>
             </div>
         )
+        //use connect to retrieve templates in global state in EditForm instead
     }
 }
 

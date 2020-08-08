@@ -137,15 +137,17 @@ body {
   margin: 50px;
 }
 
-.show-container {
+.show-container, .edit-container {
   margin: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
+
 /* new template form and new budget form*/
-.NewTemplateForm {
+.NewTemplateForm, .EditForm {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
