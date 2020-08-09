@@ -30,10 +30,12 @@ class EditTemplateContainer extends React.Component {
     render (){
         
        console.log('this is EditTemplateContainer:', this.props.templates);
+        let id = this.props.match.params.id;
+        let template = this.props.templates.find( (t) => t.id === id);
         return (
             <div className='edit-container'>
                 
-                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} />
+                <EditForm saveEdit={this.saveEdit} data={template} />
                 <p></p>
             </div>
         )

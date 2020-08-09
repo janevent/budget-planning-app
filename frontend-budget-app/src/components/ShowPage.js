@@ -27,7 +27,7 @@ const ShowPage = ( { data, deleteData, editLink, hoverDelete }) => {
                         <h3>Total Income: ${data.total_income}</h3>
                         <h3>Total Difference: ${data.total_difference}</h3>
                         <br></br>
-                        <EditButton editLink={editLink} />
+                        <EditButton editLink={editLink} data={data}/>
                         <Delete item={data} deleteData={deleteData} hoverDelete={hoverDelete} />                       
                     </div>
                 :

@@ -1,19 +1,42 @@
 import React from 'react';
+import IncomeInput from './IncomeInput';
+import ExpenseInput from './ExpenseInput';
+import TitleForm from'./TitleForm';
 
-const EditForm = ( { data })  => {
-
-    
+const EditForm = ( { data, type, handleTitleChange })  => {
     
         return(
             
             <div className='EditForm'>
                 { data ?
                     <div className='edit-form-wrapper' >
-                        <p>This is an EditForm</p>
+                        <h2 className='edit-form-item'>Edit Your {type} Below</h2>
+                        
+                        <TitleForm title={data.title} handleTitleChange={handleTitleChange} />
                         <form>
-                            <label>Title: <input name='title' value={data.title} />
-                            </label>
+                            {data.incomes.map( (income) => {
+                                return <IncomeInput income={income} />
+                            }
+                            )}
                         </form>
+                        {data.totalIncome ?
+                        <p>Total Income: ${data.totalIncome}</p> :
+                        ''
+                        }
+
+                        <form>
+                            { data.expenses.map( (expense) => {
+                                return <ExpenseInput expense={expense} />
+                            })}
+                        </form>  
+                        {data.totalExpenditure ?
+                        <p> Total Expense: ${data.totalExpenditure} </p> :
+                        ''
+                        }
+                        {data.totalDifference ?
+                        <p> Total Difference: ${data.totalDifference} </p> :
+                        '' 
+                        }
                     </div>
                 :
                 "" }
