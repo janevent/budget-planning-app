@@ -3,12 +3,18 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import EditForm from './EditForm';
 import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
+import updateTitle from '../actions/editTemplate/updateTitle';
+
 
 class EditTemplateContainer extends React.Component {
 
     constructor(props){
         super(props)
         console.log('edittemplate container constructor:', props)
+    }
+//edit directly in templates or create an editTemplate reducer ?
+    handleTitleChange = (event) => {
+        this.props.updateTitle(event.value)
     }
 
     saveEdit = (template) => {
@@ -35,7 +41,7 @@ class EditTemplateContainer extends React.Component {
         return (
             <div className='edit-container'>
                 
-                <EditForm saveEdit={this.saveEdit} data={template} />
+                <EditForm saveEdit={this.saveEdit} data={template} handleTitleChange={this.handleTitleChange} type={'Template'} />
                 <p></p>
             </div>
         )
@@ -49,4 +55,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate })(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle })(EditTemplateContainer))
