@@ -44,7 +44,7 @@ class TemplatesController < ApplicationController
     end
 
     def update 
-        template = Template.find_by(id: params[:id])
+        template = Template.find_by(id: template_params[:id])
         #template_params[:id]
         if template 
             template.update(template_params)
@@ -55,9 +55,12 @@ class TemplatesController < ApplicationController
             # end
             # template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
             #render json: template
-            options = { include: [:incomes, :expenses]}
-            render json: TemplateSerializer.new(template, options).serialized_json
-
+            template.save
+            if template
+                options = { include: [:incomes, :expenses]}
+                render json: TemplateSerializer.new(template, options).serialized_json
+            else
+            render json: {status: "error", code: 3000, message: "Unable to update template"}
             #template.expenses.update(params[:expenses])
             #template.incomes.update(params[:incomes])
 
