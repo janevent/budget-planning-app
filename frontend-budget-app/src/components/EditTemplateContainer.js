@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import EditForm from './EditForm';
 import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
 import updateTitle from '../actions/editTemplate/updateTitle';
-
+import updateIncome from '../actions/editTemplate/updateIncome';
 
 class EditTemplateContainer extends React.Component {
 
@@ -17,6 +17,13 @@ class EditTemplateContainer extends React.Component {
         this.props.updateTitle(event.value)
     }
 
+    handleIncomeChange = (event, id) => {
+        const { name, value } = event.target;
+        let template = getTemplate();
+        let income = template.incomes.find( income => income.id === id);
+        let updatedIncome = Object.assign( {}, income, {[name]: value})
+        this.props.updateIncome(updatedIncome, id)
+    }
     saveEdit = (template) => {
         let iD = this.props.match.params.id;
         this.props.fetchEditTemplate(iD, template);
@@ -41,7 +48,7 @@ class EditTemplateContainer extends React.Component {
         return (
             <div className='edit-container'>
                 
-                <EditForm saveEdit={this.saveEdit} data={template} handleTitleChange={this.handleTitleChange} type={'Template'} />
+                <EditForm saveEdit={this.saveEdit} data={template} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} />
                 <p></p>
             </div>
         )
@@ -55,4 +62,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle })(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle, updateIncome })(EditTemplateContainer))
