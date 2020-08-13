@@ -3,6 +3,8 @@ import IncomeInput from './IncomeInput';
 import ExpenseInput from './ExpenseInput';
 import TitleForm from'./TitleForm';
 
+
+
 const EditForm = ( { data, type, handleTitleChange })  => {
     
         return(

@@ -22,10 +22,10 @@ export default (state =  [], action) => {
 //different action types for edits then create new ones
         case 'UPDATE_TITLE':
             let id = action.id;
-            let template = state.find( (template) => {
+            let template1 = state.find( (template) => {
                 return template.id === id
             });
-            let templateWTitleUpdate = Object.assign( {}, template, action.title);
+            let templateWTitleUpdate = Object.assign( {}, template1, action.title);
             return templateWTitleUpdate;
         case 'UPDATE_INCOME':
         default:

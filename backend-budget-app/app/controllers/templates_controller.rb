@@ -60,7 +60,8 @@ class TemplatesController < ApplicationController
                 options = { include: [:incomes, :expenses]}
                 render json: TemplateSerializer.new(template, options).serialized_json
             else
-            render json: {status: "error", code: 3000, message: "Unable to update template"}
+                render json: {status: "error", code: 3000, message: "Unable to update template"}
+            end
             #template.expenses.update(params[:expenses])
             #template.incomes.update(params[:incomes])
 
