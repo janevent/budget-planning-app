@@ -15,10 +15,19 @@ export default (state =  [], action) => {
         case 'EDIT_TEMPLATE':
             let i = state.findIndex( (template) => template.id === action.id);
             let template = state.template;
+            //?
             let first = state.slice(0, i);
             let last = state.slice( i+1);
             return [...first, template, ...last]
-
+//different action types for edits then create new ones
+        case 'UPDATE_TITLE':
+            let id = action.id;
+            let template = state.find( (template) => {
+                return template.id === id
+            });
+            let templateWTitleUpdate = Object.assign( {}, template, action.title);
+            return templateWTitleUpdate;
+        case 'UPDATE_INCOME':
         default:
             return state
     }
