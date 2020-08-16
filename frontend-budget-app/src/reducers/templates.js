@@ -28,6 +28,20 @@ export default (state =  [], action) => {
             let templateWTitleUpdate = Object.assign( {}, template1, action.title);
             return templateWTitleUpdate;
         case 'UPDATE_INCOME':
+            let templateToUpdateIncome = state.find( (template) => {
+                return template.id === action.templateId
+            });
+            let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
+                return income.id === action.incomdId
+            });
+            let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
+            let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
+            let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
+            let templatedWUpdatedIncome = {...templateToUpdateIncome, {incomes: updatedIncomes} }
+            return templateWUpdatedIncome;
+
+            incomeId
+            templateId
         default:
             return state
     }

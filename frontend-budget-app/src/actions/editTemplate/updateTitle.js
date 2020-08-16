@@ -1,7 +1,8 @@
-const updateTitle = (title) => {
+const updateTitle = (title, id) => {
     return {
         type: 'UPDATE_TITLE',
-        title: title
+        title: title,
+        id: id
     }
 }
 

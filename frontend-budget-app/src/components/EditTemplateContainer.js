@@ -13,25 +13,23 @@ class EditTemplateContainer extends React.Component {
     constructor(props){
         super(props)
         console.log('edittemplate container constructor:', props)
-        this.state = {
-            template: ''
-        }
-        console.log('state:', this.state)
+        
         //can not access props quick enough
     }
 //edit directly in templates or create an editTemplate reducer ?
     handleTitleChange = (event) => {
         console.log('handleTitleChange is triggered')
-        console.log('state:', this.state)
-       // this.props.updateTitle(event.value)
+       let iD = this.props.match.params.id;
+       this.props.updateTitle(event.value, iD)
     }
 
-    handleIncomeChange = (event, id) => {
+    handleIncomeChange = (event, incomeId) => {
         const { name, value } = event.target;
         let template = this.getTemplate();
-        let income = template.incomes.find( income => income.id === id);
+        let income = template.incomes.find( income => income.id === incomeId);
         let updatedIncome = Object.assign( {}, income, {[name]: value})
-        this.props.updateIncome(updatedIncome, id)
+        let templateId = this.props.match.params.id;
+        this.props.updateIncome(updatedIncome, incomeId, templateId)
     }
     saveEdit = (template) => {
         let iD = this.props.match.params.id;
