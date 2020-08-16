@@ -33,7 +33,6 @@ export default (state =  [], action) => {
             
         case 'UPDATE_INCOME':
             //helper methods?
-            console.log('action:', action)
             let templateToUpdateIncome = state.find( (template) => {
                 return template.id === action.templateId
             });
@@ -45,17 +44,12 @@ export default (state =  [], action) => {
             let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
                 return income.id === action.incomeId
             });
-            console.log('index:', indexOfIncome);
             let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
             let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
             let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
-            console.log('updatedIncomes:', updatedIncomes)
             let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
-            console.log('templateWUpdatedIncome:', templateWUpdatedIncome)
             let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
-            console.log('updatedTemplates:', updatedTemplates)
-            return updatedTemplates;
-            
+            return updatedTemplates;            
         default:
             return state
     }
