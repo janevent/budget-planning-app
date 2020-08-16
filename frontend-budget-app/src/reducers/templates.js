@@ -43,12 +43,15 @@ export default (state =  [], action) => {
             let firstPartTemplates = state.slice(0, indexOfTemplate);
             let lastPartTemplates = state.slice( indexOfTemplate+1)
             let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
-                return income.id === action.incomdId
+                return income.id === action.incomeId
             });
+            console.log('index:', indexOfIncome);
             let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
             let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
             let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
+            console.log('updatedIncomes:', updatedIncomes)
             let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
+            console.log('templateWUpdatedIncome:', templateWUpdatedIncome)
             let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
             console.log('updatedTemplates:', updatedTemplates)
             return updatedTemplates;
