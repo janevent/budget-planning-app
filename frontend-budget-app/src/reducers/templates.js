@@ -21,12 +21,21 @@ export default (state =  [], action) => {
             return [...first, template, ...last]
 //different action types for edits then create new ones
         case 'UPDATE_TITLE':
+            console.log('made it to reducer')
             let id = action.id;
             let template1 = state.find( (template) => {
                 return template.id === id
             });
-            let templateWTitleUpdate = Object.assign( {}, template1, action.title);
-            return templateWTitleUpdate;
+            let template1Index = state.findIndex( (template) => template.id === id
+            )
+            let templateWTitleUpdate = Object.assign( {}, template1, {title: action.title});
+            let firstTemplates = state.slice(0, template1Index);
+            let lastTemplates = state.slice(template1Index+1);
+            console.log('action.title', action.title, 'template1', template1, 'templateWTitleUpdate', templateWTitleUpdate)
+            let newTemplates = [...firstTemplates, templateWTitleUpdate, ...lastTemplates];
+            console.log('newTemplates:', newTemplates)        
+            return newTemplates;
+            
         case 'UPDATE_INCOME':
             let templateToUpdateIncome = state.find( (template) => {
                 return template.id === action.templateId
@@ -37,11 +46,11 @@ export default (state =  [], action) => {
             let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
             let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
             let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
-            let templatedWUpdatedIncome = {...templateToUpdateIncome, {incomes: updatedIncomes} }
+            let templateWUpdatedIncome = [...state, {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ];
             return templateWUpdatedIncome;
 
-            incomeId
-            templateId
+           // incomeId
+            //templateId
         default:
             return state
     }
