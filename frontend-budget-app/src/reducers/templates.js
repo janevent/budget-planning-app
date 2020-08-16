@@ -33,23 +33,41 @@ export default (state =  [], action) => {
             
         case 'UPDATE_INCOME':
             //helper methods?
-            let templateToUpdateIncome = state.find( (template) => {
+            let templateToUpdateExpense = state.find( (template) => {
                 return template.id === action.templateId
             });
-            let indexOfTemplate = state.findIndex( (template) => {
+            let indexOfT = state.findIndex( (template) => {
                 return template.id === action.templateId
             })
-            let firstPartTemplates = state.slice(0, indexOfTemplate);
-            let lastPartTemplates = state.slice( indexOfTemplate+1)
-            let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
-                return income.id === action.incomeId
+            let firstPartTs = state.slice(0, indexOfT);
+            let lastPartTss = state.slice( indexOfT+1)
+            let indexOfExpense = templateToUpdateExpense.expenses.findIndex( (expense) => {
+                return expense.id === action.expenseId
             });
-            let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
-            let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
-            let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
-            let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
-            let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
-            return updatedTemplates;            
+            let firstPartExpenses = templateToUpdateExpense.expenses.slice(0, indexOfExpense);
+            let lastPartExpenses = templateToUpdateExpense.expensess.slice(indexOfExpense + 1);
+            let updatedExpenses = [...firstPartExpenses, action.expense, ...lastPartExpenses];
+            let templateWUpdatedExpense = {...templateToUpdateExpense, ...{expenses: updatedExpenses} } ;
+            let updatedTs = [...firstPartTs, templateWUpdatedExpense, ...lastPartTs];
+            return updatedTs;   
+        case 'UPDATE_EXPENSE':  
+        let templateToUpdateIncome = state.find( (template) => {
+            return template.id === action.templateId
+        });
+        let indexOfTemplate = state.findIndex( (template) => {
+            return template.id === action.templateId
+        })
+        let firstPartTemplates = state.slice(0, indexOfTemplate);
+        let lastPartTemplates = state.slice( indexOfTemplate+1)
+        let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
+            return income.id === action.incomeId
+        });
+        let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
+        let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
+        let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
+        let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
+        let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
+        return updatedTemplates;        
         default:
             return state
     }
