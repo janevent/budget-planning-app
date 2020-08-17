@@ -5,7 +5,7 @@ import EditForm from './EditForm';
 import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
 import updateTitle from '../actions/editTemplate/updateTitle';
 import updateIncome from '../actions/editTemplate/updateIncome';
-
+import updateExpense from '../actions/editTemplate/updateExpense';
 
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 class EditTemplateContainer extends React.Component {
@@ -39,7 +39,17 @@ class EditTemplateContainer extends React.Component {
 
     handleExpenseChange = (event, expenseId) => {
         console.log('event:', event)
-        console.log('expenseId:', expenseId)
+        console.log('expenseId:', expenseId);
+        event.persist();
+        const [name, value] = event.target;
+        let template = this.getTemplate();
+        let templateId = this.props.match.params.id;
+        const matchExpense = (expense) => expense.id === expenseId
+        let expense = template.expenses.find( matchExpense );
+        let updatedAttributes = {...expense.attributes, ...{[name]:value}}
+        let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
+        console.log('updatedExpense:', updatedExpense)
+        this.props.updateExpense(updatedExpense, expenseId, templateId);
     }
 
     saveEdit = (template) => {
@@ -81,4 +91,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle, updateIncome })(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle, updateIncome, updateExpense })(EditTemplateContainer))
