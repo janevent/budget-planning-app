@@ -5,7 +5,7 @@ import TitleForm from'./TitleForm';
 
 
 
-const EditForm = ( { data, type, handleTitleChange, handleIncomeChange })  => {
+const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange })  => {
     
         return(
             
@@ -15,9 +15,11 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange })  => {
                         <h2 className='edit-form-item'>Edit Your {type} Below</h2>
                         
                         <TitleForm title={data.title} handleTitleChange={handleTitleChange} />
+                        <h3>Incomes</h3>
                         <form>
                             {data.incomes.map( (income) => {
-                                return <IncomeInput income={income} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} />
+                                console.log('income:', income)
+                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} />
                             }
                             )}
                         </form>
@@ -25,10 +27,10 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange })  => {
                         <p>Total Income: ${data.totalIncome}</p> :
                         ''
                         }
-
+                        <h3>Expenses</h3>
                         <form>
                             { data.expenses.map( (expense) => {
-                                return <ExpenseInput expense={expense} />
+                                return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} key={expense.id} id={expense.id} />
                             })}
                         </form>  
                         {data.totalExpenditure ?

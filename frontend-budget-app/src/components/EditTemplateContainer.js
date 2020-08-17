@@ -19,18 +19,29 @@ class EditTemplateContainer extends React.Component {
 //edit directly in templates or create an editTemplate reducer ?
     handleTitleChange = (event) => {
         console.log('handleTitleChange is triggered')
+        event.persist();
        let iD = this.props.match.params.id;
-       this.props.updateTitle(event.value, iD)
+       this.props.updateTitle(event.target.value, iD)
     }
 
     handleIncomeChange = (event, incomeId) => {
         const { name, value } = event.target;
         let template = this.getTemplate();
         let income = template.incomes.find( income => income.id === incomeId);
-        let updatedIncome = Object.assign( {}, income, {[name]: value})
+        let updatedAttributes = {...income.attributes, ...{[name]: value} };
+        console.log('updatedAttributes:', updatedAttributes);
+        let updatedIncome = {...income, ...{attributes: updatedAttributes}}
+        //let updatedIncome = Object.assign( {}, income, {[name]: value})
+        console.log('income:', income, 'updatedIncome:', updatedIncome)
         let templateId = this.props.match.params.id;
         this.props.updateIncome(updatedIncome, incomeId, templateId)
     }
+
+    handleExpenseChange = (event, expenseId) => {
+        console.log('event:', event)
+        console.log('expenseId:', expenseId)
+    }
+
     saveEdit = (template) => {
         let iD = this.props.match.params.id;
         this.props.fetchEditTemplate(iD, template);
@@ -56,7 +67,7 @@ class EditTemplateContainer extends React.Component {
         return (
             <div className='edit-container'>
                 
-                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} />
+                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange} />
                 <p></p>
             </div>
         )
