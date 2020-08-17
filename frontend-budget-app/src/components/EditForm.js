@@ -30,7 +30,12 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         <h3>Expenses</h3>
                         <form>
                             { data.expenses.map( (expense) => {
-                                return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} key={expense.id} id={expense.id} />
+                                //console.log('data:', data, 'expenses:', data.expenses, 'expense:', expense)
+                                if(expense!==undefined){
+                                    return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} key={expense.id} id={expense.id} />
+                                }else{
+                                    return ''
+                                }
                             })}
                         </form>  
                         {data.totalExpenditure ?
