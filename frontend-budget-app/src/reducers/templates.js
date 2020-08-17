@@ -31,7 +31,7 @@ export default (state =  [], action) => {
             let newTemplates = [...firstTemplates, templateWTitleUpdate, ...lastTemplates];       
             return newTemplates;
             
-        case 'UPDATE_INCOME':
+        case 'UPDATE_EXPENSE':
             //helper methods?
             let templateToUpdateExpense = state.find( (template) => {
                 return template.id === action.templateId
@@ -40,17 +40,17 @@ export default (state =  [], action) => {
                 return template.id === action.templateId
             })
             let firstPartTs = state.slice(0, indexOfT);
-            let lastPartTss = state.slice( indexOfT+1)
+            let lastPartTs = state.slice( indexOfT+1)
             let indexOfExpense = templateToUpdateExpense.expenses.findIndex( (expense) => {
                 return expense.id === action.expenseId
             });
             let firstPartExpenses = templateToUpdateExpense.expenses.slice(0, indexOfExpense);
-            let lastPartExpenses = templateToUpdateExpense.expensess.slice(indexOfExpense + 1);
+            let lastPartExpenses = templateToUpdateExpense.expenses.slice(indexOfExpense + 1);
             let updatedExpenses = [...firstPartExpenses, action.expense, ...lastPartExpenses];
             let templateWUpdatedExpense = {...templateToUpdateExpense, ...{expenses: updatedExpenses} } ;
             let updatedTs = [...firstPartTs, templateWUpdatedExpense, ...lastPartTs];
             return updatedTs;   
-        case 'UPDATE_EXPENSE':  
+        case 'UPDATE_INCOME':  
         let templateToUpdateIncome = state.find( (template) => {
             return template.id === action.templateId
         });
