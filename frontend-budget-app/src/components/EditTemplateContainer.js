@@ -3,9 +3,10 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import EditForm from './EditForm';
 import fetchEditTemplate from '../actions/editTemplate/fetchEditTemplate'
-import updateTitle from '../actions/editTemplate/updateTitle';
-import updateIncome from '../actions/editTemplate/updateIncome';
-import updateExpense from '../actions/editTemplate/updateExpense';
+import editTemplateAndUpdateTitle from '../actions/editTemplate/editTemplateAndUpdateTitle';
+import editTemplateAndUpdateIncome from '../actions/editTemplate/editTemplateAndUpdateIncome';
+import editTemplateAndUpdateExpense from '../actions/editTemplate/editTemplateAndUpdateExpense';
+import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditure';
 
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 class EditTemplateContainer extends React.Component {
@@ -21,7 +22,7 @@ class EditTemplateContainer extends React.Component {
         console.log('handleTitleChange is triggered')
         event.persist();
        let iD = this.props.match.params.id;
-       this.props.updateTitle(event.target.value, iD)
+       this.props.editTemplateAndUpdateTitle(event.target.value, iD)
     }
 
     handleIncomeChange = (event, incomeId) => {
@@ -34,14 +35,15 @@ class EditTemplateContainer extends React.Component {
         //let updatedIncome = Object.assign( {}, income, {[name]: value})
         console.log('income:', income, 'updatedIncome:', updatedIncome)
         let templateId = this.props.match.params.id;
-        this.props.updateIncome(updatedIncome, incomeId, templateId)
+        this.props.editTemplateAndUpdateIncome(updatedIncome, incomeId, templateId)
+        //update totals
     }
 
     handleExpenseChange = (event, expenseId) => {
-        console.log('event:', event)
-        console.log('expenseId:', expenseId);
+        //console.log('event:', event)
+        //console.log('expenseId:', expenseId);
         event.persist();
-        const [name, value] = event.target;
+        const { name, value } = event.target;
         let template = this.getTemplate();
         let templateId = this.props.match.params.id;
         const matchExpense = (expense) => expense.id === expenseId
@@ -49,7 +51,19 @@ class EditTemplateContainer extends React.Component {
         let updatedAttributes = {...expense.attributes, ...{[name]:value}}
         let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
         console.log('updatedExpense:', updatedExpense)
-        this.props.updateExpense(updatedExpense, expenseId, templateId);
+        this.props.editTemplateAndUpdateExpense(updatedExpense, expenseId, templateId);
+        this.totalExpenses();
+    }
+
+    totalExpenses = () => {
+        let expenses = this.getTemplate().expenses.map( (expense) => parseInt(expense.attributes.amount) )
+        //console.log('totalExpenses:', expenses);
+        let totalExpenses = expenses.reduce(this.addFunc, 0);
+        let templateId = this.props.match.params.id
+        this.props.updateTotalExpenditure(templateId, totalExpenses);
+    }
+    addFunc = (total, number) => {
+        return total + number
     }
 
     saveEdit = (template) => {
@@ -66,7 +80,11 @@ class EditTemplateContainer extends React.Component {
     }
 
     componentDidMount(){
-        console.log('componentDidMount templates:', this.props.templates) 
+        //console.log('componentDidMount templates:', this.props.templates) 
+        this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
+    }
+    componentWillUnmount(){
+        clearInterval(this.setTotalExpenses)
     }
 
     render (){
@@ -77,7 +95,7 @@ class EditTemplateContainer extends React.Component {
         return (
             <div className='edit-container'>
                 
-                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange} />
+                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange}  />
                 <p></p>
             </div>
         )
@@ -91,4 +109,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, updateTitle, updateIncome, updateExpense })(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure })(EditTemplateContainer))
