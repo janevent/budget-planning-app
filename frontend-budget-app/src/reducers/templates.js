@@ -76,7 +76,16 @@ export default (state =  [], action) => {
             let updatedTotalExpenditure = action.totalExpenditure;
             let updatedTETemplate = { ...tETemplate, ...{total_expenditure: updatedTotalExpenditure}};
             let updatedTETemplates = [...tEfirstPartTemplates, updatedTETemplate, ...tELastPartTemplates]
-            return updatedTETemplates;   
+            return updatedTETemplates;  
+        case 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_INCOMES':
+            let editTemplate = state.find((template) => template.id === action.templateId );
+            let editTemplateIndex = state.findIndex((template) => template.id === action.templateId);
+            let editFirstPartTemplates = state.slice( 0, editTemplateIndex);
+            let editLastPartTemplates = state.slice( editTemplateIndex+1);
+            let updatedTotalIncomes = action.total_incomes;
+            let updatedEditTemplate = {...editTemplate, ...{total_incomes: updatedTotalIncomes}};
+            let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
+            return updatedEditTemplates; 
         default:
             return state
     }
