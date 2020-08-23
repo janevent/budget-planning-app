@@ -11,6 +11,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
             
             <div className='EditForm'>
                 { data ?
+                   
                     <div className='edit-form-wrapper' >
                         <h2 className='edit-form-item'>Edit Your {type} Below</h2>
                         
@@ -18,13 +19,13 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         <h3>Incomes</h3>
                         <form>
                             {data.incomes.map( (income) => {
-                                console.log('income:', income)
+                                console.log('data', data)
                                 return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} />
                             }
                             )}
                         </form>
-                        {data.totalIncome ?
-                        <p>Total Income: ${data.totalIncome}</p> :
+                        {data.total_income ?
+                        <p>Total Income: ${data.total_income}</p> :
                         ''
                         }
                         <h3>Expenses</h3>
@@ -38,12 +39,12 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                                 }
                             })}
                         </form>  
-                        {data.totalExpenditure ?
-                        <p> Total Expense: ${data.totalExpenditure} </p> :
+                        {data.total_expenditure ?
+                        <p> Total Expense: ${data.total_expenditure} </p> :
                         ''
                         }
-                        {data.totalDifference ?
-                        <p> Total Difference: ${data.totalDifference} </p> :
+                        {data.total_difference ?
+                        <p> Total Difference: ${data.total_difference} </p> :
                         '' 
                         }
                     </div>

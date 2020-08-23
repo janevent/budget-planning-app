@@ -69,8 +69,7 @@ class NewTemplateForm extends React.Component {
     totalExpenditure = () => {
         let expenses = this.props.newTemplate.expenses.map((expense) => {
              return parseFloat(expense.amount)            
-        })
-        
+        })       
         let newExpenses = expenses.filter(Boolean)
         let expenseTotal = newExpenses.reduce(this.addFunc, 0);
         this.props.updateTotalExpense(expenseTotal)

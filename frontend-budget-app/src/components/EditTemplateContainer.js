@@ -7,7 +7,7 @@ import editTemplateAndUpdateTitle from '../actions/editTemplate/editTemplateAndU
 import editTemplateAndUpdateIncome from '../actions/editTemplate/editTemplateAndUpdateIncome';
 import editTemplateAndUpdateExpense from '../actions/editTemplate/editTemplateAndUpdateExpense';
 import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditure';
-
+import updateTotalIncome from '../actions/editTemplate/updateTotalIncome';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 class EditTemplateContainer extends React.Component {
 
@@ -36,6 +36,7 @@ class EditTemplateContainer extends React.Component {
         console.log('income:', income, 'updatedIncome:', updatedIncome)
         let templateId = this.props.match.params.id;
         this.props.editTemplateAndUpdateIncome(updatedIncome, incomeId, templateId)
+        this.totalIncomes();
         //update totals
     }
 
@@ -118,4 +119,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure })(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome})(EditTemplateContainer))

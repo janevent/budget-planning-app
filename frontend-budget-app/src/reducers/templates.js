@@ -18,7 +18,7 @@ export default (state =  [], action) => {
             let last = state.slice( i+1);
             return [...first, template, ...last]
 //different action types for edits then create new ones
-        case 'UPDATE_TITLE':
+        case 'EDIT_TEMPLATE_AND_UPDATE_TITLE':
             let id = action.id;
             let template1 = state.find( (template) => {
                 return template.id === id
@@ -31,7 +31,7 @@ export default (state =  [], action) => {
             let newTemplates = [...firstTemplates, templateWTitleUpdate, ...lastTemplates];       
             return newTemplates;
             
-        case 'UPDATE_EXPENSE':
+        case 'EDIT_TEMPLATE_AND_UPDATE_EXPENSE':
             //helper methods?
             let templateToUpdateExpense = state.find( (template) => {
                 return template.id === action.templateId
@@ -50,7 +50,7 @@ export default (state =  [], action) => {
             let templateWUpdatedExpense = {...templateToUpdateExpense, ...{expenses: updatedExpenses} } ;
             let updatedTs = [...firstPartTs, templateWUpdatedExpense, ...lastPartTs];
             return updatedTs;   
-        case 'UPDATE_INCOME':  
+        case 'EDIT_TEMPLATE_AND_UPDATE_INCOME':  
         let templateToUpdateIncome = state.find( (template) => {
             return template.id === action.templateId
         });
@@ -67,7 +67,16 @@ export default (state =  [], action) => {
         let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
         let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
         let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
-        return updatedTemplates;        
+        return updatedTemplates;   
+        case 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_EXPENDITURE':
+            let tETemplate = state.find((template) => template.id === action.templateId );
+            let tETemplateIndex = state.findIndex( (template) => template.id === action.templateId);
+            let tEfirstPartTemplates = state.slice( 0, tETemplateIndex);
+            let tELastPartTemplates = state.slice( tETemplateIndex+1)
+            let updatedTotalExpenditure = action.totalExpenditure;
+            let updatedTETemplate = { ...tETemplate, ...{total_expenditure: updatedTotalExpenditure}};
+            let updatedTETemplates = [...tEfirstPartTemplates, updatedTETemplate, ...tELastPartTemplates]
+            return updatedTETemplates;   
         default:
             return state
     }
