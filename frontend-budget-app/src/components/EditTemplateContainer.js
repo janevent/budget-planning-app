@@ -9,6 +9,9 @@ import editTemplateAndUpdateExpense from '../actions/editTemplate/editTemplateAn
 import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditure';
 import updateTotalIncome from '../actions/editTemplate/updateTotalIncome';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
+//import editAddNewIncome 
+//import editAddNewExpense
+
 class EditTemplateContainer extends React.Component {
 
     constructor(props){
@@ -88,6 +91,14 @@ class EditTemplateContainer extends React.Component {
         
         return template
     }
+    //handleExpenseClick = () => {
+        //editAddNewExpense
+    //}
+
+    //handleIncomeClick = () => {
+        //editAddNewIncome
+        
+    //}
 
     componentDidMount(){
         //console.log('componentDidMount templates:', this.props.templates) 
