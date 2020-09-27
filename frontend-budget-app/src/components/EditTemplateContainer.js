@@ -9,7 +9,8 @@ import editTemplateAndUpdateExpense from '../actions/editTemplate/editTemplateAn
 import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditure';
 import updateTotalIncome from '../actions/editTemplate/updateTotalIncome';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
-//import editAddNewIncome 
+import addNewIncome from '../actions/editTemplate/addNewIncome' 
+import addNewExpense from '../actions/editTemplate/addNewExpense'
 //import editAddNewExpense
 
 class EditTemplateContainer extends React.Component {
@@ -91,14 +92,13 @@ class EditTemplateContainer extends React.Component {
         
         return template
     }
-    //handleExpenseClick = () => {
-        //editAddNewExpense
-    //}
+    handleExpenseClick = () => {
+        this.addNewExpense()
+    }
 
-    //handleIncomeClick = () => {
-        //editAddNewIncome
-        
-    //}
+    handleIncomeClick = () => {
+        this.addNewIncome()
+    }
 
     componentDidMount(){
         //console.log('componentDidMount templates:', this.props.templates) 
@@ -130,4 +130,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome})(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome,addNewIncome, addNewIncome})(EditTemplateContainer))
