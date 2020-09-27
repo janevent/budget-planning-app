@@ -51,23 +51,23 @@ export default (state =  [], action) => {
             let updatedTs = [...firstPartTs, templateWUpdatedExpense, ...lastPartTs];
             return updatedTs;   
         case 'EDIT_TEMPLATE_AND_UPDATE_INCOME':  
-        let templateToUpdateIncome = state.find( (template) => {
-            return template.id === action.templateId
-        });
-        let indexOfTemplate = state.findIndex( (template) => {
-            return template.id === action.templateId
-        })
-        let firstPartTemplates = state.slice(0, indexOfTemplate);
-        let lastPartTemplates = state.slice( indexOfTemplate+1)
-        let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
-            return income.id === action.incomeId
-        });
-        let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
-        let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
-        let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
-        let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
-        let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
-        return updatedTemplates;   
+            let templateToUpdateIncome = state.find( (template) => {
+                return template.id === action.templateId
+            });
+            let indexOfTemplate = state.findIndex( (template) => {
+                return template.id === action.templateId
+            })
+            let firstPartTemplates = state.slice(0, indexOfTemplate);
+            let lastPartTemplates = state.slice( indexOfTemplate+1)
+            let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
+                return income.id === action.incomeId
+            });
+            let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
+            let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
+            let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];
+            let templateWUpdatedIncome = {...templateToUpdateIncome, ...{incomes: updatedIncomes} } ;
+            let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
+            return updatedTemplates;   
         case 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_EXPENDITURE':
             let tETemplate = state.find((template) => template.id === action.templateId );
             let tETemplateIndex = state.findIndex( (template) => template.id === action.templateId);
@@ -86,6 +86,16 @@ export default (state =  [], action) => {
             let updatedEditTemplate = {...editTemplate, ...{total_incomes: updatedTotalIncomes}};
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
             return updatedEditTemplates; 
+        case 'EDIT_ADD_NEW_INCOME':
+            let templateToAddTo = state.find((template) => template.id === action.id)
+            let templateIncomes = templateToAddTo.incomes
+            let mergedIncomes = [...templateIncomes, action.income];
+            let mergedWithTemplate = {...templateToAddTo, ...{incomes: mergedIncomes}};
+            let firstP = state.slice(0, ind)
+            let lastP = state.slice( ind+1)
+            let mergedTemplates = [...firstP, mergedWithTemplate, ...lastP]
+            return mergedTemplates
+
         default:
             return state
     }
