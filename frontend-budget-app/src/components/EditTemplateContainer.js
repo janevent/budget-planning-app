@@ -70,7 +70,7 @@ class EditTemplateContainer extends React.Component {
 
     totalIncomes = () => {
         let incomes = this.getTemplate().incomes.map( (income) => {
-            return parseInt(expense.attributes.amount)
+            return parseInt(income.attributes.amount)
         });
         let totalIncome = incomes.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
@@ -93,11 +93,13 @@ class EditTemplateContainer extends React.Component {
         return template
     }
     handleExpenseClick = () => {
-        this.addNewExpense()
+        let templateId = this.props.match.params.id;
+        this.props.addNewExpense(templateId);
     }
 
     handleIncomeClick = () => {
-        this.addNewIncome()
+        let templateId = this.props.match.params.id;
+        this.props.addNewIncome(templateId);
     }
 
     componentDidMount(){
@@ -130,4 +132,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome,addNewIncome, addNewIncome})(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome,addNewIncome, addNewExpense})(EditTemplateContainer))

@@ -87,7 +87,8 @@ export default (state =  [], action) => {
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
             return updatedEditTemplates; 
         case 'EDIT_ADD_NEW_INCOME':
-            let templateToAddTo = state.find((template) => template.id === action.id)
+            let templateToAddTo = state.find((template) => template.id === action.id);
+            let ind = state.findIndex((template) => template.id === action.templateId);
             let templateIncomes = templateToAddTo.incomes
             let mergedIncomes = [...templateIncomes, action.income];
             let mergedWithTemplate = {...templateToAddTo, ...{incomes: mergedIncomes}};
