@@ -105,6 +105,10 @@ class EditTemplateContainer extends React.Component {
     componentDidMount(){
         //console.log('componentDidMount templates:', this.props.templates) 
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
+        let templateId = this.props.match.params.id;
+        this.props.addNewIncome(templateId);
+        
+        this.props.addNewExpense(templateId);
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)

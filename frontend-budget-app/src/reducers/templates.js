@@ -1,7 +1,6 @@
 export default (state =  [], action) => {
     switch(action.type){
         case 'GET_TEMPLATES':
-            //what if there are no templates?
             return action.templates
         case 'ADD_TEMPLATE':
             return [...state, action.template];
@@ -11,13 +10,11 @@ export default (state =  [], action) => {
             let lastPart = state.slice(index+1);
             return [...firstPart, ...lastPart]
         case 'EDIT_TEMPLATE':
-            //do I need this if I have been updated throughout
             let i = state.findIndex( (template) => template.id === action.id);
             let template = state.template;
             let first = state.slice(0, i);
             let last = state.slice( i+1);
             return [...first, template, ...last]
-//different action types for edits then create new ones
         case 'EDIT_TEMPLATE_AND_UPDATE_TITLE':
             let id = action.id;
             let template1 = state.find( (template) => {
@@ -32,7 +29,6 @@ export default (state =  [], action) => {
             return newTemplates;
             
         case 'EDIT_TEMPLATE_AND_UPDATE_EXPENSE':
-            //helper methods?
             let templateToUpdateExpense = state.find( (template) => {
                 return template.id === action.templateId
             });
@@ -87,7 +83,8 @@ export default (state =  [], action) => {
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
             return updatedEditTemplates; 
         case 'EDIT_ADD_NEW_INCOME':
-            let templateToAddTo = state.find((template) => template.id === action.id);
+            console.log(action, "state", state)
+            let templateToAddTo = state.find((template) => template.id === action.templateId);
             let ind = state.findIndex((template) => template.id === action.templateId);
             let templateIncomes = templateToAddTo.incomes
             let mergedIncomes = [...templateIncomes, action.income];
