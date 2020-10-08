@@ -34,7 +34,7 @@ const fetchCurrentUser = () => {
               if(myjson.error){
                 alert(myjson.error)
               }else {
-                console.log("myjson:", myjson)
+                console.log("myjson:", myjson.user.data.attributes)
                 dispatch(getCurrentUser(myjson.user.data.attributes));
                 
                 let budgies = myjson.budgets.map( (b) => {
@@ -53,6 +53,7 @@ const fetchCurrentUser = () => {
                 })
                 dispatch(getTemplates(tempies));
                 dispatch(getBudgets(budgies));
+                console.log('tempies:', tempies)
               }
             } )
             .catch(console.log)

@@ -93,7 +93,7 @@ class EditTemplateContainer extends React.Component {
         
         return template
     }
-    
+
     handleExpenseClick = () => {
         let templateId = this.props.match.params.id;
         this.props.addNewExpense(templateId);
@@ -109,10 +109,10 @@ class EditTemplateContainer extends React.Component {
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         let templateId = this.props.match.params.id;
         //debugger
-        this.props.addNewIncome(templateId);
-        
-        this.props.addNewExpense(templateId);
+        //empty state found in reducer/ not updating
         this.props.fetchCurrentUser();
+        this.props.addNewIncome(templateId);
+        this.props.addNewExpense(templateId);
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)

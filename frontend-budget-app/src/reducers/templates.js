@@ -1,6 +1,8 @@
 export default (state =  [], action) => {
     switch(action.type){
         case 'GET_TEMPLATES':
+            console.log('state', state)
+            console.log('templates:', action.templates);
             return action.templates
         case 'ADD_TEMPLATE':
             return [...state, action.template];
@@ -85,6 +87,7 @@ export default (state =  [], action) => {
         case 'EDIT_ADD_NEW_INCOME':
             console.log(action, "state", state)
             //debugger
+            if(state.length > 0){
             let templateToAddTo = state.find((template) => template.id === action.templateId);
             let ind = state.findIndex((template) => template.id === action.templateId);
             let templateIncomes = templateToAddTo.incomes
@@ -93,7 +96,10 @@ export default (state =  [], action) => {
             let firstP = state.slice(0, ind)
             let lastP = state.slice( ind+1)
             let mergedTemplates = [...firstP, mergedWithTemplate, ...lastP]
-            return mergedTemplates
+            return mergedTemplates}
+            else{
+                return state
+            }
 
         default:
             return state
