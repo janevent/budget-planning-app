@@ -82,7 +82,7 @@ class NavigationBar extends React.Component {
 
     render(){
         const { templates, budgets } = this.props
-        console.log(templates[0])
+        console.log(templates)
         return(
             <nav className="nav-container">
                 <div className="nav-bar">                

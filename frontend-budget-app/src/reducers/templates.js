@@ -84,6 +84,7 @@ export default (state =  [], action) => {
             return updatedEditTemplates; 
         case 'EDIT_ADD_NEW_INCOME':
             console.log(action, "state", state)
+            //debugger
             let templateToAddTo = state.find((template) => template.id === action.templateId);
             let ind = state.findIndex((template) => template.id === action.templateId);
             let templateIncomes = templateToAddTo.incomes

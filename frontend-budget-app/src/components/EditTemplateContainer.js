@@ -10,8 +10,9 @@ import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditu
 import updateTotalIncome from '../actions/editTemplate/updateTotalIncome';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 import addNewIncome from '../actions/editTemplate/addNewIncome' 
-import addNewExpense from '../actions/editTemplate/addNewExpense'
+import addNewExpense from '../actions/editTemplate/addNewExpense';
 //import editAddNewExpense
+import fetchCurrentUser from '../actions/getCurrentUser';
 
 class EditTemplateContainer extends React.Component {
 
@@ -92,6 +93,7 @@ class EditTemplateContainer extends React.Component {
         
         return template
     }
+    
     handleExpenseClick = () => {
         let templateId = this.props.match.params.id;
         this.props.addNewExpense(templateId);
@@ -106,9 +108,11 @@ class EditTemplateContainer extends React.Component {
         //console.log('componentDidMount templates:', this.props.templates) 
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         let templateId = this.props.match.params.id;
+        //debugger
         this.props.addNewIncome(templateId);
         
         this.props.addNewExpense(templateId);
+        this.props.fetchCurrentUser();
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)
@@ -117,13 +121,16 @@ class EditTemplateContainer extends React.Component {
     render (){
         
        console.log('this is EditTemplateContainer:', this.props.templates);
+       //this.props.fetchCurrentUser();
         let id = this.props.match.params.id;
         //let template = this.props.templates.find( (t) => t.id === id);
         return (
             <div className='edit-container'>
+                { this.props.templates.length  !== 0?
+                    <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange}  />
+                : "" 
+                }
                 
-                <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange}  />
-                <p></p>
             </div>
         )
         //use connect to retrieve templates in global state in EditForm instead
@@ -136,4 +143,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome,addNewIncome, addNewExpense})(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome, addNewIncome, addNewExpense})(EditTemplateContainer))
