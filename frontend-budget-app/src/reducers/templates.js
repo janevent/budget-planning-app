@@ -89,16 +89,19 @@ export default (state =  [], action) => {
             console.log(action, "state", state)
             //debugger
             if(state.length > 0){
+                console.log("state", state, "action:", action)
             let templateToAddTo = state.find((template) => template.id === action.templateId);
             let ind = state.findIndex((template) => template.id === action.templateId);
             let templateIncomes = templateToAddTo.incomes
             let mergedIncomes = [...templateIncomes, action.income];
+            console.log("mergedIncomes:", mergedIncomes)
             let mergedWithTemplate = {...templateToAddTo, ...{incomes: mergedIncomes}};
             let firstP = state.slice(0, ind)
             let lastP = state.slice( ind+1)
             let mergedTemplates = [...firstP, mergedWithTemplate, ...lastP]
             return mergedTemplates}
             else{
+                console.log("else state:", state)
                 return state
             }
 

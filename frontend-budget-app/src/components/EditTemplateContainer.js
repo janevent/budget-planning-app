@@ -109,10 +109,10 @@ class EditTemplateContainer extends React.Component {
         let templateId = this.props.match.params.id;
         //this.setTimeOut()
         setTimeout(() => {
-            this.props.addNewIncome()
+            this.props.addNewIncome(templateId)
           }, 5000)
         setTimeout(() => {
-            this.props.addNewExpense()
+            this.props.addNewExpense(templateId)
         }, 5000)
         //debugger
         //empty state found in reducer/ not updating
