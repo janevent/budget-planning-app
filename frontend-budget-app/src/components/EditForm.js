@@ -5,7 +5,7 @@ import TitleForm from'./TitleForm';
 
 
 
-const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange })  => {
+const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange, onClickAddIncome, onClickAddExpense })  => {
     
         return(
             
@@ -24,6 +24,9 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                             }
                             )}
                         </form>
+                        <br></br>
+                        <button id="add-income-input-field" onClick={onClickAddIncome} >Add New Income</button>
+                        <br></br>
                         {data.total_income ?
                         <p>Total Income: ${data.total_income}</p> :
                         ''

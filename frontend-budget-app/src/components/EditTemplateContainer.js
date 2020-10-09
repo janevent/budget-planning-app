@@ -93,12 +93,12 @@ class EditTemplateContainer extends React.Component {
         return template
     }
 
-    handleExpenseClick = () => {
+    onClickAddExpense = () => {
         let templateId = this.props.match.params.id;
         this.props.addNewExpense(templateId);
     }
 
-    handleIncomeClick = () => {
+    onClickAddIncome = () => {
         let templateId = this.props.match.params.id;
         this.props.addNewIncome(templateId);
     }
@@ -133,7 +133,7 @@ class EditTemplateContainer extends React.Component {
         return (
             <div className='edit-container'>
                 { this.props.templates.length  !== 0?
-                    <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange}  />
+                    <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange} onClickAddIncome={this.onClickAddIncome} onClickAddExpense={this.onClickAddExpense} />
                 : "" 
                 }
                 
