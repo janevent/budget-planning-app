@@ -82,8 +82,9 @@ export default (state =  [], action) => {
             let editFirstPartTemplates = state.slice( 0, editTemplateIndex);
             let editLastPartTemplates = state.slice( editTemplateIndex+1);
             let updatedTotalIncomes = action.total_incomes;
-            let updatedEditTemplate = {...editTemplate, ...{total_incomes: updatedTotalIncomes}};
+            let updatedEditTemplate = {...editTemplate, ...{total_income: updatedTotalIncomes}};
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
+            console.log("updateTI in reducer", updatedEditTemplates)
             return updatedEditTemplates; 
         case 'EDIT_ADD_NEW_INCOME':
             console.log(action, "state", state)
@@ -104,6 +105,17 @@ export default (state =  [], action) => {
                 console.log("else state:", state)
                 return state
             }
+        case 'EDIT_ADD_NEW_EXPENSE':
+            let tempToAddTo = state.find((template) => template.id === action.templateId);
+            let inde= state.findIndex((template) => template.id === action.templateId);
+            let tempExpenses = tempToAddTo.expenses
+            let mergExpenses = [...tempExpenses, action.expense];
+            console.log("mergedIncomes:", mergExpenses)
+            let mergedWithTemp = {...tempToAddTo, ...{expenses: mergExpenses}};
+            let f = state.slice(0, inde)
+            let l = state.slice( inde+1)
+            let mergedTemps = [...f, mergedWithTemp, ...l]
+            return mergedTemps
 
         default:
             return state

@@ -7,7 +7,7 @@ import editTemplateAndUpdateTitle from '../actions/editTemplate/editTemplateAndU
 import editTemplateAndUpdateIncome from '../actions/editTemplate/editTemplateAndUpdateIncome';
 import editTemplateAndUpdateExpense from '../actions/editTemplate/editTemplateAndUpdateExpense';
 import updateTotalExpenditure from '../actions/editTemplate/updateTotalExpenditure';
-import updateTotalIncome from '../actions/editTemplate/updateTotalIncome';
+import updateTotalIncomes from '../actions/editTemplate/updateTotalIncomes';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 import addNewIncome from '../actions/editTemplate/addNewIncome' 
 import addNewExpense from '../actions/editTemplate/addNewExpense';
@@ -75,6 +75,7 @@ class EditTemplateContainer extends React.Component {
         });
         let totalIncome = incomes.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
+        console.log('updateTI', totalIncome)
         this.props.updateTotalIncomes(templateId, totalIncome)
     }
     addFunc = (total, number) => {
@@ -106,6 +107,8 @@ class EditTemplateContainer extends React.Component {
     componentDidMount(){
         //console.log('componentDidMount templates:', this.props.templates) 
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
+        this.setTotalIncomes = setInterval( () => { this.totalIncomes()}, 1000)
+
         let templateId = this.props.match.params.id;
         //this.setTimeOut()
         setTimeout(() => {
@@ -122,6 +125,7 @@ class EditTemplateContainer extends React.Component {
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)
+        clearInterval(this.setTotalIncomes)
     }
 
     render (){
@@ -149,4 +153,4 @@ const mapStateToProps = (state) => {
     }//addNewIncome addNewExpense
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome, addNewIncome, addNewExpense})(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncomes, addNewIncome, addNewExpense})(EditTemplateContainer))

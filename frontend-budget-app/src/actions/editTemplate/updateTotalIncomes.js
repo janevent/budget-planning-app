@@ -1,4 +1,4 @@
-const updateTotalIncome = (templateId, total_incomes) => {
+const updateTotalIncomes = (templateId, total_incomes) => {
     return {
         type: 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_INCOMES',
         templateId,
@@ -6,4 +6,4 @@ const updateTotalIncome = (templateId, total_incomes) => {
     }
 }
 
-export default updateTotalIncome
+export default updateTotalIncomes

@@ -1,7 +1,8 @@
 const addNewExpense = (templateId) => {
     return {
         type: 'EDIT_ADD_NEW_EXPENSE',
-        expense: { description: "", amount: 0 },
+        expense: { type: "expense", attributes: 
+        { description: "", amount: 0 } },
         templateId: templateId
     }
 }
