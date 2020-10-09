@@ -18,13 +18,13 @@ class EditTemplateContainer extends React.Component {
 
     constructor(props){
         super(props)
-        console.log('edittemplate container constructor:', props)
+        //console.log('edittemplate container constructor:', props)
         
         //can not access props quick enough
     }
 //edit directly in templates or create an editTemplate reducer ?
     handleTitleChange = (event) => {
-        console.log('handleTitleChange is triggered')
+        //console.log('handleTitleChange is triggered')
         event.persist();
        let iD = this.props.match.params.id;
        this.props.editTemplateAndUpdateTitle(event.target.value, iD)
@@ -35,7 +35,7 @@ class EditTemplateContainer extends React.Component {
         let template = this.getTemplate();
         let income = template.incomes.find( income => income.id === incomeId);
         let updatedAttributes = {...income.attributes, ...{[name]: value} };
-        console.log('updatedAttributes:', updatedAttributes);
+        //console.log('updatedAttributes:', updatedAttributes);
         let updatedIncome = {...income, ...{attributes: updatedAttributes}}
         //let updatedIncome = Object.assign( {}, income, {[name]: value})
         console.log('income:', income, 'updatedIncome:', updatedIncome)
@@ -56,7 +56,7 @@ class EditTemplateContainer extends React.Component {
         let expense = template.expenses.find( matchExpense );
         let updatedAttributes = {...expense.attributes, ...{[name]:value}}
         let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
-        console.log('updatedExpense:', updatedExpense)
+        //console.log('updatedExpense:', updatedExpense)
         this.props.editTemplateAndUpdateExpense(updatedExpense, expenseId, templateId);
         this.totalExpenses();
     }
@@ -88,9 +88,8 @@ class EditTemplateContainer extends React.Component {
 
     getTemplate = () => {
         let iD = this.props.match.params.id;
-        console.log('getTemplate:', this.props.templates)
-        let template = this.props.templates.find( (template) => template.id === iD )
-        
+        //console.log('getTemplate:', this.props.templates)
+        let template = this.props.templates.find( (template) => template.id === iD )       
         return template
     }
 
@@ -108,11 +107,18 @@ class EditTemplateContainer extends React.Component {
         //console.log('componentDidMount templates:', this.props.templates) 
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         let templateId = this.props.match.params.id;
+        //this.setTimeOut()
+        setTimeout(() => {
+            this.props.addNewIncome()
+          }, 5000)
+        setTimeout(() => {
+            this.props.addNewExpense()
+        }, 5000)
         //debugger
         //empty state found in reducer/ not updating
-        this.props.fetchCurrentUser();
-        this.props.addNewIncome(templateId);
-        this.props.addNewExpense(templateId);
+        //this.props.fetchCurrentUser();
+        //this.props.addNewIncome(templateId);
+        //this.props.addNewExpense(templateId);
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)
@@ -120,7 +126,7 @@ class EditTemplateContainer extends React.Component {
 
     render (){
         
-       console.log('this is EditTemplateContainer:', this.props.templates);
+       //console.log('this is EditTemplateContainer:', this.props.templates);
        //this.props.fetchCurrentUser();
         let id = this.props.match.params.id;
         //let template = this.props.templates.find( (t) => t.id === id);
@@ -140,7 +146,7 @@ class EditTemplateContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         templates: state.templates
-    }
+    }//addNewIncome addNewExpense
 }
 
 export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncome, addNewIncome, addNewExpense})(EditTemplateContainer))
