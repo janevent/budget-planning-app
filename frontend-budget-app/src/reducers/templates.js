@@ -84,7 +84,7 @@ export default (state =  [], action) => {
             let updatedTotalIncomes = action.total_incomes;
             let updatedEditTemplate = {...editTemplate, ...{total_income: updatedTotalIncomes}};
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
-            console.log("updateTI in reducer", updatedEditTemplates)
+            //console.log("updateTI in reducer", updatedEditTemplates)
             return updatedEditTemplates; 
         case 'EDIT_ADD_NEW_INCOME':
             console.log(action, "state", state)

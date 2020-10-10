@@ -11,6 +11,7 @@ import updateTotalIncomes from '../actions/editTemplate/updateTotalIncomes';
 //possibility: create a local state for the template and dispatch 'EDIT_TEMPLATE' action when submitted.
 import addNewIncome from '../actions/editTemplate/addNewIncome' 
 import addNewExpense from '../actions/editTemplate/addNewExpense';
+import updateTotalDifference from '../actions/editTemplate/updateTotalDifference';
 //import editAddNewExpense
 import fetchCurrentUser from '../actions/getCurrentUser';
 
@@ -75,16 +76,25 @@ class EditTemplateContainer extends React.Component {
         });
         let totalIncome = incomes.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
-        console.log('updateTI', totalIncome)
+        //console.log('updateTI', totalIncome)
         this.props.updateTotalIncomes(templateId, totalIncome)
     }
     addFunc = (total, number) => {
         return total + number
     }
 
+    totalDifference = () => {
+        let templateId = this.props.match.params.id
+        let template = this.props.templates.find(t => t.id === templateId)
+        let totalDif = template.totalIncome - template.totalExpenditure
+        this.props.updateTotalDifference(templateId, totalDif)
+        //action
+    }
+
     saveEdit = (template) => {
         let iD = this.props.match.params.id;
-        this.props.fetchEditTemplate(iD, template);
+        this.props.fetchEditTemplate(template, iD);
+        this.props.history.push(`/templates/${iD}`)
     }
 
     getTemplate = () => {
@@ -109,6 +119,8 @@ class EditTemplateContainer extends React.Component {
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         this.setTotalIncomes = setInterval( () => { this.totalIncomes()}, 1000)
 
+        this.setTotalDifference = setInterval( () => { this.totalDifference()}, 5000)
+
         let templateId = this.props.match.params.id;
         //this.setTimeOut()
         setTimeout(() => {
@@ -126,6 +138,7 @@ class EditTemplateContainer extends React.Component {
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)
         clearInterval(this.setTotalIncomes)
+        clearInterval(this.setTotalDifference)
     }
 
     render (){
@@ -153,4 +166,4 @@ const mapStateToProps = (state) => {
     }//addNewIncome addNewExpense
 }
 
-export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalIncomes, addNewIncome, addNewExpense})(EditTemplateContainer))
+export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalDifference, updateTotalIncomes, addNewIncome, addNewExpense})(EditTemplateContainer))

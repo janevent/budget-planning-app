@@ -23,6 +23,7 @@ const fetchEditTemplate = (template, id) => {
                 console.log('response:', json)
                 dispatch(editTemplate(template, id))
             })
+            .catch(error => error.log)
         }
     )
 
