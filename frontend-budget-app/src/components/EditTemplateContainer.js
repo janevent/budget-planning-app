@@ -86,7 +86,8 @@ class EditTemplateContainer extends React.Component {
     totalDifference = () => {
         let templateId = this.props.match.params.id
         let template = this.props.templates.find(t => t.id === templateId)
-        let totalDif = template.totalIncome - template.totalExpenditure
+        let totalDif = parseInt(template.totalIncome) - parseInt(template.totalExpenditure);
+        console.log("totalDif", totalDif)
         this.props.updateTotalDifference(templateId, totalDif)
         //action
     }
