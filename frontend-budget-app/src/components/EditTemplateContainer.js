@@ -91,8 +91,9 @@ class EditTemplateContainer extends React.Component {
         //action
     }
 
-    saveEdit = (template) => {
+    saveEdit = () => {
         let iD = this.props.match.params.id;
+        let template = this.props.templates.find((t) => t.id === iD)
         this.props.fetchEditTemplate(template, iD);
         this.props.history.push(`/templates/${iD}`)
     }
