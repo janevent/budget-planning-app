@@ -5,7 +5,7 @@ import TitleForm from'./TitleForm';
 
 
 
-const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange, onClickAddIncome, onClickAddExpense })  => {
+const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange, onClickAddIncome, onClickAddExpense, saveEdit })  => {
     
         return(
             
@@ -52,6 +52,8 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         <p> Total Difference: ${data.total_difference} </p> :
                         '' 
                         }
+                        <br></br>
+                        <button id="save-edit-button" onClick={saveEdit}>Save</button>
                     </div>
                 :
                 "" }
