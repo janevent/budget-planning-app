@@ -5,20 +5,24 @@ export default (state =  [], action) => {
             console.log('templates:', action.templates);
             return action.templates
         case 'ADD_TEMPLATE':
+            console.log('state', state)
             return [...state, action.template];
         case 'REMOVE_TEMPLATE':
+            console.log('state', state)
             let index = state.findIndex( (t) => t.id === action.id)
             let firstPart = state.slice(0, index);
             let lastPart = state.slice(index+1);
             return [...firstPart, ...lastPart]
         case 'EDIT_TEMPLATE':
-            let i = state.findIndex( (template) => template.id === action.id);
+            console.log('state', state)
+            let i = state.findIndex( (template) => template.id === action.templateId);
             //?
-            let template = state.template;
+            let template = action.template;
             let first = state.slice(0, i);
             let last = state.slice( i+1);
             return [...first, template, ...last]
         case 'EDIT_TEMPLATE_AND_UPDATE_TITLE':
+            console.log('state', state)
             let id = action.id;
             let template1 = state.find( (template) => {
                 return template.id === id
@@ -32,6 +36,7 @@ export default (state =  [], action) => {
             return newTemplates;
             
         case 'EDIT_TEMPLATE_AND_UPDATE_EXPENSE':
+            console.log('state', state)
             let templateToUpdateExpense = state.find( (template) => {
                 return template.id === action.templateId
             });
@@ -50,6 +55,7 @@ export default (state =  [], action) => {
             let updatedTs = [...firstPartTs, templateWUpdatedExpense, ...lastPartTs];
             return updatedTs;   
         case 'EDIT_TEMPLATE_AND_UPDATE_INCOME':  
+        console.log('state', state)
             let templateToUpdateIncome = state.find( (template) => {
                 return template.id === action.templateId
             });
@@ -68,6 +74,7 @@ export default (state =  [], action) => {
             let updatedTemplates = [...firstPartTemplates, templateWUpdatedIncome, ...lastPartTemplates];
             return updatedTemplates;   
         case 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_EXPENDITURE':
+            console.log('state', state)
             let tETemplate = state.find((template) => template.id === action.templateId );
             let tETemplateIndex = state.findIndex( (template) => template.id === action.templateId);
             let tEfirstPartTemplates = state.slice( 0, tETemplateIndex);
@@ -77,6 +84,7 @@ export default (state =  [], action) => {
             let updatedTETemplates = [...tEfirstPartTemplates, updatedTETemplate, ...tELastPartTemplates]
             return updatedTETemplates;  
         case 'EDIT_TEMPLATE_AND_UPDATE_TOTAL_INCOMES':
+            console.log('state', state)
             let editTemplate = state.find((template) => template.id === action.templateId );
             let editTemplateIndex = state.findIndex((template) => template.id === action.templateId);
             let editFirstPartTemplates = state.slice( 0, editTemplateIndex);
@@ -86,6 +94,15 @@ export default (state =  [], action) => {
             let updatedEditTemplates = [...editFirstPartTemplates, updatedEditTemplate, ...editLastPartTemplates];
             //console.log("updateTI in reducer", updatedEditTemplates)
             return updatedEditTemplates; 
+        case 'EDIT_TEMPLATE_UPDATE_TOTAL_DIF':
+            console.log('state', state)
+            let eT = state.find((t) => t.id === action.templateId);
+            let eTIndex = state.findIndex( (t) => t.id === action.templateId);
+            let copyEt = {...eT, ...{total_difference: action.totalDifference}};
+            let fTs = state.slice(0, eTIndex);
+            let lTs = state.slice(eTIndex+1);
+            return [...fTs, copyEt, ...lTs];
+            
         case 'EDIT_ADD_NEW_INCOME':
             console.log(action, "state", state)
             //debugger
@@ -106,6 +123,7 @@ export default (state =  [], action) => {
                 return state
             }
         case 'EDIT_ADD_NEW_EXPENSE':
+            console.log('state', state)
             let tempToAddTo = state.find((template) => template.id === action.templateId);
             let inde= state.findIndex((template) => template.id === action.templateId);
             let tempExpenses = tempToAddTo.expenses
@@ -118,6 +136,7 @@ export default (state =  [], action) => {
             return mergedTemps
 
         default:
+            console.log('state', state)
             return state
     }
 }

@@ -86,22 +86,45 @@ class EditTemplateContainer extends React.Component {
     totalDifference = () => {
         let templateId = this.props.match.params.id
         let template = this.props.templates.find(t => t.id === templateId)
-        let totalDif = parseInt(template.totalIncome) - parseInt(template.totalExpenditure);
+        console.log("template", template)
+        let totalDif = template.total_income - template.total_expenditure;
         console.log("totalDif", totalDif)
         this.props.updateTotalDifference(templateId, totalDif)
         //action
     }
 
-    saveEdit = () => {
-        let iD = this.props.match.params.id;
-        let template = this.props.templates.find((t) => t.id === iD)
-        this.props.fetchEditTemplate(template, iD);
-        this.props.history.push(`/templates/${iD}`)
+    saveEdit = () => {        
+        let template = this.getTemplate();
+        //temp as argument...
+        let filteredIncomes = template.incomes.filter( (t) => {
+            return t.attributes.description !== ""
+        });
+        let filteredExpenses = template.expenses.filter( (t) => {
+            return t.attributes.description !== ""
+        });
+        let copyIncomes = [...filteredIncomes];
+        let copyExpenses = [...filteredExpenses];
+        copyIncomes.each( (i) => i.attributes.id = i.id);
+        //if i.id exists set id in attributes, else skip
+        copyExpenses.each( (e) => e.attributes.id = e.id);
+        let newIncomes = copyIncomes.map( (income) => income.attributes);
+        let newExpenses = copyExpenses.map( (expense) => expense.attributes);
+        let newTemplate = {
+            title: template.title,
+            total_income: template.totalIncome,
+            total_expenditure: template.totalExpenditure,
+            total_difference: template.totalDifference,
+            expenses_attributes: newExpenses,
+            incomes_attributes: newIncomes
+        }
+        //this.props.fetchEditTemplate(template, iD);
+        //this.props.history.push(`/templates/${iD}`)
     }
 
     getTemplate = () => {
         let iD = this.props.match.params.id;
-        //console.log('getTemplate:', this.props.templates)
+        console.log('getTemplate:', this.props.templates)
+        //why stored as an object instead of an array?
         let template = this.props.templates.find( (template) => template.id === iD )       
         return template
     }
@@ -121,7 +144,7 @@ class EditTemplateContainer extends React.Component {
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         this.setTotalIncomes = setInterval( () => { this.totalIncomes()}, 1000)
 
-        this.setTotalDifference = setInterval( () => { this.totalDifference()}, 5000)
+        this.setTotalDifference = setInterval( () => { this.totalDifference()}, 1000)
 
         let templateId = this.props.match.params.id;
         //this.setTimeOut()
