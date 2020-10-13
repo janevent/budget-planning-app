@@ -29,43 +29,45 @@ class TemplatesController < ApplicationController
         end
     end 
 
-    def index 
-        user = User.find_by(id: params[:id])
-        if user
-           templates = user.templates
-        end
+    # def index 
+    #     user = User.find_by(id: params[:id])
+    #     if user
+    #        templates = user.templates
+    #     end
         
-        #if user && budgets 
-        if templates
-            render json: TemplateSerializer.new(templates)
-        else 
-            render json: { status: "error", code: 3000, message: "Can not find user or templates."}
-        end
-    end
+    #     #if user && budgets 
+    #     if templates
+    #         render json: TemplateSerializer.new(templates)
+    #     else 
+    #         render json: { status: "error", code: 3000, message: "Can not find user or templates."}
+    #     end
+    # end
 
     def update 
-        template = Template.find_by(id: template_params[:id])
-        #template_params[:id]
+        #binding.pry
+        template = Template.find_by(id: params[:id])
+        
+        #binding.pry
         if template 
+            template.expenses.destroy_all
+            template.incomes.destroy_all
             template.update(template_params)
+            #binding.pry
+            #delete all expenses_attributes and incomes_attributes
+            #create new ones
             #binding.pry
             # params.template.relationships.expense.data.each do |e|
             #     template.expenses.find_or_create_by(id: e.id)
                 #if found update
             # end
-            # template.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
-            #render json: template
-            template.save
-            if template
+           
+            
+            if template.save
                 options = { include: [:incomes, :expenses]}
                 render json: TemplateSerializer.new(template, options).serialized_json
             else
                 render json: {status: "error", code: 3000, message: "Unable to update template"}
             end
-            #template.expenses.update(params[:expenses])
-            #template.incomes.update(params[:incomes])
-
-            #updates everytime an attribute is changed and user moves away from changed form field  ?
         else
             render json: {status: "error", code: 3000, message: "Unable to find template"}
         end

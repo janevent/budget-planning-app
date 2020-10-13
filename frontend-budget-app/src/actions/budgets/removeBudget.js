@@ -6,6 +6,7 @@ const removeBudget = (id) => {
 }
 
 const fetchDeleteBudget = (id) => {
+    console.log(typeof id)
     return (dispatch) => {
         fetch( `http://localhost:3001/budgets/${id}`, {
                 credentials: 'include',

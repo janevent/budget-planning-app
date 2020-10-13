@@ -64,9 +64,10 @@ class EditTemplateContainer extends React.Component {
 
     totalExpenses = () => {
         let expenses = this.getTemplate().expenses.map( (expense) => parseInt(expense.attributes.amount) )
-        //console.log('totalExpenses:', expenses);
+        console.log('expenses:', expenses);
         let totalExpenses = expenses.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
+        console.log("totalExpenses", totalExpenses)
         this.props.updateTotalExpenditure(templateId, totalExpenses);
     }
 
@@ -76,7 +77,7 @@ class EditTemplateContainer extends React.Component {
         });
         let totalIncome = incomes.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
-        //console.log('updateTI', totalIncome)
+        console.log('updatedTotalIncome', totalIncome)
         this.props.updateTotalIncomes(templateId, totalIncome)
     }
     addFunc = (total, number) => {
@@ -96,6 +97,7 @@ class EditTemplateContainer extends React.Component {
     saveEdit = () => {        
         let template = this.getTemplate();
         //temp as argument...
+        console.log('reached SaveEdit')
         let filteredIncomes = template.incomes.filter( (t) => {
             return t.attributes.description !== ""
         });
@@ -104,21 +106,23 @@ class EditTemplateContainer extends React.Component {
         });
         let copyIncomes = [...filteredIncomes];
         let copyExpenses = [...filteredExpenses];
-        copyIncomes.each( (i) => i.attributes.id = i.id);
+        copyIncomes.forEach( (i) => i.attributes.id = i.id);
         //if i.id exists set id in attributes, else skip
-        copyExpenses.each( (e) => e.attributes.id = e.id);
+        copyExpenses.forEach( (e) => e.attributes.id = e.id);
         let newIncomes = copyIncomes.map( (income) => income.attributes);
         let newExpenses = copyExpenses.map( (expense) => expense.attributes);
         let newTemplate = {
             title: template.title,
-            total_income: template.totalIncome,
-            total_expenditure: template.totalExpenditure,
-            total_difference: template.totalDifference,
+            total_income: template.total_income,
+            total_expenditure: template.total_expenditure,
+            total_difference: template.total_difference,
             expenses_attributes: newExpenses,
-            incomes_attributes: newIncomes
+            incomes_attributes: newIncomes,
+            id: template.id
         }
-        //this.props.fetchEditTemplate(template, iD);
-        //this.props.history.push(`/templates/${iD}`)
+        console.log('template', template, 'newTemplate', newTemplate);
+        this.props.fetchEditTemplate(newTemplate, template.id);
+        this.props.history.push(`/templates/${template.id}`)
     }
 
     getTemplate = () => {
@@ -174,6 +178,9 @@ class EditTemplateContainer extends React.Component {
         //let template = this.props.templates.find( (t) => t.id === id);
         return (
             <div className='edit-container'>
+                <div>
+
+                </div>
                 { this.props.templates.length  !== 0?
                     <EditForm saveEdit={this.saveEdit} data={this.getTemplate()} handleTitleChange={this.handleTitleChange} type={'Template'}  handleIncomeChange={this.handleIncomeChange} handleExpenseChange={this.handleExpenseChange} onClickAddIncome={this.onClickAddIncome} onClickAddExpense={this.onClickAddExpense} saveEdit={this.saveEdit}/>
                 : "" 

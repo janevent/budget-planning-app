@@ -20,6 +20,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         <form>
                             {data.incomes.map( (income) => {
                                 //console.log('income', income)
+                                
                                 return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} />
                             }
                             )}

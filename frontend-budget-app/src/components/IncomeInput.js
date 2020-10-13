@@ -20,6 +20,7 @@ export default class IncomeInput extends React.Component {
             </label>
             <label className="label">Amount $<input type="text" name="amount" value={this.props.income.amount} onChange={ (event) => this.props.handleIncomeChange(event, this.props.id)} />
             </label>
+            <br></br>
             </div>
             : " "
         }

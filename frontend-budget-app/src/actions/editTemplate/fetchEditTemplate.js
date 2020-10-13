@@ -9,6 +9,9 @@ const editTemplate = (template, id) => {
 const fetchEditTemplate = (template, id) => {
     return (
         (dispatch) => {
+            console.log('reached fetchEditTemplate');
+            console.log('template', template, 'id', id)
+            console.log("type", typeof id);
             // console.log("template", template)
             // debugger
             // let filteredIncomes = template.incomes.filter( (income) => {
@@ -19,21 +22,33 @@ const fetchEditTemplate = (template, id) => {
             //     return expense.attributes.description !== ""
             // });
             // let newTemplate = Object.assign( {}, template, {incomes: filteredIncomes, expenses: filteredExpenses})
-            fetch(`http://3001:localhost/templates/${id}`, {
-                method: 'PUT',    
+            fetch(`http://localhost:3001/templates/${id}`, {               
                 credentials: 'include',
+                method:'put',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json'
                 },
-                body: JSON.stringify(template)
+                body: JSON.stringify({
+                    template: template })
             })
             .then(resp => resp.json())
-            .then( json => {
-                console.log('response:', json)
-                dispatch(editTemplate(template, id))
+            .then( myjson => {
+                if(myjson.error){
+                    console.log(myjson.error)
+                }else {
+                    console.log('response:', myjson)
+                    //what type does totals come back as
+                    let tem = myjson.data.attributes;
+                    tem.id = myjson.data.id;
+                    let expenses = myjson.included.filter( (i) => i.type === 'expense');
+                    let incomes = myjson.included.filter( (i) => i.type === 'income');
+                    tem.incomes = incomes;
+                    tem.expenses = expenses;
+                    dispatch(editTemplate(tem, id))
+                }
             })
-            .catch(error => error.log)
+            .catch(error => console.log(error))
         }
     )
 
