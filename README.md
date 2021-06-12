@@ -1,4 +1,4 @@
-# budget-planning-app
+# friendly-budget-application 
 Written in react and redux on the frontend, and ruby on rails on the backend, 'budget-planning-app' is a tool to make personal budgeting simple.  Efficient, and easy to use, everyone can use this app to create financial plans.
 
 Clone down this repository to your local environment.
@@ -41,4 +41,4 @@ Click save.
 
 Log out.
 
-Thank you for using my friendly budget application.
+Thank you for using the friendly budget application.

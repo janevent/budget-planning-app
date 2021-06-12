@@ -7,7 +7,7 @@ export default (state=null, action) => {
             let is = [...state.incomes, {description: "", amount: "0"}];
             return { ...state, incomes: is}
         case 'UPDATE_INCOME':
-            let i = state.incomes.find((inc, index)=> index === action.id)
+            //let i = state.incomes.find((inc, index)=> index === action.id)
             let firstPart = state.incomes.slice(0, action.id)
             let lastPart = state.incomes.slice(action.id + 1)
             let incomes = [...firstPart, action.income, ...lastPart]

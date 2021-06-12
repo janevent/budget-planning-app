@@ -1,23 +1,13 @@
 import React from 'react';
-import ShowTemplateContainer from './ShowTemplateContainer.js';
-import ShowBudgetContainer from './ShowBudgetContainer.js';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    useParams
   } from "react-router-dom";
 
 export default class DropDown extends React.Component {
-    render(){
-        
+    render(){      
         return (          
-                
                 <div className="wrapper">
-                   
-                    <div className="header-title">{this.props.title}</div>
-                        
+                    <div className="header-title">{this.props.title}</div>                       
                     <ul className="list">
                     { this.props.items.map((i)  => {                             
                         return (
@@ -32,7 +22,3 @@ export default class DropDown extends React.Component {
         )
     }    
 }
-
-//
-//
-

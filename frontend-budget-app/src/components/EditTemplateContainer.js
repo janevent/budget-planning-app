@@ -17,12 +17,12 @@ import fetchCurrentUser from '../actions/getCurrentUser';
 
 class EditTemplateContainer extends React.Component {
 
-    constructor(props){
-        super(props)
+    //constructor(props){
+      //  super(props)
         //console.log('edittemplate container constructor:', props)
         
         //can not access props quick enough
-    }
+    //}
 //edit directly in templates or create an editTemplate reducer ?
     handleTitleChange = (event) => {
         //console.log('handleTitleChange is triggered')
@@ -151,18 +151,12 @@ class EditTemplateContainer extends React.Component {
         this.setTotalDifference = setInterval( () => { this.totalDifference()}, 1000)
 
         let templateId = this.props.match.params.id;
-        //this.setTimeOut()
         setTimeout(() => {
             this.props.addNewIncome(templateId)
           }, 5000)
         setTimeout(() => {
             this.props.addNewExpense(templateId)
         }, 5000)
-        //debugger
-        //empty state found in reducer/ not updating
-        //this.props.fetchCurrentUser();
-        //this.props.addNewIncome(templateId);
-        //this.props.addNewExpense(templateId);
     }
     componentWillUnmount(){
         clearInterval(this.setTotalExpenses)
@@ -174,7 +168,7 @@ class EditTemplateContainer extends React.Component {
         
        //console.log('this is EditTemplateContainer:', this.props.templates);
        //this.props.fetchCurrentUser();
-        let id = this.props.match.params.id;
+        //let id = this.props.match.params.id;
         //let template = this.props.templates.find( (t) => t.id === id);
         return (
             <div className='edit-container'>
@@ -188,14 +182,14 @@ class EditTemplateContainer extends React.Component {
                 
             </div>
         )
-        //use connect to retrieve templates in global state in EditForm instead
+        
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         templates: state.templates
-    }//addNewIncome addNewExpense
+    }
 }
 
 export default withRouter(connect(mapStateToProps, { fetchEditTemplate, fetchCurrentUser, editTemplateAndUpdateTitle, editTemplateAndUpdateIncome, editTemplateAndUpdateExpense, updateTotalExpenditure, updateTotalDifference, updateTotalIncomes, addNewIncome, addNewExpense})(EditTemplateContainer))

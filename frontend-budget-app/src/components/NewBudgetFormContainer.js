@@ -44,7 +44,7 @@ class NewBudgetFormContainer extends React.Component {
 
     handleTitleChange = ( event) => {
         event.persist();
-        const { name, value } = event.target
+        const { value } = event.target
         this.props.updateTitle(value)
     }
 

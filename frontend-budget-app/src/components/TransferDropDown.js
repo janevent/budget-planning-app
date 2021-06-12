@@ -28,4 +28,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { addTemplateData })(TransferDropDown)
 
-{/* <li className="list-item" key={t.id} onClick={(e) => this.fetchTemplate(t.id)}>{t.title}</li> */}
+/* <li className="list-item" key={t.id} onClick={(e) => this.fetchTemplate(t.id)}>{t.title}</li> */
