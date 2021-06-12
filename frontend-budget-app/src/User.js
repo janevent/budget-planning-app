@@ -53,7 +53,7 @@ class User extends React.Component {
                         Password <input type="text" name="password" value={this.state.password}  onChange={this.handlePasswordChange} />
                     </label>
                     <br></br>
-                    <input type="submit" value="Log In" />
+                    <input type="submit" className="bttn" value="Log In" />
                 </form>
             </div>
         )

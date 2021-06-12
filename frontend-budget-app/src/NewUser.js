@@ -64,7 +64,7 @@ class NewUser extends React.Component {
                         Email <input type="text" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
                     </label>
                     <br></br>
-                    <input type="submit" value="Sign Up" />
+                    <input type="submit" className="bttn" value="Sign Up" />
                 </form>
             </div>
         )       

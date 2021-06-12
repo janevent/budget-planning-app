@@ -297,3 +297,13 @@ code {
   position: static;
   overflow: visible;
 }
+
+.bttn {
+  background-image: linear-gradient(to bottom right, transparent, grey);
+  border-radius: 20px;
+  color: black;
+  font-size: .75em;
+  border-style: groove; 
+  padding: 5px;
+  margin: 5px;
+}

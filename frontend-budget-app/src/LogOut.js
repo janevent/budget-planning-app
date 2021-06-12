@@ -27,7 +27,7 @@ class LogOut extends React.Component {
     render(){
         return (
         <form onSubmit={this.handleLogOut}>
-            <input type="submit" value="Log Out" />
+            <input type="submit" className="bttn" value="Log Out" />
         </form>
         )
     }
