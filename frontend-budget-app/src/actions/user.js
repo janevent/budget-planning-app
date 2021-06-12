@@ -35,7 +35,7 @@ const fetchSetCurrentUser = (user) => {
         .then(myjson => { 
             console.log("object:", myjson); 
             //dispatch action
-            if(mjson !== false){
+            if(myjson !== false){
             dispatch(setCurrentUser(myjson.user.data.attributes));
             //this.props.history.push('/');
             //
