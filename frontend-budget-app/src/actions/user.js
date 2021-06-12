@@ -35,6 +35,7 @@ const fetchSetCurrentUser = (user) => {
         .then(myjson => { 
             console.log("object:", myjson); 
             //dispatch action
+            if(mjson !== false){
             dispatch(setCurrentUser(myjson.user.data.attributes));
             //this.props.history.push('/');
             //
@@ -54,6 +55,7 @@ const fetchSetCurrentUser = (user) => {
               })
             dispatch(getBudgets(budgies));
             dispatch(getTemplates(tempies));
+            }
             //this.props.getTemplates
         })
         .catch(error => console.log(error))
