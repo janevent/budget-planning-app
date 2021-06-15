@@ -4,7 +4,7 @@ import {
 
 const EditButton = (props) => {        
     return (
-        <Link to={props.editLink}>Edit</Link>
+        <button className="bttn"><Link className="link" to={props.editLink}>Edit</Link></button>
     )    
 }
 
