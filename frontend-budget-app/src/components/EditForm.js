@@ -24,7 +24,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                             )}
                         </form>
                         <br></br>
-                        <button id="add-income-input-field" onClick={onClickAddIncome} >Add New Income</button>
+                        <button className="bttn" id="add-income-input-field" onClick={onClickAddIncome} >Add New Income</button>
                         <br></br>
                         {data.total_income ?
                         <p>Total Income: ${data.total_income}</p> :
@@ -42,7 +42,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                             })}
                         </form>  
                         <br></br>
-                        <button id="add-expense-input-field" onClick={onClickAddExpense}>Add Expense Input</button>
+                        <button className="bttn" id="add-expense-input-field" onClick={onClickAddExpense}>Add Expense Input</button>
                         {data.total_expenditure ?
                         <p> Total Expense: ${data.total_expenditure} </p> :
                         ''

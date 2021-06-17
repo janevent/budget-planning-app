@@ -9,7 +9,7 @@ export default class SaveNew extends React.Component {
     render(){
         return (
             <form onSubmit={this.handleOnSubmit} >
-                <input type="submit" name="save" value="Save"/>
+                <input className="bttn" type="submit" name="save" value="Save"/>
             </form>
         )
     }
