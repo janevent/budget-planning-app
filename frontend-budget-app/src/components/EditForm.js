@@ -7,11 +7,9 @@ import TitleForm from'./TitleForm';
 
 const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleExpenseChange, onClickAddIncome, onClickAddExpense, saveEdit })  => {
     
-        return(
-            
+        return(           
             <div className='EditForm'>
-                { data ?
-                   
+                { data ?                   
                     <div className='edit-form-wrapper' >
                         <h2 className='edit-form-item'>Edit Your {type} Below</h2>
                         
@@ -21,7 +19,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                             {data.incomes.map( (income) => {
                                 //console.log('income', income)
                                 
-                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} />
+                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} handleIncomeMouseClick={onClickAddIncome}/>
                             }
                             )}
                         </form>
@@ -37,7 +35,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                             { data.expenses.map( (expense) => {
                                 //console.log('data:', data, 'expenses:', data.expenses, 'expense:', expense)
                                 if(expense!==undefined){
-                                    return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} key={expense.id} id={expense.id} />
+                                    return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} handleExpenseMouseClick={onClickAddExpense}key={expense.id} id={expense.id} />
                                 }else{
                                     return ''
                                 }
@@ -54,7 +52,7 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         '' 
                         }
                         <br></br>
-                        <button id="save-edit-button" onClick={saveEdit}>Save</button>
+                        <button className="bttn" id="save-edit-button" onClick={saveEdit}>Save</button>
                     </div>
                 :
                 "" }
