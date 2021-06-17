@@ -15,10 +15,10 @@ export default class IncomeInput extends React.Component {
         
         <div className="IncomeInput">
         { this.props.income ?
-        <div>
-            <label className="label">Description <input type="text" name="description" value={this.props.income.description} onChange={ (event) => this.props.handleIncomeChange(event, this.props.id)} onClick={this.props.handleIncomeMouseClick} />
+        <div className="inputs">
+            <label className="label">Description <input type="text" name="description" className="input" value={this.props.income.description} onChange={ (event) => this.props.handleIncomeChange(event, this.props.id)} onClick={this.props.handleIncomeMouseClick} />
             </label>
-            <label className="label">Amount $<input type="text" name="amount" value={this.props.income.amount} onChange={ (event) => this.props.handleIncomeChange(event, this.props.id)} />
+            <label className="label">Amount $<input type="text" name="amount" className="input" value={this.props.income.amount} onChange={ (event) => this.props.handleIncomeChange(event, this.props.id)} />
             </label>
             <br></br>
             </div>

@@ -323,8 +323,46 @@ code {
 .buttonsContainer {
   display: flex;
   flex-direction: row;
-  
-
   justify-content: flex-start;
   column-gap: 10px;
+}
+
+.label {
+  margin: 5px;
+  
+}
+.input {
+  margin: 10px;
+}
+
+@media screen and (max-width: 768px){
+  body {
+    font-size: 2em;
+  }
+  .container, .edit-container, .show-container {
+    margin: auto;
+    padding: auto;
+  }
+
+  .ExpenseInput, .IncomeInput {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+  }
+
+  .nav-container{
+    height: auto;
+    width: auto;
+  }
+
+  .input {
+    font-size: 1em;
+  }
+
+  .label{
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 }
