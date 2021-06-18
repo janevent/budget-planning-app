@@ -344,6 +344,16 @@ code {
     padding: auto;
   }
 
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .NewBudgetForm, .ShowPage, .NewTemplateForm, .to-the-left {
+    padding: 15px;
+    margin: 15px;
+  }
   .ExpenseInput, .IncomeInput {
     margin-top: 25px;
     display: flex;
@@ -354,7 +364,6 @@ code {
 
   .nav-container{
     height: auto;
-    width: auto;
   }
 
   .input {
