@@ -31,7 +31,7 @@ const ShowPage = ( { data, deleteData, editLink, hoverDelete }) => {
                         <br></br>
                         <div className="buttonsContainer">
                             <EditButton editLink={editLink} data={data}/>
-                            <   Delete item={data} deleteData={deleteData} hoverDelete={hoverDelete} />   
+                            <Delete item={data} deleteData={deleteData} hoverDelete={hoverDelete} />   
                         </div>                    
                     </div>
                 :

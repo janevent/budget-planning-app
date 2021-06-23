@@ -88,9 +88,9 @@ class NavigationBar extends React.Component {
                 <div className="nav-bar">                
                     <div className="nav-item "><LogOut/></div>
                     <br></br>
-                    <div className="nav-item" ><Link to='/new_template' className="high-light">New Budget Template</Link> </div>
+                    <div className="nav-item" ><Link to='/new_template' className="high-light link" >New Budget Template</Link> </div>
                     <br></br>
-                    <div className="nav-item"><Link to='/new_budget' className="high-light">New Budget</Link></div>
+                    <div className="nav-item"><Link to='/new_budget' className="high-light link" >New Budget</Link></div>
                     <br></br>                      
                     <div className="nav-item"><DropDown title="Select Template" items={templates} link={this.templateLink} /></div>
                     <br></br>

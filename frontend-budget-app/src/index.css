@@ -131,6 +131,7 @@ body {
 .header-title:hover {
   background:  rgb(161, 220, 247);
   border-radius: 10px;
+  padding: 10px;
 }
 
 /*.header-title:hover .list{
@@ -264,6 +265,7 @@ h3 {
   border-color: rgb(7, 199, 55);
   background-color: rgb(247, 252, 248);
   border-radius: 15px;
+  height: 230px;
 }
 
 .Home {
@@ -335,10 +337,7 @@ code {
   margin: 10px;
 }
 
-.high-light {
-  text-decoration: none;
-  color: black;
-}
+
 
 @media screen and (max-width: 768px){
   body {
@@ -378,5 +377,11 @@ code {
   .label{
     margin-top: 10px;
     margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 540px){
+  .nav-container {
+    width:fit-content;
   }
 }

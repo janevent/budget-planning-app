@@ -12,7 +12,7 @@ export default class DropDown extends React.Component {
                     { this.props.items.map((i)  => {                             
                         return (
                             <li className="list-item" key={i.id} >
-                                <Link to={this.props.link(i.id)} >{i.title}</Link>
+                                <Link  className="link" to={this.props.link(i.id)} >{i.title}</Link>
                             </li>
                         )
                     })

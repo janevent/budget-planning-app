@@ -8,6 +8,7 @@ import NewBudgetFormContainer from './components/NewBudgetFormContainer.js';
 import ShowTemplateContainer from './components/ShowTemplateContainer.js';
 import ShowBudgetContainer from './components/ShowBudgetContainer.js';
 import EditTemplateContainer from './components/EditTemplateContainer.js';
+import EditBudgetContainer from './components/EditBudgetContainer.js';
 import Home from './components/Home.js';
 import Budgets from './components/Budgets.js';
 
@@ -41,6 +42,7 @@ class App extends React.Component {
               <Route path='/new_template' component={NewTemplateFormContainer } />  
               <Route path='/new_budget' component={NewBudgetFormContainer} />              
               <Route path='/templates/edit/:id' render={ (props) => <EditTemplateContainer {...props} />} />
+              <Route path='/budgets/edit/:id' render={ (props) => <EditBudgetContainer {...props} />} />
               <Route path='/templates/:id' render={ (props) => <ShowTemplateContainer  {...props} /> } />
               <Route path='/budgets/:id' render={(props) => <ShowBudgetContainer  {...props} />} /> 
               <Route path='/budgets' component={Budgets} />

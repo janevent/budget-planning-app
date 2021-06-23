@@ -144,7 +144,7 @@ class EditTemplateContainer extends React.Component {
     }
 
     componentDidMount(){
-        //console.log('componentDidMount templates:', this.props.templates) 
+        
         this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
         this.setTotalIncomes = setInterval( () => { this.totalIncomes()}, 1000)
 
@@ -165,11 +165,6 @@ class EditTemplateContainer extends React.Component {
     }
 
     render (){
-        
-       //console.log('this is EditTemplateContainer:', this.props.templates);
-       //this.props.fetchCurrentUser();
-        //let id = this.props.match.params.id;
-        //let template = this.props.templates.find( (t) => t.id === id);
         return (
             <div className='edit-container'>
                 <div>
@@ -181,8 +176,7 @@ class EditTemplateContainer extends React.Component {
                 }
                 
             </div>
-        )
-        
+        )    
     }
 }
 

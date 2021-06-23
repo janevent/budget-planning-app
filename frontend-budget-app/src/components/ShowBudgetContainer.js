@@ -23,9 +23,10 @@ class ShowBudgetContainer extends React.Component {
     render(){
         let id = this.props.match.params.id;
         let budget = this.props.budgets.find( (b) => b.id === id);
+        let editLink = `/budgets/edit/${id}`;
         return (
             <div className='show-container'>                
-                <ShowPage data={budget} deleteData={this.deleteData} hoverDelete={this.hoverDelete}  />
+                <ShowPage data={budget} editLink={editLink} deleteData={this.deleteData} hoverDelete={this.hoverDelete}  />
             </div>
         )
     }
