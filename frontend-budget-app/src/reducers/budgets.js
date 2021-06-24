@@ -11,6 +11,11 @@ export default(state = [], action) => {
             let firstPart = state.slice(0, index) 
             let lastPart = state.slice( index + 1)
             return [...firstPart, ...lastPart];   
+        case 'EDIT_BUDGET':
+            let budgetIndex = state.findIndex( (b) => b.id === action.id);
+            let first = state.slice(0, index);
+            let last = state.slice(index+1);
+            return [...first, action.budget, ...last]
         default: 
             return state
     }
