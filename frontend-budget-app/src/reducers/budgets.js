@@ -35,6 +35,8 @@ export default(state = [], action) => {
             let bu = state[inde];
             let incs = bu.incomes;
             let newIncomes = [...incs, action.income];
+            let newBu = {...bu, incomes: newIncomes}
+            return [...fir, newBu, ...la]
 
 
         default: 
