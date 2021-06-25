@@ -67,6 +67,18 @@ export default(state = [], action) => {
             let bud = state[index];
             let newBud = {...bud, totalDifference: action.totalDifference};
             return [...firstPart, newBud, ...lastPart]
+        case 'EDIT_BUDGET_UPDATE_TOTAL_DIFFERENCE':
+            let budg = state[index];
+            let newBudg = {...budg, totalDifference: action.totalDifference};
+            return [...firstPart, newBudg, ...lastPart]
+        case 'EDIT_BUDGET_UPDATE_TOTAL_EXPENDITURE':
+            let savedBudget = state[index];
+            let currentBudget = {...savedBudget, totalExpenditure: action.totalExpenditure};
+            return [...firstPart, currentBudget, ...lastPart];
+        case 'EDIT_BUDGET_UPDATE_TOTAL_INCOMES':
+            let savBudget = state[index];
+            let currBudget = {...savBudget, totalIncomes: action.totalIncomes};
+            return [...firstPart, currBudget, ...lastPart]
         default: 
             return state
     }
