@@ -62,7 +62,11 @@ export default(state = [], action) => {
             let lExpenses = oB.expenses.slice(expenseI+1);
             let nExpenses = [...fExpenses, action.expense, ...lExpenses];
             let nB = {...oB, expenses: nExpenses};
-            return [...firstPart, nB, ...lastPart]
+            return [...firstPart, nB, ...lastPart];
+        case 'EDIT_BUDGET_UPDATE_TOTAL_DIFFERENCE':
+            let bud = state[index];
+            let newBud = {...bud, totalDifference: action.totalDifference};
+            return [...firstPart, newBud, ...lastPart]
         default: 
             return state
     }
