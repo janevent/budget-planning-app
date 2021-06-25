@@ -29,15 +29,25 @@ export default(state = [], action) => {
             let newBudget = {...b, expenses: neExs};
             return [...fir, newBudget, ...las]
         case 'EDIT_BUDGET_ADD_NEW_INCOME':
-            let inde = state.findIndex(n => b.id === action.budgetId);
-            let fi = state.slice(0, index);
-            let la = state.slice(index+1);
+            let inde = state.findIndex(b => b.id === action.budgetId);
+            let fi = state.slice(0, inde);
+            let la = state.slice(inde+1);
             let bu = state[inde];
             let incs = bu.incomes;
             let newIncomes = [...incs, action.income];
             let newBu = {...bu, incomes: newIncomes}
-            return [...fir, newBu, ...la]
-
+            return [...fi, newBu, ...la]
+        case 'EDIT_BUDGET_UPDATE_EXPENSE':
+            let ind = state.findIndex(b => b.id === action.budgetId);
+            let f = state.slice(0, ind);
+            let l = state.slice(ind+1);
+            let b = state[ind];
+            let expenseIndex = b.expenses.findIndex(e => e.id === action.expenseId);
+            let firstExpenses = budgetI.expenses.slice(0, index);
+            let lastExpenses = budgetI.expenses.slice(index+1);
+            let newExpenses = [...firstExpenses, action.expense, ...lastExpenses];
+            let newB = {...b, expenses: newExpenses};
+            return [...f, newB, ...l]
 
         default: 
             return state
