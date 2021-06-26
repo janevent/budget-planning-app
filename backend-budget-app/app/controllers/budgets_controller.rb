@@ -47,12 +47,18 @@ class BudgetsController < ApplicationController
     def update 
         budget = Budget.find_by(id: params[:id])
         if budget 
-            budget.update(title: params[:title], total_incomes: params[:total_income], total_expenditure: params[:total_expenditure], total_difference: params[:total_difference])
-            render json: budget
-            # options = { include: [:incomes, :expenses]}
-            #render BudgetSerializer.new(budget, options)
-
-            #updates everytime an attribute is changed and user moves away from changed form field  ?
+            budget.expenses.destroy_all
+            budget.incomes.destroy_all
+            budget.update(budget_params)
+            if budget.save
+                options = { include: [:incomes, :expenses]}
+                render json: BudgetSerializer.new(budget, options).serialized_json
+                # options = { include: [:incomes, :expenses]}
+                #render BudgetSerializer.new(budget, options)
+                #updates everytime an attribute is changed and user moves away from changed form field  ?
+            else
+                render json: {status: "error", code: 300, message: "Unable to save budget"}
+            end
         else
             render json: {status: "error", code: 3000, message: "Unable to find budget"}
         end
