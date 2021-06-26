@@ -27,5 +27,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps,)(EditBudgetContainer))
+export default withRouter(connect(mapStateToProps,{addNewExpense, fetchEditBudget, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpenditure, updateTotalIncomes })(EditBudgetContainer))
 
