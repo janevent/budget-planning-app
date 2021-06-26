@@ -1,6 +1,6 @@
 const editBudget = (budget, id) => {
     return {
-        action: 'EDIT_BUDGET',
+        type: 'EDIT_BUDGET',
         budget,
         id
     }
