@@ -13,7 +13,7 @@ const fetchEditBudget = (budget, id) => {
         console.log('budget', budget, 'id', id)
         console.log("type", typeof id);
         
-        fetch(`http://localhost:3001/budgetss/${id}`, {               
+        fetch(`http://localhost:3001/budgets/${id}`, {               
             credentials: 'include',
             method:'put',
             headers: {
@@ -21,7 +21,7 @@ const fetchEditBudget = (budget, id) => {
                 Accept: 'application/json'
             },
             body: JSON.stringify({
-                template: template })
+                budget })
         })
         .then(resp => resp.json())
         .then( myjson => {
@@ -30,13 +30,13 @@ const fetchEditBudget = (budget, id) => {
             }else {
                 console.log('response:', myjson)
                 //what type does totals come back as
-                let budget = myjson.data.attributes;
-                budget.id = myjson.data.id;
+                let bud = myjson.data.attributes;
+                bud.id = myjson.data.id;
                 let expenses = myjson.included.filter( (i) => i.type === 'expense');
                 let incomes = myjson.included.filter( (i) => i.type === 'income');
-                tem.incomes = incomes;
-                tem.expenses = expenses;
-                dispatch(editBudget(tem, id))
+                bud.incomes = incomes;
+                bud.expenses = expenses;
+                dispatch(editBudget(bud, id))
             }
         })
         .catch(error => console.log(error))
