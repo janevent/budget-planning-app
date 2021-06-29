@@ -14,6 +14,12 @@ import updateTotalIncomes from '../actions/editBudget/updateTotalIncomes';
 
 function EditBudgetContainer(props){
 
+    const getBudget = () => {
+        let id = props.match.params.id;
+        let budget = props.budgets.find( (bud) => bud.id === id )       
+        return budget
+    }
+
     const handleTitleChange = (event) => {
         event.persist();
         let iD = props.match.params.id;
@@ -46,7 +52,7 @@ function EditBudgetContainer(props){
     }
 
     const totalExpenses = () => {
-        let expenses = this.getBudget().expenses.map( (expense) => parseInt(expense.attributes.amount) )
+        let expenses = getBudget().expenses.map( (expense) => parseInt(expense.attributes.amount) )
         let totalExs = expenses.reduce(addFunc, 0);
         let budgetId = props.match.params.id;    
         props.updateTotalExpenditure(totalExs, budgetId);
@@ -103,25 +109,38 @@ function EditBudgetContainer(props){
         props.history.push(`/budgets/${budget.id}`)
     }
 
-    const getBudget = () => {
-        let id = props.match.params.id;
-        let budget = props.budgets.find( (bud) => bud.id === id )       
-        return budget
-    }
-
     const onClickAddExpense = () => {
         let budgetId = props.match.params.id;
         props.addNewExpense(budgetId);
     }
 
     const onClickAddIncome = () => {
-        let templateId = props.match.params.id;
+        let budgetId = props.match.params.id;
         props.addNewIncome(budgetId);
     }
+    useEffect(() => {
+        //this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
+            let setTotalExpenses = setInterval(() =>  totalExpenses() , 1000)
+            const setTotalIncomes = setInterval( () => { totalIncomes()}, 1000)
+            const setTotalDifference = setInterval( () => { totalDifference()}, 1000)
+            let budgetId = props.match.params.id;
+            setTimeout(() => {
+                props.addNewIncome(budgetId)
+            }, 5000)
+            setTimeout(() => {
+                props.addNewExpense(budgetId)
+            }, 5000)
+            return function cleanUp(){
+                clearInterval(setTotalExpenses);
+                clearInterval(setTotalIncomes);
+                clearInterval(setTotalDifference)
+            }
+        }, []
+    )
 
     return (
         <div className='edit-container'>
-            <EditForm />
+            <EditForm saveEdit={saveEdit} data={getBudget()} handleTitleChange={handleTitleChange} type={'Budget'}  handleIncomeChange={handleIncomeChange} handleExpenseChange={handleExpenseChange} onClickAddIncome={onClickAddIncome} onClickAddExpense={onClickAddExpense} />
         </div>
     )
 }
@@ -132,5 +151,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps,{addNewExpense, fetchEditBudget, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpenditure, updateTotalIncomes })(EditBudgetContainer))
+export default withRouter(connect(mapStateToProps,{addNewExpense, addNewIncome, fetchEditBudget, updateExpense, updateIncome, updateTitle, updateTotalDifference, updateTotalExpenditure, updateTotalIncomes })(EditBudgetContainer))
 

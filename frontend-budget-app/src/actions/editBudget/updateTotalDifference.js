@@ -5,3 +5,5 @@ const updateTotalDifference = (totalDifference, id) => {
         id
     }
 }
+
+export default updateTotalDifference;

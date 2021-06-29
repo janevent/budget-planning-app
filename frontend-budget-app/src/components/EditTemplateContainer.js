@@ -17,15 +17,7 @@ import fetchCurrentUser from '../actions/getCurrentUser';
 
 class EditTemplateContainer extends React.Component {
 
-    //constructor(props){
-      //  super(props)
-        //console.log('edittemplate container constructor:', props)
-        
-        //can not access props quick enough
-    //}
-//edit directly in templates or create an editTemplate reducer ?
     handleTitleChange = (event) => {
-        //console.log('handleTitleChange is triggered')
         event.persist();
        let iD = this.props.match.params.id;
        this.props.editTemplateAndUpdateTitle(event.target.value, iD)
@@ -39,7 +31,7 @@ class EditTemplateContainer extends React.Component {
         //console.log('updatedAttributes:', updatedAttributes);
         let updatedIncome = {...income, ...{attributes: updatedAttributes}}
         //let updatedIncome = Object.assign( {}, income, {[name]: value})
-        console.log('income:', income, 'updatedIncome:', updatedIncome)
+        
         let templateId = this.props.match.params.id;
         this.props.editTemplateAndUpdateIncome(updatedIncome, incomeId, templateId)
         this.totalIncomes();
@@ -47,8 +39,6 @@ class EditTemplateContainer extends React.Component {
     }
 
     handleExpenseChange = (event, expenseId) => {
-        //console.log('event:', event)
-        //console.log('expenseId:', expenseId);
         event.persist();
         const { name, value } = event.target;
         let template = this.getTemplate();
