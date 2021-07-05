@@ -30,6 +30,7 @@ export default(state = [], action) => {
             // let lastExpenses = budgetI.expenses.slice(index+1);
             let exs = b.expenses;
             let newExs = [...exs, action.expense];
+            console.log('newExs', newExs)
             let newBudget = {...b, expenses: newExs};
             return [...firstPart, newBudget, ...lastPart]
         case 'EDIT_BUDGET_ADD_NEW_INCOME':
@@ -39,6 +40,7 @@ export default(state = [], action) => {
             let bu = state[index];
             let incs = bu.incomes;
             let newIncomes = [...incs, action.income];
+            console.log('newIncomes', newIncomes)
             let newBu = {...bu, incomes: newIncomes}
             return [...firstPart, newBu, ...lastPart]
         case 'EDIT_BUDGET_UPDATE_EXPENSE':

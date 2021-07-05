@@ -14,19 +14,20 @@ import updateTotalIncomes from '../actions/editBudget/updateTotalIncomes';
 
 function EditBudgetContainer(props){
 
-    const getBudget = () => {
+    function getBudget(){
         let id = props.match.params.id;
+        //console.log('id', id, 'budgets', props.budgets)
         let budget = props.budgets.find( (bud) => bud.id === id )       
         return budget
     }
 
-    const handleTitleChange = (event) => {
+    function handleTitleChange(event){
         event.persist();
         let iD = props.match.params.id;
         props.updateTitle(event.target.value, iD)
     }
 
-    const handleIncomeChange = (event, incomeId) => {
+    function handleIncomeChange(event, incomeId){
         const { name, value } = event.target;
         let budget = getBudget();
         let income = budget.incomes.find( income => income.id === incomeId);
@@ -37,7 +38,7 @@ function EditBudgetContainer(props){
         totalIncomes();
     }
 
-    const handleExpenseChange = (event, expenseId) => {
+    function handleExpenseChange(event, expenseId){
         event.persist();
         const { name, value } = event.target;
         let budget = getBudget();
@@ -51,14 +52,15 @@ function EditBudgetContainer(props){
         totalExpenses();
     }
 
-    const totalExpenses = () => {
+    function totalExpenses(){
+        console.log('budgets', props.budgets)
         let expenses = getBudget().expenses.map( (expense) => parseInt(expense.attributes.amount) )
         let totalExs = expenses.reduce(addFunc, 0);
         let budgetId = props.match.params.id;    
         props.updateTotalExpenditure(totalExs, budgetId);
     }
 
-    const totalIncomes = () => {
+    function totalIncomes(){
         let incomes = getBudget().incomes.map( (income) => {
             return parseInt(income.attributes.amount)
         });
@@ -68,11 +70,11 @@ function EditBudgetContainer(props){
         props.updateTotalIncomes(totalIncome, budgetId)
     }
 
-    const addFunc = (total, number) => {
+    function addFunc(total, number){
         return total + number
     }
 
-    const totalDifference = () => {
+    function totalDifference(){
         let budgetId = props.match.params.id
         let budget = props.budgets.find(t => t.id === budgetId)
         let totalDif = budget.total_income - budget.total_expenditure;
@@ -109,21 +111,25 @@ function EditBudgetContainer(props){
         props.history.push(`/budgets/${budget.id}`)
     }
 
-    const onClickAddExpense = () => {
+    const onClickAddExpense = (event) => {
         let budgetId = props.match.params.id;
+        console.log('once budgetId', budgetId)
         props.addNewExpense(budgetId);
     }
 
     const onClickAddIncome = () => {
         let budgetId = props.match.params.id;
+        console.log('onci budgetId', budgetId)
         props.addNewIncome(budgetId);
     }
     useEffect(() => {
         //this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
-            let setTotalExpenses = setInterval(() =>  totalExpenses() , 1000)
-            const setTotalIncomes = setInterval( () => { totalIncomes()}, 1000)
-            const setTotalDifference = setInterval( () => { totalDifference()}, 1000)
+            let setTotalExpenses = setInterval(() => { totalExpenses() }, 5000)
+            let setTotalIncomes = setInterval( () => { totalIncomes()}, 5000)
+            let setTotalDifference = setInterval( () => { totalDifference()}, 5000)
             let budgetId = props.match.params.id;
+            console.log(budgetId)
+            console.log('budgets', props.budgets)
             setTimeout(() => {
                 props.addNewIncome(budgetId)
             }, 5000)
@@ -136,11 +142,14 @@ function EditBudgetContainer(props){
                 clearInterval(setTotalDifference)
             }
         }, []
-    )
+        )
 
     return (
         <div className='edit-container'>
-            <EditForm saveEdit={saveEdit} data={getBudget()} handleTitleChange={handleTitleChange} type={'Budget'}  handleIncomeChange={handleIncomeChange} handleExpenseChange={handleExpenseChange} onClickAddIncome={onClickAddIncome} onClickAddExpense={onClickAddExpense} />
+            {props.budgets.length > 0?
+                <EditForm saveEdit={saveEdit} data={getBudget()} handleTitleChange={handleTitleChange} type={'Budget'}  handleIncomeChange={handleIncomeChange} handleExpenseChange={handleExpenseChange} onClickAddIncome={onClickAddIncome} onClickAddExpense={onClickAddExpense} />
+            : ''
+            }
         </div>
     )
 }
