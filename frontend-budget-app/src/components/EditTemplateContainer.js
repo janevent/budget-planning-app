@@ -54,10 +54,10 @@ class EditTemplateContainer extends React.Component {
 
     totalExpenses = () => {
         let expenses = this.getTemplate().expenses.map( (expense) => parseInt(expense.attributes.amount) )
-        console.log('expenses:', expenses);
+        
         let totalExpenses = expenses.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
-        console.log("totalExpenses", totalExpenses)
+        
         this.props.updateTotalExpenditure(templateId, totalExpenses);
     }
 
@@ -67,7 +67,7 @@ class EditTemplateContainer extends React.Component {
         });
         let totalIncome = incomes.reduce(this.addFunc, 0);
         let templateId = this.props.match.params.id;
-        console.log('updatedTotalIncome', totalIncome)
+        
         this.props.updateTotalIncomes(templateId, totalIncome)
     }
     addFunc = (total, number) => {
