@@ -16,10 +16,10 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         <TitleForm title={data.title} handleTitleChange={handleTitleChange} />
                         <h3>Incomes</h3>
                         <form>
-                            {data.incomes.map( (income) => {
+                            {data.incomes.map( (income, index) => {
                                 //console.log('income', income)
                                 
-                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={income.id} id={income.id} handleIncomeMouseClick={onClickAddIncome}/>
+                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={index} id={index} handleIncomeMouseClick={onClickAddIncome}/>
                             }
                             )}
                         </form>
@@ -32,10 +32,10 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         }
                         <h3>Expenses</h3>
                         <form>
-                            { data.expenses.map( (expense) => {
+                            { data.expenses.map( (expense, index) => {
                                 //console.log('data:', data, 'expenses:', data.expenses, 'expense:', expense)
                                 if(expense!==undefined){
-                                    return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} handleExpenseMouseClick={onClickAddExpense}key={expense.id} id={expense.id} />
+                                    return <ExpenseInput expense={expense.attributes} handleChange={handleExpenseChange} handleExpenseMouseClick={onClickAddExpense}key={index} id={index} />
                                 }else{
                                     return ''
                                 }

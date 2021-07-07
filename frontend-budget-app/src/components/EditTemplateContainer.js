@@ -23,17 +23,19 @@ class EditTemplateContainer extends React.Component {
        this.props.editTemplateAndUpdateTitle(event.target.value, iD)
     }
 
-    handleIncomeChange = (event, incomeId) => {
+    handleIncomeChange = (event, id) => {
         const { name, value } = event.target;
         let template = this.getTemplate();
-        let income = template.incomes.find( income => income.id === incomeId);
+        let income = template.incomes[id];
+        console.log('template', template, 'income', income, 'id', id)
+        
         let updatedAttributes = {...income.attributes, ...{[name]: value} };
-        //console.log('updatedAttributes:', updatedAttributes);
+        console.log('updatedAttributes:', updatedAttributes);
         let updatedIncome = {...income, ...{attributes: updatedAttributes}}
         //let updatedIncome = Object.assign( {}, income, {[name]: value})
         
         let templateId = this.props.match.params.id;
-        this.props.editTemplateAndUpdateIncome(updatedIncome, incomeId, templateId)
+        this.props.editTemplateAndUpdateIncome(updatedIncome, id, templateId)
         this.totalIncomes();
         //update totals
     }
@@ -43,8 +45,8 @@ class EditTemplateContainer extends React.Component {
         const { name, value } = event.target;
         let template = this.getTemplate();
         let templateId = this.props.match.params.id;
-        const matchExpense = (expense) => expense.id === expenseId
-        let expense = template.expenses.find( matchExpense );
+        
+        let expense = template.expenses[expenseId]
         let updatedAttributes = {...expense.attributes, ...{[name]:value}}
         let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
         //console.log('updatedExpense:', updatedExpense)

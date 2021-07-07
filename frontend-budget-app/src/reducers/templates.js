@@ -45,10 +45,11 @@ export default (state =  [], action) => {
                 return template.id === action.templateId
             })
             let firstPartTs = state.slice(0, indexOfT);
-            let lastPartTs = state.slice( indexOfT+1)
-            let indexOfExpense = templateToUpdateExpense.expenses.findIndex( (expense) => {
-                return expense.id === action.expenseId
-            });
+            let lastPartTs = state.slice( indexOfT+1);
+            let indexOfExpense = action.expenseId
+            //let indexOfExpense = templateToUpdateExpense.expenses.findIndex( (expense) => {
+              //  return expense.id === action.expenseId
+            //});
             let firstPartExpenses = templateToUpdateExpense.expenses.slice(0, indexOfExpense);
             let lastPartExpenses = templateToUpdateExpense.expenses.slice(indexOfExpense + 1);
             let updatedExpenses = [...firstPartExpenses, action.expense, ...lastPartExpenses];
@@ -65,9 +66,10 @@ export default (state =  [], action) => {
             })
             let firstPartTemplates = state.slice(0, indexOfTemplate);
             let lastPartTemplates = state.slice( indexOfTemplate+1)
-            let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
-                return income.id === action.incomeId
-            });
+            //let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
+              //  return income.id === action.incomeId
+            //});
+            let indexOfIncome = action.incomeId
             let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
             let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
             let updatedIncomes = [...firstPartIncomes, action.income, ...lastPartIncomes];

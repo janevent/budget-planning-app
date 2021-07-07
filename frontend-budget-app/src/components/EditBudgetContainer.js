@@ -30,7 +30,8 @@ function EditBudgetContainer(props){
     function handleIncomeChange(event, incomeId){
         const { name, value } = event.target;
         let budget = getBudget();
-        let income = budget.incomes.find( income => income.id === incomeId);
+        //let income = budget.incomes.find( income => income.id === incomeId);
+        let income = budget.incomes[incomeId]
         let updatedAttributes = {...income.attributes, ...{[name]: value} };
         let updatedIncome = {...income, ...{attributes: updatedAttributes}}
         let budgetId = props.match.params.id;
@@ -42,9 +43,11 @@ function EditBudgetContainer(props){
         event.persist();
         const { name, value } = event.target;
         let budget = getBudget();
+        console.log('budget', budget)
         let budgetId = props.match.params.id;
-        const matchExpense = (expense) => expense.id === expenseId
-        let expense = budget.expenses.find( matchExpense );
+        //const matchExpense = (expense) => expense.id === expenseId
+        //let expense = budget.expenses.find( matchExpense );
+        let expense = budget.expenses[expenseId]
         let updatedAttributes = {...expense.attributes, ...{[name]:value}}
         let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
         //console.log('updatedExpense:', updatedExpense)
@@ -111,7 +114,7 @@ function EditBudgetContainer(props){
         props.history.push(`/budgets/${budget.id}`)
     }
 
-    const onClickAddExpense = (event) => {
+    const onClickAddExpense = () => {
         let budgetId = props.match.params.id;
         console.log('once budgetId', budgetId)
         props.addNewExpense(budgetId);
@@ -146,7 +149,7 @@ function EditBudgetContainer(props){
 
     return (
         <div className='edit-container'>
-            {props.budgets.length > 0?
+            {props.budgets.length !== 0?
                 <EditForm saveEdit={saveEdit} data={getBudget()} handleTitleChange={handleTitleChange} type={'Budget'}  handleIncomeChange={handleIncomeChange} handleExpenseChange={handleExpenseChange} onClickAddIncome={onClickAddIncome} onClickAddExpense={onClickAddExpense} />
             : ''
             }
