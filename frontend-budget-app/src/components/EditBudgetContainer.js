@@ -16,7 +16,7 @@ function EditBudgetContainer(props){
 
     function getBudget(){
         let id = props.match.params.id;
-        //console.log('id', id, 'budgets', props.budgets)
+        console.log('id', id, 'budgets', props.budgets)
         let budget = props.budgets.find( (bud) => bud.id === id )       
         return budget
     }
@@ -32,11 +32,13 @@ function EditBudgetContainer(props){
         let budget = getBudget();
         //let income = budget.incomes.find( income => income.id === incomeId);
         let income = budget.incomes[incomeId]
+        console.log('budget', budget, 'income', income, 'incomeId', incomeId)
         let updatedAttributes = {...income.attributes, ...{[name]: value} };
         let updatedIncome = {...income, ...{attributes: updatedAttributes}}
         let budgetId = props.match.params.id;
+        console.log('updatedIncome', updatedIncome, 'incomdId', incomeId, 'budgetId', budgetId)
         props.updateIncome(updatedIncome, incomeId, budgetId)
-        totalIncomes();
+        //totalIncomes();
     }
 
     function handleExpenseChange(event, expenseId){
@@ -52,18 +54,25 @@ function EditBudgetContainer(props){
         let updatedExpense = {...expense, ...{ attributes: updatedAttributes} }
         //console.log('updatedExpense:', updatedExpense)
         props.updateExpense(updatedExpense, expenseId, budgetId);
-        totalExpenses();
+        //totalExpenses();
     }
 
     function totalExpenses(){
         console.log('budgets', props.budgets)
-        let expenses = getBudget().expenses.map( (expense) => parseInt(expense.attributes.amount) )
+        let budget = getBudget()
+        console.log(budget)
+        //debugger
+        let expenses = budget.expenses.map( (expense) => {
+            //debugger
+            return parseInt(expense.attributes.amount) })
+        //debugger
         let totalExs = expenses.reduce(addFunc, 0);
         let budgetId = props.match.params.id;    
         props.updateTotalExpenditure(totalExs, budgetId);
     }
 
     function totalIncomes(){
+        //debugger
         let incomes = getBudget().incomes.map( (income) => {
             return parseInt(income.attributes.amount)
         });
@@ -127,9 +136,13 @@ function EditBudgetContainer(props){
     }
     useEffect(() => {
         //this.setTotalExpenses = setInterval( () => { this.totalExpenses() }, 1000 )
-            let setTotalExpenses = setInterval(() => { totalExpenses() }, 5000)
-            let setTotalIncomes = setInterval( () => { totalIncomes()}, 5000)
-            let setTotalDifference = setInterval( () => { totalDifference()}, 5000)
+            let setTotalExpenses = setInterval(() => { 
+                return props.budgets.length > 0 ? totalExpenses() : '' }, 5000)
+            let setTotalIncomes = setInterval( () => { 
+                return props.budgets.length > 0 ? totalIncomes() : '' }, 5000)
+            let setTotalDifference = setInterval( () => {
+                return props.budgets.length > 0 ? totalDifference() : ' '}, 5000)
+
             let budgetId = props.match.params.id;
             console.log(budgetId)
             console.log('budgets', props.budgets)
@@ -149,7 +162,7 @@ function EditBudgetContainer(props){
 
     return (
         <div className='edit-container'>
-            {props.budgets.length !== 0?
+            {props.budgets.length > 0?
                 <EditForm saveEdit={saveEdit} data={getBudget()} handleTitleChange={handleTitleChange} type={'Budget'}  handleIncomeChange={handleIncomeChange} handleExpenseChange={handleExpenseChange} onClickAddIncome={onClickAddIncome} onClickAddExpense={onClickAddExpense} />
             : ''
             }

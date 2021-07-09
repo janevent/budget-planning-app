@@ -15,21 +15,30 @@ const EditForm = ( { data, type, handleTitleChange, handleIncomeChange, handleEx
                         
                         <TitleForm title={data.title} handleTitleChange={handleTitleChange} />
                         <h3>Incomes</h3>
-                        <form>
-                            {data.incomes.map( (income, index) => {
-                                //console.log('income', income)
+                        
+                            <form>
+                                {data.incomes.length > 0 ?    
+                                data.incomes.map( (income, index) => {
+                                    console.log('income', income)
                                 
-                                return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={index} id={index} handleIncomeMouseClick={onClickAddIncome}/>
-                            }
-                            )}
-                        </form>
-                        <br></br>
-                        <button className="bttn" id="add-income-input-field" onClick={onClickAddIncome} >Add New Income</button>
-                        <br></br>
+                                    return <IncomeInput income={income.attributes} handleIncomeChange={handleIncomeChange} key={index} id={index} handleIncomeMouseClick={onClickAddIncome}/>
+                                    }
+                                )
+                            
+                                : "" }
+                            </form>
+                            <br></br>
+
+                            <button className="bttn" id="add-income-input-field" onClick={onClickAddIncome} >Add New Income</button>
+                            <br></br>
+                         
+                        
+
                         {data.total_income ?
                         <p>Total Income: ${data.total_income}</p> :
                         ''
                         }
+                        
                         <h3>Expenses</h3>
                         <form>
                             { data.expenses.map( (expense, index) => {

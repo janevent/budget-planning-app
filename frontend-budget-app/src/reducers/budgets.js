@@ -49,9 +49,10 @@ export default(state = [], action) => {
             // let l = state.slice(ind+1);
             let budge = state[index];
             console.log('b', budge)
-            let expenseIndex = budge.expenses.findIndex(e => e.id === action.expenseId);
-            let firstExpenses = budge.expenses.slice(0, expenseIndex);
-            let lastExpenses = budge.expenses.slice(expenseIndex+1);
+            //let expenseIndex = budge.expenses.findIndex(e => e.id === action.expenseId);
+            let expenseId = action.expenseId
+            let firstExpenses = budge.expenses.slice(0, expenseId);
+            let lastExpenses = budge.expenses.slice(expenseId+1);
             let newExpenses = [...firstExpenses, action.expense, ...lastExpenses];
             let newB = {...budge, expenses: newExpenses};
             return [...firstPart, newB, ...lastPart]
@@ -61,11 +62,13 @@ export default(state = [], action) => {
             // let lP = state.slice(i+1);
             let oB = state[index];
             console.log('b', oB)
-            let incomeI = oB.incomes.findIndex(e => e.id === action.expenseId);
+           // let incomeI = oB.incomes.findIndex(e => e.id === action.expenseId);
+            let incomeI = action.incomeId
             let fIncomes = oB.incomes.slice(0, incomeI);
             let lIncomes = oB.incomes.slice(incomeI+1);
             let nIncomes = [...fIncomes, action.income, ...lIncomes];
             let nB = {...oB, incomes: nIncomes};
+            console.log('nB', nB)
             return [...firstPart, nB, ...lastPart];
         case 'EDIT_BUDGET_UPDATE_TOTAL_DIFFERENCE':
             let bud = state[index];

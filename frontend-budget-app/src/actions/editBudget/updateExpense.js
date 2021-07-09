@@ -1,7 +1,7 @@
-const updateExpense = (budget, expenseId, budgetId) => {
+const updateExpense = (expense, expenseId, budgetId) => {
     return {
         type: 'EDIT_BUDGET_UPDATE_EXPENSE',
-        budget: budget,
+        expense,
         expenseId,
         id: budgetId
     }
