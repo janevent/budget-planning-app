@@ -76,11 +76,22 @@ class NewTemplateForm extends React.Component {
     }
 
     handleExpenseMouseClick = () => {
-        this.props.createNewExpense();
+        console.log(this.props.newTemplate.expenses)
+        let filteredExpenses = this.props.newTemplate.expenses.filter( expense => expense.description === "" && expense.amount === "0")
+        let numOfEmptyExp = filteredExpenses.length;
+        if(numOfEmptyExp < 3){
+            this.props.createNewExpense();
+        }
     }
 
     handleIncomeMouseClick = () => {
-        this.props.createNewIncome();
+        console.log(this.props.newTemplate.incomes)
+        let filteredIncomes = this.props.newTemplate.incomes.filter( income => income.description === "" && income.amount === "0");
+        let numOfEmptyInc = filteredIncomes.length;
+        console.log('filteredIncomes', filteredIncomes, 'numOfEmptyInc', numOfEmptyInc)
+        if(numOfEmptyInc < 3){
+            this.props.createNewIncome();
+        }
     }
 
     setTotalDifference = () => {   

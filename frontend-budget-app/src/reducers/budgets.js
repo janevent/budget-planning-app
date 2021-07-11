@@ -1,6 +1,6 @@
 export default(state = [], action) => {
     let index = state.findIndex( (b) => b.id === action.id);
-    console.log('index:', index)
+    
     let firstPart = state.slice(0, index) 
     let lastPart = state.slice( index + 1)
     switch(action.type){

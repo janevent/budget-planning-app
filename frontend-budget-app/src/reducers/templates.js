@@ -139,7 +139,7 @@ export default (state =  [], action) => {
             return mergedTemps
 
         default:
-            console.log('state', state)
+            
             return state
     }
 }
