@@ -100,11 +100,23 @@ class NewBudgetFormContainer extends React.Component {
     //create new incomes and expenses
 
     handleCreateNewIncome = (event) => {
-        this.props.createNewIncome();
+        let filteredIncomes = this.props.newBudget.incomes.filter( (income) => {
+            return income.description === "" && income.amount === "0"
+        })
+        let numOfEmptyInc = filteredIncomes.length;
+        if(numOfEmptyInc < 3){
+            this.props.createNewIncome();
+        }
     }
 
     handleCreateNewExpense = (event) => {
-        this.props.createNewExpense();
+        let filteredExpenses = this.props.newBudget.expenses.filter( (expense) => {
+            return expense.description === "" && expense.amount === "0"
+        });
+        let numOfEmptyExp = filteredExpenses.length;
+        if(numOfEmptyExp < 3){
+            this.props.createNewExpense();
+        }
     }
 
     render(){
