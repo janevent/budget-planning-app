@@ -73,14 +73,15 @@ body {
 }*/
 
 .transfer, .ClearForm {
-  padding: 20px;
+  padding: 15px;
+  height: fit-content;
 }
 
-.ClearForm {
+/*.ClearForm {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-}
+}*/
 
 
 
@@ -265,7 +266,8 @@ h3 {
   border-color: rgb(7, 199, 55);
   background-color: rgb(247, 252, 248);
   border-radius: 15px;
-  height: 230px;
+ /* height: 230px;*/
+  height: auto;
 }
 
 .Home {
