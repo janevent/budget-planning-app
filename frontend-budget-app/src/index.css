@@ -456,4 +456,18 @@ code {
   h2 {
     font-weight: 550;
   }
+
+  .to-the-left {
+    padding-top: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .NewTemplateForm {
+    margin: auto;
+    margin-left: 15px;
+    padding: auto;
+  }
+
+  
 }
