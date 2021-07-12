@@ -342,7 +342,7 @@ code {
 
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1024px){
   body {
     font-size: 2em;
   }
@@ -357,10 +357,10 @@ code {
     /*align-items: center;*/
   }
   
-  .NewBudgetForm, .ShowPage, .NewTemplateForm, .to-the-left, .EditForm {
+ /* .NewBudgetForm, .ShowPage, .NewTemplateForm, .to-the-left, .EditForm {
     padding: 15px;
     margin: 15px;
-  }
+  }*/
   .ExpenseInput, .IncomeInput, .inputs {
     margin-top: 25px;
     display: flex;
@@ -385,9 +385,7 @@ code {
   .App{ 
     margin: auto;
     display: flex;
-    flex-direction: column;
-    
-    
+    flex-direction: column;  
   }
 }
 
@@ -405,7 +403,17 @@ code {
   }
 
   .container{
-    justify-content: center;
+    justify-content: center;   
+  }
+}
+
+@media screen and (max-width: 414px){
+  body {
+    font-size: 4em;
     
+  }
+
+  .nav-container {
+    height: 300px;
   }
 }
