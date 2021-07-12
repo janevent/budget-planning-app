@@ -122,18 +122,19 @@ body {
 .list-item {
   display: block;
   border-radius: 10px;
-  padding-right: 1px;
+  margin: 5px;
+
 }
 
 .list-item:hover {
   background:  rgb(161, 220, 247);
 }
 
-.header-title:hover {
+/*.header-title:hover {
   background:  rgb(161, 220, 247);
   border-radius: 10px;
   padding: 10px;
-}
+}*/
 
 /*.header-title:hover .list{
   display: block;
