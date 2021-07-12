@@ -416,4 +416,44 @@ code {
   .nav-container {
     height: 300px;
   }
+
+  .show-contianer, .container, .to-the-left {
+    margin: auto;
+    padding: auto;
+  }
+
+  .show-page-wrap {
+    
+    align-items: center;
+  }
+
+  .show-container {
+    align-items: center;
+  }
+
+  .ShowPage {
+    margin: auto;
+    padding: auto;
+  }
+
+  .App {
+    background: cover;
+    text-align: center;
+  }
+
+  .label {
+    font-size: 1.5em;
+  }
+
+  .ExpenseInput {
+    padding-bottom: 20px;
+  }
+
+  .IncomeInput {
+    padding-bottom: 20px;
+  }
+
+  h2 {
+    font-weight: 550;
+  }
 }
