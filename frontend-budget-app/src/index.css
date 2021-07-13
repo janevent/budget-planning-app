@@ -455,12 +455,13 @@ code {
 
   h2 {
     font-weight: 550;
+    font-size: 2.5em;
   }
 
   .to-the-left {
     padding-top: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
 
   .NewTemplateForm {
@@ -477,5 +478,31 @@ code {
     margin-bottom: 25px;
   }
 
+  .expenses-wrapper, .incomes-wrapper {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  .show-container {
+    width: 350%;
+    margin-bottom: 75px;
+    margin-top: 50px;
+  }
   
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .bttn {
+    font-size: 2em;
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10%;
+  }
 }

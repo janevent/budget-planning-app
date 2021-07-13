@@ -11,7 +11,7 @@ const ShowPage = ( { data, deleteData, editLink, hoverDelete }) => {
                     <div className="show-page-wrap">
                         <h2>{data.title}</h2>
                         <h3>Expenses</h3>
-                        <div>{
+                        <div className="wrap">{
                             data.expenses ?
                             data.expenses.map (t => <p className="expenses-wrapper">{t.attributes.description} { !!t.attributes.description ? `: $${t.attributes.amount}` : ""}</p> 
                             ) 
@@ -20,7 +20,7 @@ const ShowPage = ( { data, deleteData, editLink, hoverDelete }) => {
                         </div>
                         <h3>Total Expenditure: ${data.total_expenditure} </h3>
                         <h3>Incomes</h3>
-                        <div>{
+                        <div className="wrap">{
                             data.incomes ?
                             data.incomes.map ( i => <p className='incomes-wrapper'>{i.attributes.description} {!!i.attributes.description ? ` : $${i.attributes.amount}` : ""}</p>) :
                             ""
