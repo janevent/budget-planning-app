@@ -500,9 +500,14 @@ code {
   }
 
   .bttn {
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 30px;
     padding: 20px;
     border-radius: 10%;
+  }
+
+  .list {
+    background-color: rgb(0,0,0,0);
+    border: none;
   }
 }
