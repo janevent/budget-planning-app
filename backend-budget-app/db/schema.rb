@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_06_01_203942) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "budgets", force: :cascade do |t|
     t.string "title"
     t.integer "total_income"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_203942) do
     t.integer "total_difference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_budgets_on_user_id"
   end
 
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_203942) do
     t.integer "amount"
     t.string "description"
     t.string "paymentable_type"
-    t.integer "paymentable_id"
+    t.bigint "paymentable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["paymentable_type", "paymentable_id"], name: "index_expenses_on_paymentable_type_and_paymentable_id"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_203942) do
     t.string "description"
     t.integer "amount"
     t.string "gainsable_type"
-    t.integer "gainsable_id"
+    t.bigint "gainsable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["gainsable_type", "gainsable_id"], name: "index_incomes_on_gainsable_type_and_gainsable_id"
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_203942) do
     t.integer "total_income"
     t.integer "total_expenditure"
     t.integer "total_difference"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_templates_on_user_id"

@@ -38,6 +38,7 @@ class SessionsController < ApplicationController
             user = current_user
             options = {
                 include: [:templates, :budgets]
+                
             }
            # binding.pry
             templates = user.templates.map do | template |

@@ -7,7 +7,7 @@ export default class DropDown extends React.Component {
     render(){      
         return (          
                 <div className="wrapper">
-                    <div className="header-title high-light">{this.props.title}</div>                       
+                    <div className="high-light link header-title">{this.props.title}</div>                       
                     <ul className="list">
                     { this.props.items.map((i)  => {                             
                         return (
