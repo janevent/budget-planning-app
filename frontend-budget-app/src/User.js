@@ -50,10 +50,10 @@ class User extends React.Component {
                     </label>
                     
                     <label>
-                        Password <input type="text" name="password" value={this.state.password}  onChange={this.handlePasswordChange} />
+                        Password <input type="password" name="password" value={this.state.password}  onChange={this.handlePasswordChange} />
                     </label>
                     <br></br>
-                    <input type="submit" className="bttn" value="Log In" />
+                    <input type="submit" className="bttn login" value="Log In" />
                 </form>
             </div>
         )

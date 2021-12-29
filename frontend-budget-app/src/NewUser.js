@@ -57,14 +57,14 @@ class NewUser extends React.Component {
                     </label>
                     
                     <label>
-                        Password <input type="text" name="password" value= {this.state.password} onChange={this.handlePasswordChange}/>
+                        Password <input type="password" name="password" value= {this.state.password} onChange={this.handlePasswordChange}/>
                     </label>
                     
                     <label>
-                        Email <input type="text" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
+                        Email <input type="email" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
                     </label>
                     <br></br>
-                    <input type="submit" className="bttn" value="Sign Up" />
+                    <input type="submit" className="bttn signup" value="Sign Up" />
                 </form>
             </div>
         )       

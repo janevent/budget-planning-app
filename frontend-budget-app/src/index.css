@@ -340,6 +340,10 @@ code {
   margin: 0px;
 }
 
+.signup, .login{
+  font-size: .75em;
+}
+
 .no-underline{
   text-decoration: none;
   color: black;
@@ -459,14 +463,22 @@ code {
   .container{
     justify-content: center;   
   }
+
+  .show-container{
+    margin-right: 0px;
+    padding: 0px;
+    
+  }
 }
 
 @media screen and (max-width: 414px){
-  body {
-    font-size: 4em;
+  /* body {
     
+    
+  } */
+  .signup, .login {
+    font-size: 1em;
   }
-
   .nav-container {
     height: 300px;
   }
@@ -509,7 +521,7 @@ code {
 
   h2 {
     font-weight: 550;
-    font-size: 2.5em;
+    font-size: 3em;
   }
 
   .to-the-left {
@@ -532,14 +544,6 @@ code {
     margin-bottom: 25px;
   }
 
-  .expenses-wrapper, .incomes-wrapper {
-    font-size: 1.5em;
-  }
-
-  h3 {
-    font-size: 2em;
-  }
-
   .show-container {
     width: 350%;
     margin-bottom: 75px;
@@ -554,12 +558,22 @@ code {
   }
 
   .bttn {
-    font-size: 1.5em;
+    font-size: 2.5em;
     margin: 30px;
     padding: 20px;
     border-radius: 10%;
   }
 
+  .signup, .login {
+    font-size: .75em;
+    padding: 10px;
+  }
+  .link, h3, .expenses-wrapper, .incomes-wrapper {
+    font-size: 2.5em;
+  }
+  .link {
+    margin-right: 85px;
+  }
   .list {
     background-color: rgb(0,0,0,0);
     border: none;
