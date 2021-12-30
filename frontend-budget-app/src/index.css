@@ -4,6 +4,11 @@
 
 @tailwind utilities;*/
 
+:root{
+  --highlight: rgb(161, 220, 247);
+  --lightblue: rgb(48, 194, 252);
+  --green: rgb(7, 199, 55);
+}
 body {
   margin: 0;
   background-image: url("./pics/oliver-paske-stones.jpg"); 
@@ -30,12 +35,12 @@ body {
 .nav-container {
   /* height */
   height: 60px;
-  border-color: rgb(161, 220, 247);
+  border-color:var(--highlight);
   border-bottom-style: solid;
   border-width: 10px;
   padding: 20px;
   margin: 0px; 
-  background: rgb(48, 194, 252);
+  background: var(--lightblue);
 }
 
 .nav-bar {
@@ -67,7 +72,7 @@ div.nav-item.firstChild{
   display: none;
 }
 .bttn:hover{
-  background: rgb(161, 220, 247);
+  background: var(--highlight);
 }
 /* DropDown child of nav-item */
 
@@ -79,7 +84,7 @@ div.nav-item.firstChild{
   padding-bottom: 5px;
 }
 .high-light:hover {
-  background: rgb(161, 220, 247);
+  background: var(--highlight);
   border-radius: 10px;
 }
 
@@ -117,7 +122,7 @@ div.nav-item.firstChild{
   padding-right: 10px;*/
   padding: 5px;
   border-style: solid;
-  border-color:rgb(7, 199, 55);
+  border-color:var(--green);
   border-width: 2px;
   border-radius: 10px;
   /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -150,7 +155,7 @@ div.nav-item.firstChild{
 }
 
 .list-item:hover {
-  background:  rgb(161, 220, 247);
+  background:  var(--highlight);
 }
 
 /*.header-title:hover {
@@ -192,7 +197,7 @@ div.nav-item.firstChild{
   margin-left: 50px;
   border-style: solid;
   border-radius: 15px;
-  border-color: rgb(48, 194, 252);
+  border-color: var(--lightblue);
   background-color: white;
 }
 
@@ -207,7 +212,7 @@ div.nav-item.firstChild{
   margin-left: 50px; 
   border-style: solid;
   border-radius: 15px;
-  border-color: rgb(48, 194, 252);
+  border-color: var(--lightblue);
   background-color: white;
 }
 
@@ -217,7 +222,7 @@ div.nav-item.firstChild{
   margin: 50px;
   text-align: center;
   border-style: solid;
-  border-color: rgb(48, 194, 252);
+  border-color: var(--lightblue);
   border-radius: 15px;
   background-color: white;
 }
@@ -239,7 +244,7 @@ div.nav-item.firstChild{
   box-sizing: content-box;
   display: inline-block;
   border-style: solid;
-  border-color: rgb(48, 194, 252);
+  border-color: var(--highlight);
   border-width: 1px;
   padding: 5px;
 }
@@ -254,7 +259,7 @@ div.nav-item.firstChild{
   font-weight: lighter;
   
   
-  color: rgb(7, 199, 55);
+  color: var(--green);
 }
 
 .ShowPage, .NewTemplateForm, .NewBudgetForm {
@@ -264,7 +269,7 @@ div.nav-item.firstChild{
 }
 
 .center {
-  color: rgb(8, 220, 235);
+  color: var(--lightblue);
   font-size: 1.5em;
   display: flex;
   flex-direction: column;
@@ -272,7 +277,7 @@ div.nav-item.firstChild{
 }
 
 .center > h1 {
-  color: rgb(8, 220, 235);
+  color: var(--lightblue);
 }
 
 
@@ -281,7 +286,7 @@ h1, h2, h3 {
 }
 
 h3 {
-  color: rgb(7, 199, 55);;
+  color: var(--green);
 }
 
 .to-the-left {
@@ -290,7 +295,7 @@ h3 {
   flex-direction: column;
   align-items: start;
   border-style: solid;
-  border-color: rgb(7, 199, 55);
+  border-color: var(--green);
   background-color: rgb(247, 252, 248);
   border-radius: 15px;
  /* height: 230px;*/
@@ -487,7 +492,7 @@ code {
 
   .close, .open{
     width: 1.5rem;
-    color:blue;
+    color: black;
     margin-left: auto;
   }
 
@@ -521,13 +526,26 @@ code {
   }
   .nav-item {
     display: none;
-    background-color: rgb(40, 250, 40);
+   /* background-color: rgb(40, 250, 40);*/
+  }
+
+   .high-light{
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .high-light:hover{
+    background-color:var(--highlight);
+  }
+
+  .high-light:active{
+    background-color:rgb(50, 50, 50);
   }
   
 
   .logout{
     display: block;
-    background-color: transparent;
+    
     margin-right: auto;
     left:0;
   }
