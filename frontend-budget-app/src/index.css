@@ -481,6 +481,15 @@ code {
     margin: auto;
   }
 
+  body{
+    background-size: 100% 100%;
+    
+  }
+
+  .App{
+    width: 540px;
+  }
+
   /*nav-items*/
   .nav-toggle {
     Position:absolute;
@@ -488,13 +497,14 @@ code {
 		Margin: 0rem 1rem;
     margin-left: auto;
 		right: 0rem;
+    width: 1.5rem;
   }
 
-  .close, .open{
-    width: 1.5rem;
+   .close, .open{
     color: black;
-    margin-left: auto;
-  }
+   /* margin-left: auto;*/
+   width: 1.5rem;
+  } 
 
   .open{
     display: block;
@@ -505,15 +515,15 @@ code {
   }
 
   .nav-container {
-    /*width: fit-content;*/
-    min-width: 540px;
+    /*width: 540px;
+    /*min-width: 540px;*/
     /*text-align: center;*/
     display: flex;
     flex-direction: column;
   }
+
   .nav-bar {
     position: absolute;
-    
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -521,9 +531,9 @@ code {
     /*justify-content: flex-start;*/
     /*gap: 2rem;*/
     margin: .5rem;
-    /*right: 0;*/
-    
+    /*right: 0;*/ 
   }
+
   .nav-item {
     display: none;
    /* background-color: rgb(40, 250, 40);*/
@@ -539,13 +549,11 @@ code {
   }
 
   .high-light:active{
-    background-color:rgb(50, 50, 50);
+    background-color: darkgrey;
   }
-  
 
   .logout{
-    display: block;
-    
+    display: block; 
     margin-right: auto;
     left:0;
   }
@@ -563,18 +571,17 @@ code {
   }
 
   #nav-checkbox:checked ~ .nav-bar .nav-item{
-    display: block;
-    
+    display: block;  
   }
 
   .container{
     justify-content: center;   
+    max-width: 540px;
   }
 
   .show-container{
     margin-right: 0px;
-    padding: 0px;
-    
+    padding: 0px;  
   }
 }
 
