@@ -496,14 +496,14 @@ code {
 		Cursor: pointer;
 		Margin: 0rem 1rem;
     margin-left: auto;
-		right: 0rem;
-    width: 1.5rem;
+		right: 2rem;
+    width: 3.5rem;
   }
 
    .close, .open{
     color: black;
    /* margin-left: auto;*/
-   width: 1.5rem;
+    width: 3.5rem;
   } 
 
   .open{
