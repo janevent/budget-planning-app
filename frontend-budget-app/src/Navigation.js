@@ -85,7 +85,7 @@ class NavigationBar extends React.Component {
         //console.log(templates)
         return(
             <nav className="nav-container">
-                <input type="checkbox" id="nav-checkbox"></input>  
+                <input type="checkbox" name="checkbox" id="nav-checkbox"></input>  
                     <label for="nav-checkbox" className="nav-toggle">
                         <svg className="open" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
                             <line x1="0" y1="0" x2="50" y2="0" stroke="black" stroke-width="3"/>
