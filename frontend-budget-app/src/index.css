@@ -501,7 +501,7 @@ code {
   }
 
    .close, .open{
-    color: black;
+    color: rgb(4, 125, 196);
    /* margin-left: auto;*/
     width: 3.5rem;
   } 

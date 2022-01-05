@@ -88,12 +88,12 @@ class NavigationBar extends React.Component {
                 <input type="checkbox" name="checkbox" id="nav-checkbox"></input>  
                     <label for="nav-checkbox" className="nav-toggle">
                         <svg className="open" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0" y1="0" x2="50" y2="0" stroke="black" stroke-width="3"/>
-                            <line x1="0" y1="15" x2="25" y2="15" stroke="black" stroke-width="3"/>
-                            <line x1="0" y1="30" x2="50" y2="30" stroke="black" stroke-width="3"/>
+                            <line x1="0" y1="3" x2="50" y2="3" stroke="lightblue" stroke-width="3"/>
+                            <line x1="0" y1="15" x2="25" y2="15" stroke="blue" stroke-width="3"/>
+                            <line x1="0" y1="30" x2="50" y2="30" stroke="blue" stroke-width="3"/>
                         </svg>
                          <svg className="close" viewbox="0 0 50 50"  xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="0,0 20,20 40,0" stroke="black" fill="none" stroke-width="2" />
+                            <polygon points="0,3 20,20 40,3" stroke="lightblue" fill="lightblue" stroke-width="2" />
                         </svg> 
                     </label>     
                 <div className="nav-bar">
