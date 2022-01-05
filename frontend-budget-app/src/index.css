@@ -355,7 +355,7 @@ code {
     1deg, var(--highlight), white 99%);
     background-size: calc(100% + 20px) calc(100% + 20px);
   border-radius: 15px;
-  color: rgb(10, 105, 247);
+  color: rgb(6, 159, 197);
   font-family: roboto mono, monospace;
   font-size: 1em;
   border-style: groove; 
@@ -373,11 +373,11 @@ code {
   text-decoration: none;
   color: rgb(7, 141, 230);
 }
+
 .link {
   text-decoration: none;
   color: black;  
   padding: 5px;
-  
 }
 
 .buttonsContainer {
@@ -401,8 +401,8 @@ code {
   background: var(--highlight);
 }
 
-
 @media screen and (max-width: 1280px){
+
   .link, .label {
     font-size: 1.5em;
   }
@@ -422,6 +422,7 @@ code {
   /* body {
     font-size: 2em;
   } */
+
   .container, .edit-container, .show-container {
     margin: auto;
     padding: auto;
@@ -455,10 +456,6 @@ code {
     height: 130px;
   }
 
-  /* .input {
-    font-size: 1em;
-  } */
-
   .label{
     margin-top: 10px;
     margin-left: 5px;
@@ -471,7 +468,6 @@ code {
   .link {
     font-size: 1em;
   }
-
 
   .App{ 
     margin: auto;
@@ -659,7 +655,7 @@ code {
   } 
 
   .ExpenseInput, .IncomeInput {
-    margin-bottom: 25px;
+    margin-bottom: 35px;
   }
 
   /*showpage*/
@@ -687,20 +683,19 @@ code {
   } */
 
   .label {
-    font-size: 1.5em;
+    font-size: 1.10em;
   }
-
 
   h2 {
     font-weight: 550;
-    font-size: 3em;
+    font-size: 1.5em;
   }
 
   h3{
     font-size: 2em;
   }
-  .show-container {
-    
+
+  .show-container {   
     margin-bottom: 75px;
     margin-top: 50px;
   }
