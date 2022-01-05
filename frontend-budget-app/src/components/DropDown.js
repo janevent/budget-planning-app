@@ -7,19 +7,21 @@ export default class DropDown extends React.Component {
     render(){      
         return (          
                 <div className="wrapper">
-                    <div className="high-light link header-title">{this.props.title}</div>                       
-                    <ul className="list">
-                    {this.props.items.length>0 ? 
-                        this.props.items.map((i)  => {                             
-                            return (
-                                <li className="list-item" key={i.id} >
-                                    <Link  className="link high-light" to={this.props.link(i.id)} >{i.title}</Link>
-                                </li>
-                            )
-                        })
+                    <div className="high-light link header-title">{this.props.title}</div>   
+                    {this.props.items.length>0 ?                  
+                        <ul className="list">                       
+                            {this.props.items.map((i)  => {                             
+                                return (
+                                    <li className="list-item" key={i.id} >
+                                        <Link  className="link high-light" to={this.props.link(i.id)} >{i.title}</Link>
+                                    </li>
+                                )
+                            })
+                            }
+                    
+                        </ul>
                     :
                     "" }
-                    </ul>
                     
                 </div>          
         )
