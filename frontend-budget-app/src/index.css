@@ -352,14 +352,15 @@ code {
 .bttn {
   background-color: lightgrey;
   background-image: linear-gradient(
-    1deg, var(--highlight), white 99%);
+    to bottom, white, lightslategrey);
     background-size: calc(100% + 20px) calc(100% + 20px);
+  transition: 2ms;
   border-radius: 15px;
-  color: rgb(6, 159, 197);
+  color: black;
   font-family: roboto mono, monospace;
   font-size: 1em;
-  border-style: groove; 
-  border-color: var(--highlight);
+  border-style: none;
+  border-color: slategrey;
   border-width: 2px;
   padding: 5px;
   margin: 0px;
@@ -481,14 +482,6 @@ code {
     margin: auto;
   }
 
-  body{
-    background-size: 100% 100%;
-    
-  }
-
-  .App{
-    width: 540px;
-  }
 
   /*nav-items*/
   .nav-toggle {
@@ -524,6 +517,7 @@ code {
 
   .nav-bar {
     position: absolute;
+    
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -535,22 +529,41 @@ code {
   }
 
   .nav-item {
-    display: none;
-   /* background-color: rgb(40, 250, 40);*/
-  }
+    display: none; 
+  } 
 
    .high-light{
-    background-color: white;
+    /*background-color: white;*/
     border-radius: 5px;
+    /* background: linear-gradient(to bottom, steelblue, lightsteelblue); */
+    transition: 2ms;
+  }
+
+  .high-light.link{
+    background: white;
+    transition: 2ms;
   }
 
   .high-light:hover{
     background-color:var(--highlight);
+    transition: 2ms;
   }
 
   .high-light:active{
-    background-color: darkgrey;
+    background-color: var(--lightblue);
+    transition: 2ms;
   }
+
+  .list{
+    background-color: white;
+    border-style: none;
+  }
+
+  .list-item-child{
+    background: greenyellow;
+  }
+
+  
 
   .logout{
     display: block; 
@@ -729,10 +742,7 @@ code {
   /* .link {
     margin-right: 85px;
   } */
-  .list {
-    background-color: rgb(186, 230, 250);
-    border: none;
-  }
+  
 }
 
 @media screen and (max-width: 360px){
@@ -742,3 +752,7 @@ code {
     justify-content: center;
   }
 }
+.list-item-child{
+  background: white;
+}
+
