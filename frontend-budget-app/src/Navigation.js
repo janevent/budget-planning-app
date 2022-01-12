@@ -83,19 +83,23 @@ class NavigationBar extends React.Component {
     render(){
         const { templates, budgets } = this.props
         //console.log(templates)
+        //xmlns="http://www.w3.org/2000/svg"
         return(
             <nav className="nav-container">
-                <input type="checkbox" name="checkbox" id="nav-checkbox"></input>  
-                    <label for="nav-checkbox" className="nav-toggle">
-                        <svg className="open" viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                     <input type="checkbox" className="nav-checkbox" id="nav-checkbox"/> 
+                    <label htmlFor="nav-checkbox" className="nav-toggle">
+                         
+                        <svg className="open" viewBox="0 0 50 50"  width="100" >
                             <line x1="0" y1="3" x2="50" y2="3" stroke="lightblue" stroke-width="3"/>
                             <line x1="0" y1="15" x2="25" y2="15" stroke="blue" stroke-width="3"/>
                             <line x1="0" y1="30" x2="50" y2="30" stroke="blue" stroke-width="3"/>
                         </svg>
-                         <svg className="close" viewbox="0 0 50 50"  xmlns="http://www.w3.org/2000/svg">
+                         <svg className="close" viewBox="0 0 50 50"  width="100" >
                             <polygon points="0,3 20,20 40,3" stroke="lightblue" fill="lightblue" stroke-width="2" />
                         </svg> 
-                    </label>     
+                    </label>  
+                    
+
                 <div className="nav-bar">
                    
                     <div className="nav-item logout"><LogOut/></div>
