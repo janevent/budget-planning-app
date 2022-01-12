@@ -7,7 +7,9 @@
 :root{
   --highlight: rgb(161, 220, 247);
   --lightblue: rgb(48, 194, 252);
+  --lighthighlight: rgb(0, 0 ,50);
   --green: rgb(7, 199, 55);
+  --purple: rgb(247, 9, 247);
 }
 
 code {
@@ -85,7 +87,8 @@ div.nav-item.firstChild{
 }
 
 .bttn:hover{
-  background: var(--highlight);
+  background: linear-gradient(to bottom, white, var(--highlight));
+  color: var(--lightblue);
 }
 
 /* DropDown child of nav-item */
@@ -95,11 +98,22 @@ div.nav-item.firstChild{
   padding-right: 5px;
   padding-top: 3px;
   padding-bottom: 5px;
+  transition: 2ms;
 }
+
 .high-light:hover {
-  background: var(--highlight);
+  /*background: linear-gradient(to bottom, white, var(--highlight));*/
   border-radius: 10px;
+  background: linear-gradient(to right, var(--purple), darkviolet);
+  background-clip: text;
+  color: transparent;
 }
+
+.high-light:active{
+  background: linear-gradient(to right, white, var(--purple));
+  background-clip: text;
+  color: transparent;
+} 
 
 /*drop down menu */
 .list {
@@ -125,6 +139,7 @@ div.nav-item.firstChild{
   flex-direction: column;
   overflow: visible;
 }
+
 .wrapper {
   /*overflow: visible;*/
   /*position: absolute;*/
@@ -142,9 +157,9 @@ div.nav-item.firstChild{
   margin: 5px;
 }
 
-.list-item:hover {
+/* .list-item:hover {
   background:  var(--highlight);
-}
+} */
 
 /*Containers */
 .container, .edit-container {
@@ -355,8 +370,12 @@ h3 {
   border-width: 2px;
   padding: 5px;
   margin: 0px;
+  transition: 2ms;
 }
 
+.bttn:active {
+  color: lightblue;
+}
 .signup, .login{
   font-size: .75em;
 }

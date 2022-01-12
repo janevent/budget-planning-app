@@ -11,7 +11,7 @@ class TransferDropDown extends React.Component {
                 <ul className="list">
                     {this.props.templates.map( (t) => {
                         return (
-                        <li className="list-item" key={t.id} onClick={(event) => this.props.addTemplateData(t)} >{t.title}</li>
+                        <li className="list-item high-light" key={t.id} onClick={(event) => this.props.addTemplateData(t)} >{t.title}</li>
                         )
                     })}
                 </ul>

@@ -53,15 +53,15 @@ class NewUser extends React.Component {
                 <h1>Sign Up</h1>
                 <form className="form" onSubmit={this.handleOnSubmit} >
                     <label>
-                        UserName <input type="text" name="username" onChange={this.handleUserNameChange} value={this.state.userName} />
+                        UserName <input type="text" className="input" name="username" onChange={this.handleUserNameChange} value={this.state.userName} />
                     </label>
                     
                     <label>
-                        Password <input type="password" name="password" value= {this.state.password} onChange={this.handlePasswordChange}/>
+                        Password <input type="password" className="input" name="password" value= {this.state.password} onChange={this.handlePasswordChange}/>
                     </label>
                     
                     <label>
-                        Email <input type="email" name="email" value= {this.state.email} onChange={this.handleEmailChange}/>
+                        Email <input type="email" name="email" className="input" value= {this.state.email} onChange={this.handleEmailChange}/>
                     </label>
                     <br></br>
                     <input type="submit" className="bttn signup" value="Sign Up" />
