@@ -47,9 +47,6 @@ export default (state =  [], action) => {
             let firstPartTs = state.slice(0, indexOfT);
             let lastPartTs = state.slice( indexOfT+1);
             let indexOfExpense = action.expenseId
-            //let indexOfExpense = templateToUpdateExpense.expenses.findIndex( (expense) => {
-              //  return expense.id === action.expenseId
-            //});
             let firstPartExpenses = templateToUpdateExpense.expenses.slice(0, indexOfExpense);
             let lastPartExpenses = templateToUpdateExpense.expenses.slice(indexOfExpense + 1);
             let updatedExpenses = [...firstPartExpenses, action.expense, ...lastPartExpenses];
@@ -66,9 +63,6 @@ export default (state =  [], action) => {
             })
             let firstPartTemplates = state.slice(0, indexOfTemplate);
             let lastPartTemplates = state.slice( indexOfTemplate+1)
-            //let indexOfIncome = templateToUpdateIncome.incomes.findIndex( (income) => {
-              //  return income.id === action.incomeId
-            //});
             let indexOfIncome = action.incomeId
             let firstPartIncomes = templateToUpdateIncome.incomes.slice(0, indexOfIncome);
             let lastPartIncomes = templateToUpdateIncome.incomes.slice(indexOfIncome + 1);
@@ -137,7 +131,8 @@ export default (state =  [], action) => {
             let l = state.slice( inde+1)
             let mergedTemps = [...f, mergedWithTemp, ...l]
             return mergedTemps
-
+        case 'CLEAR_TEMPLATES':
+            return []
         default:
             
             return state

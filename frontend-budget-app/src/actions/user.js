@@ -22,7 +22,7 @@ const getBudgets = (budgets) => {
 
 const fetchSetCurrentUser = (user) => {
     return (dispatch) => {
-        fetch('http://localhost:3001/login', {
+        fetch('https://easy-budgety.herokuapp.com/login', {
             credentials: "include",
             method: 'POST',
             headers: {

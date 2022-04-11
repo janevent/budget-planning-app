@@ -8,7 +8,7 @@ const addTemplate = (template) => {
 const fetchAndAddTemplate = (template) => {
     return (dispatch) => {
         console.log('template:', template)
-        fetch(('http://localhost:3001/templates'),{
+        fetch(('https://easy-budgety.herokuapp.com/templates'),{
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -26,6 +26,7 @@ const fetchAndAddTemplate = (template) => {
                     console.log(myjson.error)
                 }else {
                     console.log("mytemplatejson:", myjson)
+                    //message: "Can not find user"
                     //this.props.setNewBudgetID(myjson.data.id);
                     let tem = myjson.data.attributes;
                     tem.id = myjson.data.id;

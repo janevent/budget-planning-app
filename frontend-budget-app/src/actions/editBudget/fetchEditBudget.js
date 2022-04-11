@@ -13,7 +13,7 @@ const fetchEditBudget = (budget, id) => {
         console.log('budget', budget, 'id', id)
         console.log("type", typeof id);
         
-        fetch(`http://localhost:3001/budgets/${id}`, {               
+        fetch(`https://easy-budgety.herokuapp.com/budgets/${id}`, {               
             credentials: 'include',
             method:'put',
             headers: {

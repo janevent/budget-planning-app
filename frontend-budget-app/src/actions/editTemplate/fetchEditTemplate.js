@@ -22,7 +22,7 @@ const fetchEditTemplate = (template, id) => {
             //     return expense.attributes.description !== ""
             // });
             // let newTemplate = Object.assign( {}, template, {incomes: filteredIncomes, expenses: filteredExpenses})
-            fetch(`http://localhost:3001/templates/${id}`, {               
+            fetch(`https://easy-budgety.herokuapp.com/templates/${id}`, {               
                 credentials: 'include',
                 method:'put',
                 headers: {

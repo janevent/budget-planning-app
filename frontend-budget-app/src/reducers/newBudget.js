@@ -4,7 +4,7 @@ export default (state=null, action) => {
             return Object.assign({}, state, {title: action.title} )
                 //action.title
         case 'CREATE_NEW_INCOME':
-            let is = [...state.incomes, {description: "", amount: "0"}];
+            let is = [...state.incomes, {description: "", amount: ""}];
             return { ...state, incomes: is}
         case 'UPDATE_INCOME':
             //let i = state.incomes.find((inc, index)=> index === action.id)
@@ -15,7 +15,7 @@ export default (state=null, action) => {
         case 'UPDATE_TOTAL_INCOME':
             return Object.assign({}, state, { totalIncome: action.totalIncome } )
         case 'CREATE_NEW_EXPENSE':
-            let es = [...state.expenses, {description: "", amount: "0"}];    
+            let es = [...state.expenses, {description: "", amount: ""}];    
             return { ...state, expenses: es}
         case 'UPDATE_EXPENSE':
             let e2 = action.expense;

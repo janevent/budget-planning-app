@@ -8,7 +8,7 @@ const removeTemplate = (id) => {
 const fetchDeleteTemplate = (id) => {
     console.log(typeof id);
     return (dispatch) => {
-        fetch( `http://localhost:3001/templates/${id}`, {
+        fetch( `https://easy-budgety.herokuapp.com/templates/${id}`, {
             credentials: 'include',
             method: 'delete'           
         })

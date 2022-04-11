@@ -24,6 +24,8 @@ function EditBudgetContainer(props){
     function handleTitleChange(event){
         event.persist();
         let iD = props.match.params.id;
+        console.log('id', iD)
+        console.log('value', event.target.value)
         props.updateTitle(event.target.value, iD)
     }
 

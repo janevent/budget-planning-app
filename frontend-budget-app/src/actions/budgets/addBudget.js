@@ -8,7 +8,7 @@ const addBudget = (budget) => {
 const fetchAndAddBudget = (budget) => {
     return (dispatch) => {
         console.log('budget:', budget)
-        fetch(('http://localhost:3001/budgets'),{
+        fetch(('https://easy-budgety.herokuapp.com/budgets'),{
             credentials: 'include',
             method: 'POST',
             headers: {

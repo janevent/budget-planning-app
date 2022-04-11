@@ -11,7 +11,7 @@ class LogOut extends React.Component {
         console.log('logging out')
         
 
-        fetch('http://localhost:3001/logout', {
+        fetch('https://easy-budgety.herokuapp.com/logout', {
             credentials: 'include',
             headers: {
                'Content-Type': 'application/json',

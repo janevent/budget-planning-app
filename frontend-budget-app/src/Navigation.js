@@ -90,12 +90,12 @@ class NavigationBar extends React.Component {
                     <label htmlFor="nav-checkbox" className="nav-toggle">
                          
                         <svg className="open" viewBox="0 0 50 50"  width="100" >
-                            <line x1="0" y1="3" x2="50" y2="3" stroke="lightblue" stroke-width="3"/>
-                            <line x1="0" y1="15" x2="25" y2="15" stroke="blue" stroke-width="3"/>
-                            <line x1="0" y1="30" x2="50" y2="30" stroke="blue" stroke-width="3"/>
+                            <line x1="0" y1="3" x2="50" y2="3" stroke="lightblue" strokeWidth="3"/>
+                            <line x1="0" y1="15" x2="25" y2="15" stroke="blue" strokeWidth="3"/>
+                            <line x1="0" y1="30" x2="50" y2="30" stroke="blue" strokeWidth="3"/>
                         </svg>
                          <svg className="close" viewBox="0 0 50 50"  width="100" >
-                            <polygon points="0,3 20,20 40,3" stroke="lightblue" fill="lightblue" stroke-width="2" />
+                            <polygon points="0,3 20,20 40,3" stroke="lightblue" fill="lightblue" strokeWidth="2" />
                         </svg> 
                     </label>  
                     

@@ -7,7 +7,7 @@ const newCurrentUser = (user) => {
 
 const fetchNewCurrentUser = (user) => {
     return (dispatch) => {
-        fetch('http://localhost:3001/users', {
+        fetch('https://easy-budgety.herokuapp.com/users', {
             credentials: 'include',
             method: 'POST',
             headers: {
@@ -18,8 +18,8 @@ const fetchNewCurrentUser = (user) => {
         })
         .then(r => r.json())
         .then((myjson) => {
-            console.log("user:", myjson.data.attributes )
-            
+            //console.log("user:", myjson.data.attributes )
+            console.log("myjson: ", myjson)
             dispatch(newCurrentUser(myjson.data.attributes));
         })           
     }
