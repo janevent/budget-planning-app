@@ -54,9 +54,9 @@ export default (state=null, action) => {
             
             default:
                     return {
-                    title: "untitled",
-                    expenses: [{description: "", amount: "0"}],
-                    incomes: [{description: "", amount: "0"}],
+                    title: "",
+                    expenses: [{description: "", amount: ""}],
+                    incomes: [{description: "", amount: ""}],
                     totalIncome: null,
                     totalExpenditure: null,
                     totalDifference: null
