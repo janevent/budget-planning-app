@@ -29,9 +29,15 @@ class NewBudgetFormContainer extends React.Component {
         let incomes = budget.incomes.filter( (i) => i.description!== "" );
         console.log('expenses:', expenses);
         console.log('incomes:', incomes);
-       
+        let title;
+        if(budget.title){
+            title = budget.title
+        }else{
+            title = "untitled"
+        }
+
        let b = {
-            title: budget.title,
+            title: title,
             total_income: budget.totalIncome,
             total_expenditure: budget.totalExpenditure,
             total_difference: budget.totalDifference,

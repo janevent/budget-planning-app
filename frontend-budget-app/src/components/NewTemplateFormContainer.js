@@ -20,8 +20,15 @@ class NewTemplateFormContainer extends React.Component {
         let template = this.props.newTemplate;
         let expenses = template.expenses.filter( (e) => e.description!== "")
         let incomes = template.incomes.filter( (i) => i.description!== "");
+        let title
+        if(template.title){
+            title = template.title
+        }else{
+            title = "untitled"
+        }
+
         let newTemplate = {
-            title: template.title,
+            title: title,
             total_income: template.totalIncome,
             total_expenditure: template.totalExpenditure,
             total_difference: template.totalDifference,
