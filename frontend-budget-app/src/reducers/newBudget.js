@@ -2,12 +2,10 @@ export default (state=null, action) => {
     switch(action.type){
         case 'UPDATE_TITLE':
             return Object.assign({}, state, {title: action.title} )
-                //action.title
         case 'CREATE_NEW_INCOME':
             let is = [...state.incomes, {description: "", amount: ""}];
             return { ...state, incomes: is}
         case 'UPDATE_INCOME':
-            //let i = state.incomes.find((inc, index)=> index === action.id)
             let firstPart = state.incomes.slice(0, action.id)
             let lastPart = state.incomes.slice(action.id + 1)
             let incomes = [...firstPart, action.income, ...lastPart]
@@ -44,9 +42,9 @@ export default (state=null, action) => {
             return { ...state, ...{ id: action.id }}
         case 'CLEAR_NEW_BUDGET':
             return {
-                title: "untitled",
-                expenses: [{description: "", amount: "0"}],
-                incomes: [{description: "", amount: "0"}],
+                title: "",
+                expenses: [{description: "", amount: ""}],
+                incomes: [{description: "", amount: ""}],
                 totalIncome: null,
                 totalExpenditure: null,
                 totalDifference: null
@@ -66,9 +64,9 @@ export default (state=null, action) => {
             return newObj;
         default:
             return {
-                title: "untitled",
-                expenses: [{description: "", amount: "0"}],
-                incomes: [{description: "", amount: "0"}],
+                title: "",
+                expenses: [{description: "", amount: ""}],
+                incomes: [{description: "", amount: ""}],
                 totalIncome: null,
                 totalExpenditure: null,
                 totalDifference: null

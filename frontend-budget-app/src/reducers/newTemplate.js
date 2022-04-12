@@ -1,14 +1,11 @@
 export default (state=null, action) => {
-        switch(action.type){
-            
+        switch(action.type){           
             case 'UPDATE_TITLE':
                 return Object.assign({}, state, {title: action.title} )
-                //action.title
             case 'CREATE_NEW_INCOME':
                 let is = [...state.incomes, {description: "", amount: ""}];
                 return { ...state, incomes: is}
             case 'UPDATE_INCOME':
-               // let i = state.incomes.find((inc, index)=> index === action.id)
                 let firstPart = state.incomes.slice(0, action.id)
                 let lastPart = state.incomes.slice(action.id + 1)
                 let incomes = [...firstPart, action.income, ...lastPart]
@@ -20,13 +17,7 @@ export default (state=null, action) => {
                 
                 return { ...state, expenses: es}
             case 'UPDATE_EXPENSE':
-                //let e = state.expenses.find((expense, index)=> index === action.id)
-                //debugger
-                //pass the whole expense object through and replace at the specific index
-                //let e2 = Object.assign( {}, e, {[action.name]:action.expense} )
-                
                 let e2 = action.expense;
-                //debugger
                 let expenses
                 let firstP;
                 let lastP;
@@ -53,9 +44,9 @@ export default (state=null, action) => {
                 return { ...state, ...{ id: action.id }}
             case 'CLEAR_NEW_TEMPLATE':
                 return {
-                    title: "untitled",
-                    expenses: [{description: "", amount: "0"}],
-                    incomes: [{description: "", amount: "0"}],
+                    title: "",
+                    expenses: [{description: "", amount: ""}],
+                    incomes: [{description: "", amount: ""}],
                     totalIncome: null,
                     totalExpenditure: null,
                     totalDifference: null
